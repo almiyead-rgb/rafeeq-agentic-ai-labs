@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rafeeq.training/schemas/assessment.schema.json",
+  "title": "Rafeeq public assessment report",
+  "description": "Aggregate report generated from public, inspectable evaluation cases.",
+  "type": "object",
+  "required": [
+    "schema_version", "run_id", "generated_at_utc", "llm_mode", "mcp_transport",
+    "versions", "cases", "metrics", "critical_gates", "optimization", "readiness",
+    "all_critical_gates_passed"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "run_id": {"type": "string", "minLength": 8, "maxLength": 100},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "llm_mode": {"const": "stub"},
+    "mcp_transport": {"const": "stdio"},
+    "versions": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["case_id", "passed"],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "passed": {"type": "boolean"},
+          "expected": {"type": "object"},
+          "actual": {"type": "object"},
+          "risk_flags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "latency_ms": {"type": "number", "minimum": 0}
+        },
+        "additionalProperties": true
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": ["number", "integer", "boolean"]}
+    },
+    "critical_gates": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "boolean"}
+    },
+    "optimization": {"type": "object"},
+    "readiness": {"type": "object", "minProperties": 1},
+    "all_critical_gates_passed": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

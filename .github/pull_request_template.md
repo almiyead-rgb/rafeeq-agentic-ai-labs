@@ -7,7 +7,9 @@
 
 ## Evidence · الأدلة
 
-- [ ] `python scripts/validate_foundation.py` passes
+- [ ] `python scripts/validate_release.py` passes
+- [ ] `python scripts/validate_notebook.py` passes
+- [ ] Public tests pass / الاختبارات العامة ناجحة
 - [ ] Desktop checked / فُحص سطح المكتب
 - [ ] Mobile checked / فُحص الجوال
 - [ ] RTL/LTR checked / فُحص RTL وLTR

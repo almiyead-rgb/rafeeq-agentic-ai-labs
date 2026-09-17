@@ -1,25 +1,71 @@
-# Recovery policy · سياسة الاستعادة
+# Learner recovery policy · سياسة استعادة عمل المتدرب
 
-This public folder documents the recovery policy only. It must never contain a completed notebook, answer patch, reference output, hidden test, or instructor checkpoint.
+**Colab Runtime is temporary. Before C29, Google Drive holds the working notebook and gate evidence; a learner repository is not required. After C29, GitHub holds the final clean submission.**
 
-يوثق هذا المجلد العام سياسة الاستعادة فقط. ويُمنع أن يحتوي على دفتر مكتمل أو Patch للإجابة أو ناتج مرجعي أو اختبار خفي أو Checkpoint للمدربة.
+**بيئة Colab مؤقتة. قبل C29 يحتفظ Google Drive بدفتر العمل وأدلة البوابات، ولا يلزم مستودع للمتدرب. بعد C29 يحتفظ GitHub بالتسليم النهائي النظيف.**
 
-## Planned learner recovery order · ترتيب الاستعادة المخطط للمتدرب
+Losing the runtime is normal: installed packages, Python variables, uploaded temporary files, and in-memory state disappear. Your saved Drive notebook remains; after the final C29 upload, the clean GitHub submission also remains.
 
-1. Re-run the environment doctor.
-2. Restore the working notebook from Google Drive.
-3. Compare the last recorded GitHub checkpoint.
-4. Apply the smallest instructor-approved recovery patch only when needed.
-5. Re-run the public gate and preserve the learner's completed work.
+فقدان بيئة التشغيل أمر طبيعي: تختفي الحزم المثبتة ومتغيرات Python والملفات المؤقتة وحالة الذاكرة. تبقى نسخة الدفتر المحفوظة في Drive، وبعد رفع C29 النهائي يبقى أيضًا التسليم النظيف في GitHub.
 
----
+## Recovery order · ترتيب الاستعادة
 
-1. أعد تشغيل فحص البيئة.
-2. استعد نسخة العمل من Google Drive.
-3. قارن آخر Checkpoint موثق في GitHub.
-4. طبّق أصغر Patch استعادة معتمد من المدربة عند الحاجة فقط.
-5. أعد تشغيل البوابة العامة مع الحفاظ على عمل المتدرب المنجز.
+1. Open the latest notebook copy saved in Google Drive. · افتح أحدث نسخة للدفتر محفوظة في Google Drive.
+2. Select the standard CPU runtime; do not enable a GPU. · اختر بيئة CPU القياسية ولا تفعل GPU.
+3. Run `C0_ENV_DOCTOR`. Stop if it does not return `C0 = READY`. · شغّل `C0_ENV_DOCTOR`. توقف إذا لم يعرض `C0 = READY`.
+4. Run completed cells from the top in order. Python state must be rebuilt; do not jump directly to the last cell. · أعد تشغيل الخلايا المكتملة من الأعلى وبالترتيب لإعادة بناء حالة Python؛ لا تقفز مباشرة إلى آخر خلية.
+5. Stop at the last completed gate and confirm its exact success marker from the table below. · توقف عند آخر بوابة مكتملة، وتأكد من علامة نجاحها الدقيقة في الجدول أدناه.
+6. Compare your Drive copy with the saved checkpoint label and gate evidence. In the guaranteed path, GitHub remains empty until the clean C29 upload. · قارن نسخة Drive بتسمية نقطة التقدم ودليل البوابة المحفوظين. في المسار المضمون يبقى GitHub فارغًا حتى رفع C29 النظيف.
+7. Continue from the first incomplete learner `TODO`. · تابع من أول `TODO` غير مكتمل.
 
-Actual recovery checkpoints and patches remain in the separate private instructor repository.
+| Gate | Exact success marker · علامة النجاح الدقيقة |
+|---|---|
+| `C9_DAY1_GATE` | `all_passed=true` |
+| `C20_DAY2_GATE` | `all_passed=true` |
+| Enabled final `C29_EXPORT_SAFETY_CHECK` · تشغيل C29 النهائي المفعّل | `FINAL_EXPORT_CREATED` |
 
-تبقى نقاط الاستعادة وملفات الإصلاح الفعلية في مستودع المدربة الخاص والمنفصل.
+`FINAL_EXPORT_SKIPPED` means the final switch is off, and `FINAL_EXPORT_BLOCKED` means a precheck failed. Neither is a successful final export.
+
+تعني `FINAL_EXPORT_SKIPPED` أن مفتاح التصدير النهائي مغلق، وتعني `FINAL_EXPORT_BLOCKED` أن فحصًا مسبقًا فشل. لا تعد أي منهما تصديرًا نهائيًا ناجحًا.
+
+## Common recovery cases · حالات الاستعادة الشائعة
+
+| Symptom | Safe action | العَرَض | الإجراء الآمن |
+|---|---|---|---|
+| `NameError` after reconnecting | Run all completed cells from `C0` in order. | ظهور `NameError` بعد إعادة الاتصال | شغّل جميع الخلايا المكتملة من `C0` بالترتيب. |
+| Package/module not found | Rerun the notebook setup cell; use only the pinned dependencies supplied by the course. | تعذر العثور على حزمة أو وحدة | أعد تشغيل خلية التجهيز، واستخدم الاعتماديات المثبتة بالإصدارات المرفقة فقط. |
+| Temporary file missing | Rerun the relevant preparation cell. Do not replace it with real data. | فقدان ملف مؤقت | أعد تشغيل خلية التجهيز المرتبطة، ولا تستبدلها ببيانات حقيقية. |
+| MCP process stopped | Restart the runtime and rerun through `C8` in order. | توقف عملية MCP | أعد تشغيل البيئة ثم شغّل حتى `C8` بالترتيب. |
+| Drive copy is behind | Use the last saved gate evidence or a dated Drive copy as the comparison point; preserve newer correct learner work. | نسخة Drive أقدم | استخدم دليل آخر بوابة محفوظة أو نسخة Drive مؤرخة للمقارنة، مع الحفاظ على عمل المتدرب الصحيح الأحدث. |
+| Public test fails after an edit | Revert only the most recent learner edit, rerun the same public test, and record the error. | فشل فحص عام بعد تعديل | تراجع عن أحدث تعديل للمتدرب فقط، ثم أعد الفحص نفسه وسجل الخطأ. |
+| Browser tab closed | Reopen the saved Drive notebook; never rebuild from an untrusted copy. | إغلاق تبويب المتصفح | أعد فتح نسخة Drive المحفوظة، ولا تُعد البناء من نسخة غير موثوقة. |
+
+## Saved checkpoint labels · تسميات نقاط التقدم المحفوظة
+
+Use these exact, searchable labels after each successful gate. Save the first two in the Drive notebook/report; use the final line as the GitHub upload commit message:
+
+استخدم التسميات الدقيقة والقابلة للبحث التالية بعد نجاح كل بوابة. احفظ الأوليين في دفتر Drive أو التقرير، واستخدم السطر الأخير رسالة Commit لرفع GitHub:
+
+```text
+checkpoint(day-1): pass C9 core tools and MCP
+checkpoint(day-2): pass C20 memory and orchestration
+feat: submit Rafeeq Mini capstone
+```
+
+A saved checkpoint should preserve the updated Drive notebook, gate result, and report draft. It must not contain raw runtime dumps, real data, keys, passwords, private links, solution files, instructor materials, or hidden tests. The GitHub upload happens only after the clean C29 export.
+
+يجب أن تحفظ نقطة التقدم دفتر Drive المحدث ونتيجة البوابة ومسودة التقرير. ويُمنع أن تتضمن تفريغًا خامًا للبيئة أو بيانات حقيقية أو مفاتيح أو كلمات مرور أو روابط خاصة أو ملفات حلول أو مواد المدربة أو اختبارات خفية. يحدث رفع GitHub بعد تصدير C29 النظيف فقط.
+
+The generated files `reports/trace.jsonl`, `reports/assessment_results.json`, `reports/monitoring_dashboard.png`, and `reports/submission_manifest.json` are required clean C29 outputs and are not durable Colab state. If they disappear after a reset, restore through the last passed gate and rerun `C25_TRACE_EVAL` through `C29_EXPORT_SAFETY_CHECK`, then upload the extracted clean contents—not the ZIP—to GitHub.
+
+الملفات المولدة `reports/trace.jsonl` و`reports/assessment_results.json` و`reports/monitoring_dashboard.png` و`reports/submission_manifest.json` مخرجات C29 نظيفة وإلزامية، وليست حالة دائمة في كولاب. إذا اختفت بعد إعادة ضبط البيئة فاستعد حتى آخر بوابة ناجحة، ثم أعد التشغيل من `C25_TRACE_EVAL` إلى `C29_EXPORT_SAFETY_CHECK`، وارفع المحتويات النظيفة المستخرجة إلى GitHub لا ملف ZIP.
+
+## Help without data leakage · طلب المساعدة دون تسريب
+
+Share only: cell ID, first useful error line, expected behavior, actual behavior, runtime type, and the last passed gate. Replace customer-like identifiers with supplied synthetic fixture IDs.
+
+شارك فقط: رقم الخلية، وأول سطر خطأ مفيد، والسلوك المتوقع والفعلي، ونوع البيئة، وآخر بوابة ناجحة. استخدم معرفات الحالات المصطنعة المرفقة بدل أي معرف يشبه بيانات العملاء.
+
+This public folder contains policy only. Actual recovery patches, completed notebooks, instructor checkpoints, answers, scoring rules, and hidden evaluations belong outside the public learner repository.
+
+يحتوي هذا المجلد العام على السياسة فقط. تبقى ملفات إصلاح الاستعادة والدفاتر المكتملة ونقاط المدربة والإجابات وقواعد الدرجات والتقييمات الخفية خارج مستودع المتدرب العام.

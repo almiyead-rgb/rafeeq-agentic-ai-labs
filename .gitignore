@@ -26,18 +26,14 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Generated learner evidence and exports
+# Temporary learner evidence and export archives
 reports/checkpoints/*
 !reports/checkpoints/.gitignore
-submission_bundle.zip
-submission_bundle/
-trace.jsonl
-assessment_results.json
-submission_manifest.json
-monitoring_dashboard.png
+rafeeq-mini-submission.zip
 
 # Build and cache output
 dist/
 build/
 .cache/
 coverage/
+.rafeeq-mini/

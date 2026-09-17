@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  const LANGUAGE_KEY = "rafeeq-preview-language";
-  const STEP_KEY = "rafeeq-preview-step";
+  const LANGUAGE_KEY = "rafeeq-language";
+  const STEP_KEY = "rafeeq-setup-step";
   const root = document.documentElement;
   const languageButtons = [...document.querySelectorAll("[data-lang-switch]")];
 
@@ -13,13 +13,17 @@
       titleAr: "إنشاء الحساب",
       bodyEn: "Create a personal GitHub account, verify your email, and choose a professional username.",
       bodyAr: "أنشئ حساب GitHub شخصيًا، ووثّق بريدك، واختر اسم مستخدم مهنيًا.",
+      actionUrl: "https://github.com/signup",
+      actionText: "Open GitHub signup · افتح تسجيل GitHub ↗",
     },
     {
       icon: "⑂",
-      titleEn: "Use template",
-      titleAr: "استخدام القالب",
-      bodyEn: "Create your own public repository from the approved course template. Use the template—not a fork.",
-      bodyAr: "أنشئ مستودعك العام من قالب الدورة المعتمد. استخدم القالب، لا الـFork.",
+      titleEn: "Create repository",
+      titleAr: "إنشاء المستودع",
+      bodyEn: "Create an empty public repository for your final clean export. Keep solutions, secrets, and real data out.",
+      bodyAr: "أنشئ مستودعًا عامًا فارغًا لتصديرك النظيف النهائي. لا تضع الحلول أو الأسرار أو البيانات الحقيقية.",
+      actionUrl: "https://github.com/new",
+      actionText: "Create repository · أنشئ المستودع ↗",
     },
     {
       icon: "☁",
@@ -27,6 +31,8 @@
       titleAr: "تجهيز كولاب",
       bodyEn: "Open the verified notebook, save a working copy in Drive, and keep the standard CPU runtime.",
       bodyAr: "افتح الدفتر بعد التحقق منه، واحفظ نسخة عمل في Drive، واستخدم بيئة CPU القياسية.",
+      actionUrl: "https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb",
+      actionText: "Open Colab · افتح كولاب ↗",
     },
     {
       icon: "✓",
@@ -34,6 +40,8 @@
       titleAr: "الوصول إلى C0 READY",
       bodyEn: "Run C0_ENV_DOCTOR and continue only when every check passes and all_passed=true.",
       bodyAr: "شغّل C0_ENV_DOCTOR، ولا تتابع حتى تنجح جميع الفحوص وتظهر all_passed=true.",
+      actionUrl: "https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb",
+      actionText: "View notebook source · اعرض ملف الدفتر →",
     },
   ];
 
@@ -68,7 +76,10 @@
   }
 
   const savedLanguage = safeRead(LANGUAGE_KEY);
-  const defaultLanguage = savedLanguage || (window.matchMedia("(max-width: 760px)").matches ? "ar" : "both");
+  // Keep the promised side-by-side bilingual experience on every screen size.
+  // Learners can still switch to one language explicitly, and that preference
+  // remains local to their browser.
+  const defaultLanguage = savedLanguage || "both";
   applyLanguage(defaultLanguage);
   languageButtons.forEach((button) => button.addEventListener("click", () => applyLanguage(button.dataset.langSwitch)));
 
@@ -85,6 +96,7 @@
     const bodyEn = board.querySelector("[data-step-body-en]");
     const bodyAr = board.querySelector("[data-step-body-ar]");
     const nextButton = board.querySelector("[data-next-step]");
+    const actionLink = board.querySelector("[data-step-action]");
     const savedStep = Number.parseInt(safeRead(STEP_KEY) || "0", 10);
     let activeStep = Number.isFinite(savedStep) ? Math.min(Math.max(savedStep, 0), setupSteps.length - 1) : 0;
 
@@ -105,10 +117,14 @@
       if (titleAr) titleAr.textContent = step.titleAr;
       if (bodyEn) bodyEn.textContent = step.bodyEn;
       if (bodyAr) bodyAr.textContent = step.bodyAr;
+      if (actionLink) {
+        actionLink.href = step.actionUrl;
+        actionLink.textContent = step.actionText;
+      }
       if (nextButton) {
         nextButton.innerHTML = activeStep === setupSteps.length - 1
-          ? "Return to first preview · عُد إلى المعاينة الأولى <span aria-hidden=\"true\">↺</span>"
-          : "Preview next step · عاين الخطوة التالية <span aria-hidden=\"true\">→</span>";
+          ? "Return to first step · عُد إلى الخطوة الأولى <span aria-hidden=\"true\">↺</span>"
+          : "Next step · الخطوة التالية <span aria-hidden=\"true\">→</span>";
       }
       safeWrite(STEP_KEY, String(activeStep));
     }
@@ -122,11 +138,12 @@
   const toast = document.querySelector("[data-toast]");
   const helpTemplate = [
     "Rafeeq Mini — Safe help request",
-    "Cell / الخلية:",
-    "Expected / المتوقع:",
-    "Observed / الفعلي:",
-    "Error code only / رمز الخطأ فقط:",
-    "Steps tried / المحاولات:",
+    "1. Cell ID / رقم الخلية:",
+    "2. Last passed gate / آخر بوابة ناجحة:",
+    "3. First useful error line / أول سطر خطأ مفيد:",
+    "4. Expected behavior / السلوك المتوقع:",
+    "5. Actual behavior / السلوك الفعلي:",
+    "6. Runtime type and whether it reset / نوع البيئة وهل أعيد ضبطها:",
     "No passwords, tokens, private links, or real customer data.",
   ].join("\n");
 

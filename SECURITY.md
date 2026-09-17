@@ -2,23 +2,23 @@
 
 ## Supported state · الحالة المدعومة
 
-`0.1.0-alpha` is a local pre-release foundation. It is not approved for learner distribution or production use.
+`0.9.0-rc1` is a learner-pilot simulation. It is suitable for supervised training after instructor acceptance, but never for production or real customer data.
 
-الإصدار `0.1.0-alpha` أساس تمهيدي محلي، ولم يعتمد بعد للتوزيع على المتدربين أو للاستخدام الإنتاجي.
+الإصدار `0.9.0-rc1` محاكاة تجريبية للمتدربين. يصلح للتدريب تحت الإشراف بعد قبول المدربة، ولا يصلح للإنتاج أو لبيانات العملاء الحقيقية.
 
 ## Never commit · ممنوع رفعه
 
 - Passwords, tokens, API keys, cookies, private repository links, or `.env` files.
 - Real customer, employee, trainee, order, payment, or support-ticket data.
 - Reference solutions, answer keys, hidden evaluations, hidden attack cases, instructor notes, grades, or actual recovery checkpoints.
-- Generated learner evidence or exported submission bundles.
+- Raw or unredacted evidence, temporary checkpoints, and exported ZIP bundles. The final C29-redacted reports and manifest may be committed to the learner's own repository.
 
 ---
 
 - كلمات المرور أو رموز الوصول أو مفاتيح API أو Cookies أو روابط المستودعات الخاصة أو ملفات `.env`.
 - بيانات حقيقية لعميل أو موظف أو متدرب أو طلب أو دفعة أو تذكرة دعم.
 - الحلول المرجعية أو مفاتيح الإجابة أو التقييمات وحالات الهجوم الخفية أو ملاحظات المدربة أو الدرجات أو نقاط الاستعادة الفعلية.
-- أدلة المتدربين الناتجة أو حزم التسليم المصدرة.
+- الأدلة الخام أو غير المنقحة، ونقاط الحفظ المؤقتة، وحزم ZIP المصدرة. يمكن رفع تقارير C29 المنقحة النهائية وبيان الملفات إلى مستودع المتدرب نفسه.
 
 Use synthetic data only. The private instructor repository is still not a secrets manager.
 

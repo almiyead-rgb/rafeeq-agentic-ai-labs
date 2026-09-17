@@ -1,8 +1,8 @@
 # Contributing · المساهمة
 
-This repository is an instructor-controlled course template. Changes must protect the learner path, the public/private boundary, and the reproducibility of the Colab lab.
+This repository is an instructor-controlled course project. Changes must protect the learner path, the public/private boundary, and the reproducibility of the Colab lab.
 
-هذا المستودع قالب دورة تديره المدربة. يجب أن تحمي التغييرات مسار المتدرب، والفصل بين العام والخاص، وقابلية إعادة تشغيل لاب كولاب.
+هذا المستودع مشروع دورة تديره المدربة. يجب أن تحمي التغييرات مسار المتدرب، والفصل بين العام والخاص، وقابلية إعادة تشغيل لاب كولاب.
 
 ## Working rules · قواعد العمل
 
@@ -10,10 +10,10 @@ This repository is an instructor-controlled course template. Changes must protec
 2. Keep English on the left (`dir="ltr"`) and Arabic on the right (`dir="rtl"`) in dual-language layouts.
 3. Use synthetic examples only; never copy production data.
 4. Do not add answer keys, hidden tests, instructor notes, grades, or recovery checkpoints.
-5. Do not add an active Colab button until the cumulative notebook exists and passes a clean-runtime test.
+5. Keep the active Colab path pointed at the cumulative notebook, and preserve a credential-free clean-runtime check.
 6. Do not add an official logo, `official`/`approved` wording, or institutional topic without written authorization.
-7. Run `python scripts/validate_foundation.py` before requesting review.
-8. Keep generated reports and notebook checkpoints out of Git.
+7. Run `python scripts/validate_release.py` and `python scripts/validate_notebook.py` before requesting review.
+8. Keep temporary checkpoints, raw output, and ZIP bundles out of Git. A learner may commit only the final C29-redacted reports and manifest to their own repository.
 
 ---
 
@@ -21,10 +21,10 @@ This repository is an instructor-controlled course template. Changes must protec
 2. أبقِ الإنجليزية يسارًا (`dir="ltr"`) والعربية يمينًا (`dir="rtl"`) في التخطيطات الثنائية.
 3. استخدم أمثلة مصطنعة فقط، ولا تنسخ بيانات تشغيلية.
 4. لا تضف مفاتيح إجابة أو اختبارات خفية أو ملاحظات المدربة أو درجات أو نقاط استعادة فعلية.
-5. لا تضف زر كولاب فعّالًا قبل وجود الدفتر التراكمي ونجاحه في جلسة نظيفة.
+5. أبقِ مسار كولاب الفعّال مرتبطًا بالدفتر التراكمي، وحافظ على فحص نظيف بلا بيانات دخول.
 6. لا تضف شعارًا رسميًا أو وصف `official`/`approved` أو Topic مؤسسيًا دون تفويض مكتوب.
-7. شغّل `python scripts/validate_foundation.py` قبل طلب المراجعة.
-8. أبقِ التقارير الناتجة وNotebook checkpoints خارج Git.
+7. شغّل `python scripts/validate_release.py` و`python scripts/validate_notebook.py` قبل طلب المراجعة.
+8. أبقِ نقاط الحفظ المؤقتة والمخرجات الخام وحزم ZIP خارج Git. يجوز للمتدرب رفع تقارير C29 المنقحة النهائية وبيان الملفات إلى مستودعه فقط.
 
 ## Pull request evidence · أدلة طلب الدمج
 

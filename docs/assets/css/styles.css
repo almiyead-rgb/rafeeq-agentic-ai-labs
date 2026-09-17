@@ -205,6 +205,11 @@ code { font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace; }
 .help-ladder li > span { width: 29px; height: 29px; display: grid; place-items: center; border-radius: 50%; background: #e5f4f6; color: var(--cyan-500); font-size: .72rem; font-weight: 850; }
 .help-ladder b { font-size: .76rem; }
 .help-ladder .lang-ar { color: var(--ink-500); }
+.resource-links { margin: 0 0 1.4rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+.resource-links a { min-height: 72px; padding: .75rem; display: flex; flex-direction: column; justify-content: center; gap: .25rem; border: 1px solid var(--cream-200); border-radius: 9px; background: var(--cream-50); color: var(--navy-900); text-decoration: none; }
+.resource-links a:hover { border-color: var(--teal-500); background: #edf8f5; }
+.resource-links b { font-size: .76rem; }
+.resource-links small { color: var(--ink-500); font-size: .68rem; line-height: 1.35; }
 .help-action { display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 1rem; }
 .help-action p { margin: 0; color: var(--ink-500); font-size: .77rem; line-height: 1.55; }
 
@@ -254,6 +259,7 @@ html[data-language="en"] .first-win-copy + .first-win-copy, html[data-language="
   .scenario-panel { grid-template-columns: 1fr 160px 1fr; gap: 1.1rem; }
   .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
   .help-action { grid-template-columns: 1fr 1fr; }
+  .resource-links { grid-template-columns: repeat(2, 1fr); }
   .help-action button { grid-column: 1 / -1; justify-self: center; }
 }
 
@@ -303,6 +309,7 @@ html[data-language="en"] .first-win-copy + .first-win-copy, html[data-language="
   .help-ladder { grid-template-columns: 1fr; }
   .help-ladder li { min-height: 76px; grid-template-columns: 34px 1fr 1fr; grid-template-rows: 1fr; justify-items: start; border-right: 0; border-bottom: 1px solid var(--cream-200); text-align: left; }
   .help-ladder li:last-child { border-bottom: 0; }
+  .resource-links { grid-template-columns: 1fr; }
   .help-action { grid-template-columns: 1fr; }
   .help-action button { grid-column: auto; justify-self: stretch; }
   footer { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
