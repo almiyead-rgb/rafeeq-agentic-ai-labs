@@ -1,0 +1,43 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Jupyter and Colab
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Generated learner evidence and exports
+reports/checkpoints/*
+!reports/checkpoints/.gitignore
+submission_bundle.zip
+submission_bundle/
+trace.jsonl
+assessment_results.json
+submission_manifest.json
+monitoring_dashboard.png
+
+# Build and cache output
+dist/
+build/
+.cache/
+coverage/

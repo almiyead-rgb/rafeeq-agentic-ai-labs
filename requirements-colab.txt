@@ -1,0 +1,2 @@
+# Foundation phase only: runtime dependencies are intentionally not declared yet.
+# Dependencies will be pinned after the cumulative notebook and clean Colab run are verified.

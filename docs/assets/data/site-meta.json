@@ -1,0 +1,17 @@
+{
+  "site_name_en": "Rafeeq Mini Labs",
+  "site_name_ar": "لابات رفيق المصغّر",
+  "course_name_en": "Advanced Agentic AI Systems Engineering",
+  "course_name_ar": "هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة",
+  "instructor_en": "Meaad Al-Marri",
+  "instructor_ar": "ميعاد المري",
+  "version": "0.1.0-alpha",
+  "release_status": "pre-release",
+  "learner_ready": false,
+  "template_enabled": false,
+  "pages_published": false,
+  "colab_link_enabled": false,
+  "official_branding_enabled": false,
+  "institutional_attribution": "pending_written_authorization",
+  "last_verified": "2026-09-17"
+}
