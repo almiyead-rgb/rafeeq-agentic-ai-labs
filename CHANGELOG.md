@@ -14,6 +14,7 @@ All notable changes to the learner repository are recorded here.
 - Six versioned synthetic datasets, public contract/security tests, JSON schemas, day gates, reports, dashboard, and safe export.
 - Beginner GitHub/Colab/recovery guides and an active Colab launch path.
 - Live bilingual learner portal published through GitHub Pages and verified on 2026-09-18.
+- Versioned, result-only reference contracts and a bilingual browser comparison page for learner evidence; no solution code or TODO answers are exposed. · عقود مرجعية ذات إصدار للنتائج فقط، وصفحة مقارنة ثنائية اللغة لأدلة المتدرب؛ بلا كود حلول أو إجابات مهام.
 
 ### Release note · ملاحظة الإصدار
 

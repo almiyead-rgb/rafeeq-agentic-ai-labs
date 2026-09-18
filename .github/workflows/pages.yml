@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "docs/**"
+      - "reference-results/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -33,10 +34,16 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare portal and reference contracts
+        run: |
+          mkdir -p _site/reference-results
+          cp -R docs/. _site/
+          cp -R reference-results/. _site/reference-results/
+
       - name: Upload portal artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: docs
+          path: _site
 
       - name: Deploy portal
         id: deployment

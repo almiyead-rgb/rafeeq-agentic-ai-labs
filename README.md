@@ -2,6 +2,7 @@
 
 [![Learner pilot](https://img.shields.io/badge/release-0.9.0--rc1-0f766e)](CHANGELOG.md)
 [![Learner portal](https://img.shields.io/badge/learner_portal-live-31bad7)](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/)
+[![Reference results](https://img.shields.io/badge/reference_results-compare-7c3aed)](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/compare.html)
 [![Colab Free](https://img.shields.io/badge/Colab-Free_CPU-f9ab00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb)
 [![No API key](https://img.shields.io/badge/API_key-not_required-2563eb)](.env.example)
 
@@ -28,6 +29,21 @@
 Detailed beginner instructions are in [the learner guide](docs/learner-guide.md). If the runtime disconnects, follow [the recovery guide](recovery/README.md); you do not need to restart the whole project.
 
 توجد تعليمات المبتدئ المفصلة في [دليل المتدرب](docs/learner-guide.md). وإذا انقطعت بيئة التشغيل، فاتبع [دليل الاستعادة](recovery/README.md)؛ لا تحتاج إلى إعادة المشروع كله.
+
+## Validated reference outputs · مخرجات مرجعية متحققة
+
+Finish your own attempt first, then compare the **evidence produced by the notebook**—not your code—with the validated reference contracts. The references cover the day gates, security retest, readiness, assessment, and final export while intentionally omitting solution code, TODO answers, private reasoning, hidden tests, and grades.
+
+أكمل محاولتك أولًا، ثم قارن **الأدلة التي أنشأها الدفتر**—وليس الكود—بالعقود المرجعية المتحققة. تغطي المراجع بوابات الأيام، وإعادة اختبار الأمن، والجاهزية، والتقييم، والتصدير النهائي، مع استبعاد كود الحل وإجابات المهام والتفكير الخاص والاختبارات الخفية والدرجات عمدًا.
+
+| English | العربية |
+|---|---|
+| [Open the visual comparison page](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/compare.html) and choose one of your generated JSON files. Comparison runs locally in your browser. | [افتح صفحة المقارنة المرئية](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/compare.html) واختر أحد ملفات JSON الناتجة لديك. تتم المقارنة محليًا داخل متصفحك. |
+| [Browse the versioned reference contracts](reference-results/) to inspect the expected, stable behaviors for each stage. | [تصفح العقود المرجعية ذات الإصدار](reference-results/) لفحص السلوكيات الثابتة المتوقعة في كل مرحلة. |
+
+The comparison checks stable behaviors such as pass/fail gates, case IDs, safety decisions, bounded execution, and required artifacts. It deliberately ignores timestamps, generated IDs, paths, hashes, file sizes, and latency because those legitimately vary between runs.
+
+تفحص المقارنة السلوكيات الثابتة مثل نجاح البوابات، ومعرّفات الحالات، وقرارات السلامة، وحدود التنفيذ، والملفات المطلوبة. وتتجاهل عمدًا الطوابع الزمنية والمعرّفات المولدة والمسارات والبصمات والأحجام وزمن الاستجابة لأنها تختلف طبيعيًا بين تشغيل وآخر.
 
 ## Project scenario · سيناريو المشروع
 
@@ -80,6 +96,7 @@ The notebook contains exactly 30 named sections and 14 short learner TODOs. The 
 | `tests/schemas/` | JSON contracts for state, traces, assessment, and export · عقود JSON |
 | `scripts/` | Doctor, gates, assessment, demo, validation, and safe export · أدوات التشغيل والتحقق |
 | `reports/templates/` | Bilingual evidence and report templates · قوالب التقارير والأدلة |
+| `reference-results/` | Versioned, result-only comparison contracts; no solution code · عقود مقارنة للنتائج فقط وذات إصدار؛ بلا كود حلول |
 | `recovery/` | Restart and checkpoint guidance · إرشادات الاستعادة ونقاط الحفظ |
 | `docs/` | Bilingual learner portal · بوابة المتدرب الثنائية |
 

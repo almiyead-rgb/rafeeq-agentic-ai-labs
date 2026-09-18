@@ -94,6 +94,7 @@ code { font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace; }
 .path-section { padding: 3.5rem 0 4.5rem; }
 .section-kicker { margin: 0 0 1.1rem; color: var(--teal-600); font-size: .74rem; font-weight: 850; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
 .path-grid { display: grid; grid-template-columns: 1.22fr .78fr; gap: 1.1rem; }
+.reference-grid { grid-template-columns: 1fr; }
 .path-card { display: grid; grid-template-columns: 46px 1fr 1fr; gap: 1.2rem; padding: 1.5rem; border: 1px solid var(--cream-200); border-radius: 13px; background: #fff; box-shadow: var(--shadow-card); }
 .beginner-card { border-top: 3px solid var(--cyan-500); }
 .ready-card { border-top: 3px solid var(--teal-500); }

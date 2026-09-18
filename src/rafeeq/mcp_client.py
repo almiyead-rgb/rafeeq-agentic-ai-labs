@@ -32,6 +32,7 @@ RUNTIME_META_KEY = "com.rafeeq.training/runtimeContext"
 DEFAULT_TIMEOUT_SECONDS = 3.0
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SERVER = REPOSITORY_ROOT / "mcp_server" / "tawseel_server.py"
+_REQUEST_ID_TRANSLATION = str.maketrans("0123456789abcdef", "abcdefghijklmnop")
 
 
 class MCPClientError(RuntimeError):
@@ -160,7 +161,10 @@ class MCPStdioClient:
             raise MCPClientError("MCP stdio subprocess is not running")
         self._next_id += 1
         rpc_id = self._next_id
-        request_id = "req-" + uuid.uuid4().hex[:16]
+        # Keep learner-visible request IDs opaque and alphabetic.  A raw UUID
+        # fragment can accidentally contain an order amount or identifier
+        # substring and create a false-positive data-leakage alert.
+        request_id = "req-" + uuid.uuid4().hex[:16].translate(_REQUEST_ID_TRANSLATION)
         body_params = dict(params or {})
         body_params["_meta"] = self._metadata(request_id, approval)
         message = {"jsonrpc": "2.0", "id": rpc_id, "method": method, "params": body_params}

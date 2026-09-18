@@ -40,6 +40,7 @@ class MCPStdioSmokeTests(unittest.TestCase):
         self.assertFalse(payload["ok"])
         self.assertEqual(payload["error"]["code"], "ORDER_FORBIDDEN")
         self.assertNotIn("data", payload)
+        self.assertRegex(result["_meta"]["requestId"], r"^req-[a-p]{16}$")
         self.assertNotIn("740", str(result))
         self.assertNotIn("CUST-011", str(result))
 
