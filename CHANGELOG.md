@@ -13,6 +13,7 @@ All notable changes to the learner repository are recorded here.
 - Real local MCP `stdio` subprocess with three narrow tools and trusted runtime context.
 - Six versioned synthetic datasets, public contract/security tests, JSON schemas, day gates, reports, dashboard, and safe export.
 - Beginner GitHub/Colab/recovery guides and an active Colab launch path.
+- Live bilingual learner portal published through GitHub Pages and verified on 2026-09-18.
 
 ### Release note · ملاحظة الإصدار
 

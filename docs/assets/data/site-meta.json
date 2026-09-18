@@ -9,9 +9,9 @@
   "release_status": "learner-pilot",
   "learner_ready": true,
   "template_enabled": false,
-  "pages_published": false,
+  "pages_published": true,
   "colab_link_enabled": true,
   "official_branding_enabled": false,
   "institutional_attribution": "pending_written_authorization",
-  "last_verified": "2026-09-17"
+  "last_verified": "2026-09-18"
 }

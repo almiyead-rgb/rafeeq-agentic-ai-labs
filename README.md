@@ -1,6 +1,7 @@
 # Rafeeq Mini Labs · لابات رفيق المصغّر
 
 [![Learner pilot](https://img.shields.io/badge/release-0.9.0--rc1-0f766e)](CHANGELOG.md)
+[![Learner portal](https://img.shields.io/badge/learner_portal-live-31bad7)](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/)
 [![Colab Free](https://img.shields.io/badge/Colab-Free_CPU-f9ab00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb)
 [![No API key](https://img.shields.io/badge/API_key-not_required-2563eb)](.env.example)
 
@@ -8,9 +9,9 @@
 
 **رفيق المصغّر** مشروع تطبيقي تراكمي وثنائي اللغة لدورة **هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة** الممتدة ثلاثة أيام. يبني المتدرب مساعد دعم لعمليات التوصيل على مراحل صغيرة، ويختبر كل مرحلة، ثم يصدّر تسليمًا قابلًا للتدقيق على GitHub.
 
-> Learner pilot `0.9.0-rc1`: locally and CI verified. The mandatory path uses Google Colab Free CPU, `LLM_MODE=stub`, synthetic data, and no API key, GPU, terminal, PAT, or paid service.
+> Learner pilot `0.9.0-rc1`: locally, CI, and Pages verified. Start from the [bilingual learner portal](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/). The mandatory path uses Google Colab Free CPU, `LLM_MODE=stub`, synthetic data, and no API key, GPU, terminal, PAT, or paid service.
 >
-> نسخة تجريبية للمتدربين `0.9.0-rc1`: جرى التحقق منها محليًا وفي CI. يعمل المسار الإلزامي على Colab المجاني وCPU، بالوضع `LLM_MODE=stub` وبيانات مصطنعة، بلا مفتاح API أو GPU أو طرفية أو PAT أو خدمة مدفوعة.
+> نسخة تجريبية للمتدربين `0.9.0-rc1`: جرى التحقق منها محليًا وفي CI وعلى Pages. ابدأ من [بوابة المتدرب الثنائية اللغة](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/). يعمل المسار الإلزامي على Colab المجاني وCPU، بالوضع `LLM_MODE=stub` وبيانات مصطنعة، بلا مفتاح API أو GPU أو طرفية أو PAT أو خدمة مدفوعة.
 
 ## Start · ابدأ
 
