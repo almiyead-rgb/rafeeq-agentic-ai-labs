@@ -4,11 +4,15 @@
 >
 > قالب مرجعي للإثراء. تولد `C23_GUARD_FIX_RETEST` ملف `reports/SECURITY_ASSESSMENT.md` الإلزامي تلقائيًا. استخدم هذا القالب فقط عند طلب تحليل إضافي، وعدّل بعد آخر تشغيل لـC23.
 
+Use only the instructor-assigned `learner_id` or GitHub username in this public report. Put real identity only in the private hand-in form provided by the instructor.
+
+استخدم `learner_id` الذي تقدمه المدربة أو اسم مستخدم GitHub فقط في هذا التقرير العام. ضع الهوية الحقيقية في نموذج التسليم الخاص الذي تقدمه المدربة فقط.
+
 ## 1. Assessment record · سجل التقييم
 
 | Field | Entry · الإدخال |
 |---|---|
-| Learner name · اسم المتدرب | `[TODO]` |
+| Public learner ID · معرف المتدرب العام | `[learner_id or GitHub username]` |
 | Repository URL · رابط المستودع | `[TODO]` |
 | Notebook and version · الدفتر والإصدار | `Rafeeq_Mini_Capstone.ipynb · [TODO]` |
 | Test date (UTC) · تاريخ الاختبار | `[TODO]` |
@@ -79,4 +83,4 @@ Do not reproduce a dangerous payload in full. Use the supplied public case ID an
 - [ ] I recorded operational evidence, not private chain-of-thought. · سجلت أدلة تشغيلية لا التفكير الداخلي الخاص.
 - [ ] `C23_GUARD_FIX_RETEST` passed when this assessment was generated. · نجح `C23_GUARD_FIX_RETEST` عند توليد هذا التقييم.
 
-Learner confirmation · إقرار المتدرب: `[TODO: name and date]`
+Learner confirmation · إقرار المتدرب: `[TODO: learner_id and date · معرّف المتدرب والتاريخ]`

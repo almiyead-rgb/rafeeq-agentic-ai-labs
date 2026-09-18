@@ -7,9 +7,9 @@
 
 ## Before the first run · قبل التشغيل الأول
 
-1. Open the notebook from the official `almiyead-rgb` course repository with this **[Google Colab link](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb)**. Do not look for it in a learner repository. · افتح الدفتر من مستودع الدورة الرسمي `almiyead-rgb` عبر **[رابط Google Colab](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb)**، ولا تبحث عنه في مستودع المتدرب.
+1. Open the notebook from the official `almiyead-rgb` course repository with this **[Google Colab link](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)**. Do not look for it in a learner repository. · افتح الدفتر من مستودع الدورة الرسمي `almiyead-rgb` عبر **[رابط Google Colab](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)**، ولا تبحث عنه في مستودع المتدرب.
 2. In Colab select **File → Save a copy in Drive**. Work only in that Drive copy. · في كولاب اختر **File → Save a copy in Drive**، واعمل فقط على نسخة Drive.
-3. Build in the Drive copy from `C0` through `C29`; your own GitHub repository is not required before C29. · ابنِ المشروع في نسخة Drive من `C0` إلى `C29`؛ لا تحتاج إلى مستودع GitHub خاص بك قبل C29.
+3. During preflight, create your own empty public GitHub repository, then leave it completely empty while you build in the Drive copy from `C0` through `C29`. · أثناء التجهيز المسبق أنشئ مستودع GitHub عامًا وفارغًا، ثم اتركه فارغًا تمامًا أثناء بناء المشروع في نسخة Drive من `C0` إلى `C29`.
 4. Run `C0_ENV_DOCTOR`. Continue only when it prints `C0 = READY` and `all_passed=true`. · شغّل `C0_ENV_DOCTOR`. لا تتابع إلا بعد ظهور `C0 = READY` و`all_passed=true`.
 5. Run cells from top to bottom. Complete the `TODO`, run its public check, then move forward. · شغّل الخلايا من الأعلى إلى الأسفل. أكمل `TODO`، ثم شغّل الفحص العام، وبعد نجاحه انتقل للخطوة التالية.
 6. Never paste real data, passwords, tokens, private links, or API keys into a cell, output, report, or help request. · لا تلصق بيانات حقيقية أو كلمات مرور أو رموز وصول أو روابط خاصة أو مفاتيح API في خلية أو مخرج أو تقرير أو طلب مساعدة.
@@ -69,9 +69,13 @@ The name after each cell number describes its learning responsibility. The noteb
 
 Required learner reports: `reports/PROJECT_REPORT.md` and `reports/SECURITY_ASSESSMENT.md`. Required generated artifacts: `reports/trace.jsonl`, `reports/assessment_results.json`, `reports/monitoring_dashboard.png`, and `reports/submission_manifest.json`. All six sanitized outputs must be included with the extracted clean C29 contents uploaded to the learner repository.
 
+After extracting C29, copy `reports/templates/EVIDENCE_CARD_TEMPLATE.md` to `reports/EVIDENCE_CARD.md` and complete one sanitized card per day. This required instructor-assessment record is added after export and is not hashed by the C29 manifest.
+
 The C29 ZIP excludes the notebook currently open in Colab and `reports/checkpoints/`. Download the completed notebook separately through **File → Download → Download .ipynb**, name it `Rafeeq_Mini_Capstone.ipynb`, and place it under `notebooks/` before uploading the extracted contents.
 
 تقريرا المتدرب الإلزاميان: `reports/PROJECT_REPORT.md` و`reports/SECURITY_ASSESSMENT.md`. والملفات المولدة الإلزامية: `reports/trace.jsonl` و`reports/assessment_results.json` و`reports/monitoring_dashboard.png` و`reports/submission_manifest.json`. تُضمّن المخرجات الستة المنقحة مع محتويات C29 النظيفة المستخرجة التي تُرفع إلى مستودع المتدرب.
+
+بعد فك حزمة C29 انسخ `reports/templates/EVIDENCE_CARD_TEMPLATE.md` إلى `reports/EVIDENCE_CARD.md` وأكمل بطاقة منقحة لكل يوم. يضاف سجل تقييم المدربة الإلزامي هذا بعد التصدير، ولا يتضمنه التجزئة داخل بيان C29.
 
 تستبعد حزمة C29 دفتر كولاب الجاري و`reports/checkpoints/`. نزّل الدفتر المكتمل منفصلًا عبر **File → Download → Download .ipynb**، وسمّه `Rafeeq_Mini_Capstone.ipynb`، ثم ضعه داخل `notebooks/` قبل رفع المحتويات المستخرجة.
 

@@ -144,6 +144,7 @@ def _payload_files() -> list[Path]:
         "SECURITY.md",
         "CONTRIBUTING.md",
         "CHANGELOG.md",
+        "COURSE_USE_PERMISSION.md",
         "requirements-colab.txt",
         ".env.example",
         ".gitignore",
@@ -1418,6 +1419,12 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
             import struct
             import uuid
             import zlib
+            from rafeeq.assessment import risk_flags_exact, validate_assessment_payload
+
+            _scripts_path = str(PROJECT_ROOT / "scripts")
+            if _scripts_path not in sys.path:
+                sys.path.insert(0, _scripts_path)
+            from run_gate import security_retest as canonical_security_retest
 
             _eval_cases = list(read_jsonl(PROJECT_ROOT / "data" / "public" / "eval_public.jsonl"))
             _eval_rows = []
@@ -1426,24 +1433,82 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
                 _started = time.perf_counter()
                 _actual = _eval_runtime.run(_case["message"], _case["customer_id"], locale=_case["locale"], thread_id=_case["case_id"])
                 _latency = round((time.perf_counter() - _started) * 1000, 3)
-                _passed = _actual["route"] == _case["expected_route"] and _actual["outcome"] == _case["expected_outcome"] and _actual["risk_flags"] == _case["expected_risk_flags"]
-                _eval_rows.append({"case_id": _case["case_id"], "passed": _passed, "expected": {"route": _case["expected_route"], "outcome": _case["expected_outcome"]}, "actual": {"route": _actual["route"], "outcome": _actual["outcome"]}, "risk_flags": _actual["risk_flags"], "latency_ms": _latency})
+                _passed = _actual["route"] == _case["expected_route"] and _actual["outcome"] == _case["expected_outcome"] and risk_flags_exact(_case["expected_risk_flags"], _actual["risk_flags"])
+                _eval_rows.append({
+                    "case_id": _case["case_id"],
+                    "case_type": "functional",
+                    "locale": _case["locale"],
+                    "passed": _passed,
+                    "expected": {"route": _case["expected_route"], "outcome": _case["expected_outcome"], "risk_flags": _case["expected_risk_flags"]},
+                    "actual": {
+                        "route": _actual["route"], "outcome": _actual["outcome"], "status": _actual["status"],
+                        "steps": _actual["counters"]["steps"], "transitions": _actual["counters"]["transitions"],
+                        "handoffs": _actual["counters"]["handoffs"], "reflections": _actual["counters"]["reflections"],
+                        "tool_calls": _actual["counters"]["tool_calls"],
+                    },
+                    "risk_flags": _actual["risk_flags"],
+                    "latency_ms": _latency,
+                })
+
+            # One canonical assessment shape is shared by the notebook, CLI
+            # and final submission validator. Security cases are rerun through
+            # the canonical mocked-tool harness, then exact risk flags are
+            # enforced (no subset-only pass).
+            _canonical_security_report = canonical_security_retest(trace_path=TRACE_PATH)
+            _canonical_security_rows = []
+            for _row in _canonical_security_report["cases"]:
+                _normalized = {**_row, "case_type": "security"}
+                _normalized["passed"] = bool(_row["passed"]) and risk_flags_exact(_row["expected"]["risk_flags"], _row["risk_flags"])
+                _canonical_security_rows.append(_normalized)
+            _all_assessment_cases = _eval_rows + _canonical_security_rows
 
             # C27 appends evaluation spans, so re-audit the final trace rather
             # than carrying forward only the earlier C25 snapshot.
             _trace_records, _trace_checks = evaluate_trace(TRACE_PATH)
             assert all(value for key, value in _trace_checks.items() if key != "records")
             _accuracy = sum(row["passed"] for row in _eval_rows) / len(_eval_rows)
-            _security_rate = _retest_report["passed"] / _retest_report["total"]
+            _security_rate = sum(row["passed"] for row in _canonical_security_rows) / len(_canonical_security_rows)
             _avg_latency = sum(row["latency_ms"] for row in _eval_rows) / len(_eval_rows)
+            _all_latencies = sorted(float(row["latency_ms"]) for row in _all_assessment_cases)
+            _optimization_canonical = {
+                **_optimization,
+                "key_fields": ["locale", "category", "active_policy_version"],
+                "baseline_operations": _iterations,
+                "optimized_operations": _cache_info.misses,
+                "operations_saved": _iterations - _cache_info.misses,
+                "result_equivalence": True,
+            }
+            _assessment_metrics = {
+                "functional_case_count": len(_eval_rows),
+                "functional_passed": sum(row["passed"] for row in _eval_rows),
+                "functional_pass_rate": round(_accuracy, 4),
+                "route_accuracy": round(sum(row["actual"]["route"] == row["expected"]["route"] for row in _eval_rows) / len(_eval_rows), 4),
+                "outcome_accuracy": round(sum(row["actual"]["outcome"] == row["expected"]["outcome"] for row in _eval_rows) / len(_eval_rows), 4),
+                "security_case_count": len(_canonical_security_rows),
+                "security_passed": sum(row["passed"] for row in _canonical_security_rows),
+                "security_pass_rate": round(_security_rate, 4),
+                "unauthorized_writes": _canonical_security_report["metrics"]["unauthorized_writes"],
+                "median_latency_ms": round(_all_latencies[len(_all_latencies) // 2], 3),
+                "p95_latency_ms": round(_all_latencies[-1], 3),
+                "max_steps": max(row["actual"].get("steps", 0) for row in _all_assessment_cases),
+                "max_reflections": max(row["actual"].get("reflections", 0) for row in _all_assessment_cases),
+                "trace_events": _trace_checks["records"],
+                "public_tests_passed": _day1_report["public_tests_passed"] and _day2_report["public_tests_passed"],
+                "estimated_model_cost_sar": 0.0,
+            }
+            _security_by_id = {row["case_id"]: row for row in _canonical_security_rows}
             _critical_gates = {
-                "functional_cases": _accuracy == 1.0,
-                "security_cases": _security_rate == 1.0,
-                "bounded_reflection": _trace_checks["reflection_bound"],
-                "trace_redaction": _trace_checks["redacted"] and _trace_checks["no_forbidden_keys"],
-                "trace_parent_integrity": _trace_checks["parent_links_valid"],
-                "day1_gate": _day1_report["all_passed"],
-                "day2_gate": _day2_report["all_passed"],
+                "functional_cases_pass": _accuracy == 1.0,
+                "security_cases_pass": _security_rate == 1.0,
+                "risk_flags_exact": all(risk_flags_exact(row["expected"]["risk_flags"], row["risk_flags"]) for row in _all_assessment_cases),
+                "cross_customer_leakage_zero": _security_by_id["SEC-01"]["passed"],
+                "unauthorized_write_zero": _canonical_security_report["metrics"]["unauthorized_writes"] == 0,
+                "human_approval_above_500": _security_by_id["SEC-02"]["passed"] and _security_by_id["SEC-08"]["passed"],
+                "write_not_retried": _security_by_id["SEC-06"]["passed"],
+                "bounded_termination": _assessment_metrics["max_steps"] <= 6 and _assessment_metrics["max_reflections"] <= 1,
+                "trace_redacted": _trace_checks["redacted"] and _trace_checks["no_forbidden_keys"] and _trace_checks["parent_links_valid"],
+                "optimization_safe_and_effective": _optimization_canonical["customer_data_in_key"] is False and _optimization_canonical["operations_saved"] > 0 and _optimization_canonical["result_equivalence"] is True,
+                "public_tests_pass": _assessment_metrics["public_tests_passed"],
             }
             _assessment = {
                 "schema_version": "1.0",
@@ -1451,11 +1516,13 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
                 "generated_at_utc": datetime.now(timezone.utc).isoformat(),
                 "llm_mode": "stub",
                 "mcp_transport": "stdio",
-                "versions": {"course": "0.9.0-rc1", "python": platform.python_version()},
-                "cases": _eval_rows,
-                "metrics": {"functional_accuracy": round(_accuracy, 4), "security_pass_rate": round(_security_rate, 4), "average_latency_ms": round(_avg_latency, 3), "eval_cases": len(_eval_rows)},
+                "versions": {"course": "0.9.0-rc2", "python": platform.python_version()},
+                "cases": _all_assessment_cases,
+                "metrics": _assessment_metrics,
                 "critical_gates": _critical_gates,
-                "optimization": _optimization,
+                "learning_gates": {"day1_gate": _day1_report["all_passed"], "day2_gate": _day2_report["all_passed"], "learner_exercises_1_to_13": False},
+                "all_learning_gates_passed": False,
+                "optimization": _optimization_canonical,
                 "readiness": {"status": "pending_final_check"},
                 "all_critical_gates_passed": all(_critical_gates.values()),
             }
@@ -1527,15 +1594,27 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
                 + list(_day2_learner_checks.values())
                 + list(_day3_learner_checks.values())
             )
-            _assessment["critical_gates"]["learner_exercises_1_to_13"] = _learner_checks_1_to_13
+            _assessment["learning_gates"] = {
+                "day1_gate": _day1_report["all_passed"],
+                "day2_gate": _day2_report["all_passed"],
+                "learner_exercises_1_to_13": _learner_checks_1_to_13,
+            }
             _assessment["all_critical_gates_passed"] = all(_assessment["critical_gates"].values())
-            _ready = bool(_assessment["all_critical_gates_passed"])
+            _assessment["all_learning_gates_passed"] = all(_assessment["learning_gates"].values())
+            _ready = bool(_assessment["all_critical_gates_passed"] and _assessment["all_learning_gates_passed"])
             _assessment["readiness"] = {
                 "status": "ready_for_learner_export" if _ready else "hold",
+                "offline": True,
+                "network_required": False,
                 "synthetic_data_only": True,
                 "external_side_effects": False,
                 "known_limitations": ["offline deterministic stub", "training identity context", "no production SLA"],
             }
+            _assessment_contract_ok, _assessment_contract_errors = validate_assessment_payload(_assessment, require_learning_gates=True)
+            if _ready and not _assessment_contract_ok:
+                raise AssertionError("Canonical assessment contract failed: " + "; ".join(_assessment_contract_errors))
+            if not _ready:
+                print("Assessment remains on HOLD until all learner gates pass.")
             (REPORTS / "assessment_results.json").write_text(json.dumps(_assessment, ensure_ascii=False, indent=2), encoding="utf-8")
             _functional_case_ids = ", ".join(row["case_id"] for row in _eval_rows)
             _evidence_cell_labels = ", ".join("C" + str(number) for number in (9, 20, 23, 26, 27, 28))
@@ -1563,9 +1642,9 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
             ## Public evidence and metrics | الأدلة والمقاييس العامة
             - Functional case IDs | معرّفات الحالات الوظيفية: {_functional_case_ids}
             - Security case IDs | معرّفات الحالات الأمنية: {_public_security_case_ids}
-            - Functional accuracy | الدقة الوظيفية: {_assessment['metrics']['functional_accuracy']:.0%}
+            - Functional accuracy | الدقة الوظيفية: {_assessment['metrics']['functional_pass_rate']:.0%}
             - Security pass rate | نسبة اجتياز الأمن: {_assessment['metrics']['security_pass_rate']:.0%}
-            - Average latency | متوسط الزمن: {_assessment['metrics']['average_latency_ms']:.3f} ms
+            - Median latency | وسيط الزمن: {_assessment['metrics']['median_latency_ms']:.3f} ms
             - Trace records | سجلات التتبع: {_trace_checks['records']}
             - Trace parent integrity | سلامة روابط التتبع: {_trace_checks['parent_links_valid']}
             - Runtime | بيئة التشغيل: offline deterministic stub on free CPU
@@ -1713,37 +1792,23 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
             }, ensure_ascii=False, indent=2))
 
             if FINAL_EXPORT and _precheck_passed:
-                _manifest_files = []
-                for _path in _export_files:
-                    _relative = _path.relative_to(PROJECT_ROOT).as_posix()
-                    _content = _path.read_bytes()
-                    _manifest_files.append({"path": _relative, "sha256": hashlib.sha256(_content).hexdigest(), "size_bytes": len(_content)})
-                _manifest = {
-                    "schema_version": "1.0",
-                    "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-                    "export_id": "export-" + hashlib.sha256(_assessment["run_id"].encode("utf-8")).hexdigest()[:12],
-                    "assessment_run_id": _assessment["run_id"],
-                    "expected_final_commit_message": _export_contract.EXPECTED_COMMIT_MESSAGE,
-                    "completed_notebook_upload_required": True,
-                    "learner_todo_status": _learner_todo_status,
-                    "files": _manifest_files,
-                    "safety_checks": _safety_checks,
-                    "all_passed": True,
-                    "excluded": [
-                        "notebooks/Rafeeq_Mini_Capstone.ipynb (save to GitHub separately)",
-                        ".env and credentials",
-                        "hidden evaluations and instructor material",
-                        "database/cache/runtime files",
-                        "reports/submission_manifest.json (self-hash intentionally omitted)",
-                    ],
-                    "secret_scan_statement": "No match was found by the configured checks; this is not proof that no secret exists.",
-                }
+                _manifest = _export_contract._manifest(
+                    _canonical_precheck,
+                    _canonical_files,
+                    _learner_todo_status,
+                )
+                _manifest["safety_checks"] = _safety_checks
+                _manifest["all_passed"] = all(_safety_checks.values())
                 _manifest_path = REPORTS / "submission_manifest.json"
                 _manifest_path.write_text(json.dumps(_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
                 with zipfile.ZipFile(_zip_path, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as _archive:
                     for _path in _export_files + [_manifest_path]:
                         _archive.write(_path, _path.relative_to(PROJECT_ROOT).as_posix())
-                print(f"FINAL_EXPORT_CREATED: {_zip_path} ({_zip_path.stat().st_size} bytes)")
+                print(
+                    f"FINAL_EXPORT_CREATED: export_id={_manifest['export_id']} "
+                    f"assessment_run_id={_manifest['assessment_run_id']} "
+                    f"zip={_zip_path} ({_zip_path.stat().st_size} bytes)"
+                )
             elif FINAL_EXPORT:
                 print("FINAL_EXPORT_BLOCKED: resolve the failed precheck before exporting.")
             else:

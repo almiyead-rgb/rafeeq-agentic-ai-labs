@@ -31,7 +31,7 @@ The expected objects mirror the notebook artifacts where practical; only explici
 1. Run the notebook in order and stop at the named gate. · شغّل الدفتر بالترتيب وتوقف عند البوابة المحددة.
 2. Confirm that the generated evidence file exists. · تأكد من وجود ملف الدليل الناتج.
 3. Compare only fields listed under `expected`; those are the observable contract. · قارن الحقول الموجودة تحت `expected` فقط؛ فهي العقد القابل للملاحظة.
-4. Match cases by `case_id`, not by list position. Preserve the published order of `risk_flags`, because the notebook scorecard checks that order. · طابق الحالات بواسطة `case_id` لا بموضعها في القائمة. حافظ على الترتيب المنشور لـ`risk_flags` لأن بطاقة نتائج الدفتر تتحقق من هذا الترتيب.
+4. Match cases by `case_id`, not by list position. `risk_flags` must contain exactly the published unique values; their order may differ. · طابق الحالات بواسطة `case_id` لا بموضعها في القائمة. يجب أن تحتوي `risk_flags` القيم الفريدة المنشورة نفسها تمامًا، ويمكن أن يختلف ترتيبها.
 5. Treat fields listed under `ignored_as_variable` as informative. Different values there are not failures. · تعامل مع الحقول تحت `ignored_as_variable` على أنها معلومات فقط؛ اختلافها لا يعني الفشل.
 6. If a required result differs, return to the listed cell, rerun it, and then rerun the gate. · إذا اختلفت نتيجة مطلوبة، فارجع إلى الخلية المحددة ثم أعد تشغيلها والبوابة.
 
@@ -49,9 +49,9 @@ Runtime timestamps, UUIDs, trace/span/session/approval identifiers, elapsed time
 
 قد تختلف بأمان أوقات التشغيل، وUUID، ومعرّفات التتبع والمقاطع والجلسات والموافقات، والزمن المستغرق، وزمن التخزين المؤقت، وإصدار Python الفرعي، والمساحة الحرة، والمسارات المطلقة، وأداة الرسم، وأحجام الملفات، والبصمات، وأعداد ملفات الحزمة المتولدة.
 
-`SEC-05` is intentionally special: the runtime result remains ordinary tool data, while the separate output guard proves that the injected tool text is blocked. An empty runtime `risk_flags` list for that case is therefore expected.
+`SEC-05` has two public views. In the focused C23 retest, the runtime result remains ordinary tool data while the separate output guard proves that the injected text is blocked, so that checkpoint keeps an empty runtime `risk_flags` list. In the canonical C27 assessment, the normalized security case must instead carry the exact `indirect_prompt_injection` flag and the `treat_tool_output_as_untrusted` outcome.
 
-الحالة `SEC-05` مقصودة بهذه الصورة: تبقى نتيجة التشغيل بيانات أداة عادية، بينما يثبت حاجز الإخراج المنفصل حجب النص المحقون. لذلك يُتوقع أن تكون قائمة `risk_flags` في نتيجة التشغيل فارغة لهذه الحالة.
+للحالة `SEC-05` منظوران عامّان. في إعادة اختبار C23 المركّزة تبقى نتيجة التشغيل بيانات أداة عادية ويثبت حاجز الإخراج المنفصل حجب النص المحقون، لذلك تبقى قائمة `risk_flags` في نقطة الحفظ فارغة. أما في تقييم C27 الموحّد فيجب أن تحمل الحالة الأمنية المطبّعة العلم `indirect_prompt_injection` والنتيجة `treat_tool_output_as_untrusted` بدقة.
 
 ## Interpretation · تفسير النتيجة
 

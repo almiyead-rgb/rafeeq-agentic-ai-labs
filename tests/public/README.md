@@ -17,8 +17,11 @@
 | `test_refund_gate.py` | SAR 500 boundary, approval, prior refund, idempotency and no write retry · حد 500 ريال، والموافقة، والاسترداد السابق، ومنع التكرار، وعدم إعادة محاولة الكتابة |
 | `test_reflection_bound.py` | One reflection maximum · انعكاس واحد كحد أقصى |
 | `test_security.py` | Injection flagging, untrusted tool text and redacted trace · رصد حقن الأوامر، ونص الأداة غير الموثوق، والتتبع المنقح |
+| `test_assessment_contract.py` | Canonical 8 functional + 8 security cases, exact risk flags, metrics, and named gates · عقد 8 حالات وظيفية + 8 أمنية وأعلام مخاطر دقيقة ومقاييس وبوابات مسماة |
 | `test_readiness.py` | Required public assets and safe offline defaults · الأصول العامة المطلوبة والإعدادات الآمنة غير المتصلة |
+| `test_preflight_readiness.py` | Automated repository checks remain separate from manual hosted-Colab acceptance · فصل فحوص المستودع الآلية عن قبول Colab اليدوي |
 | `test_export_contract.py` | One safe learner workflow, completed TODO evidence and no course-only files · مسار تحقق واحد للمتدرب، ودليل إكمال التمارين، ومنع ملفات إدارة الدورة |
+| `test_reference_contract.py` | Day 3 comparison references stay aligned with the canonical 16-case assessment · بقاء مراجع مقارنة اليوم الثالث متسقة مع التقييم الموحّد ذي 16 حالة |
 
 ## Run · التشغيل
 

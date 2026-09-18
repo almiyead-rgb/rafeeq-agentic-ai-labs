@@ -20,6 +20,7 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE_DIR = ROOT / "src"
 REPORTS_DIR = ROOT / "reports"
 DEFAULT_ZIP_PATH = ROOT / "rafeeq-mini-submission.zip"
 MANIFEST_PATH = REPORTS_DIR / "submission_manifest.json"
@@ -30,7 +31,6 @@ STUDENT_WORKFLOW = """name: Learner submission quality
 
 on:
   push:
-    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -55,9 +55,20 @@ jobs:
       - name: Run public tests
         run: python -m unittest discover -s tests/public -p "test_*.py" -v
       - name: Validate completed submission
-        run: python scripts/validate_submission.py
+        run: python scripts/validate_submission.py --write-receipt
+      - name: Upload cryptographic submission receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: rafeeq-submission-receipt
+          path: reports/submission_receipt.json
+          if-no-files-found: error
 """
 VIRTUAL_FILES: dict[str, bytes] = {STUDENT_WORKFLOW_PATH: STUDENT_WORKFLOW.encode("utf-8")}
+
+if str(SOURCE_DIR) not in sys.path:
+    sys.path.insert(0, str(SOURCE_DIR))
+
+from rafeeq.assessment import validate_assessment_payload  # noqa: E402
 
 
 REQUIRED_OUTPUTS = (
@@ -121,6 +132,7 @@ def candidate_files() -> list[Path]:
         "SECURITY.md",
         "CONTRIBUTING.md",
         "CHANGELOG.md",
+        "COURSE_USE_PERMISSION.md",
         "requirements-colab.txt",
         ".gitignore",
         ".env.example",
@@ -196,18 +208,10 @@ def _assessment_ready() -> tuple[bool, dict[str, Any]]:
     path = REPORTS_DIR / "assessment_results.json"
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError):
-        return False, {}
-    gates = payload.get("critical_gates")
-    ready = (
-        payload.get("llm_mode") == "stub"
-        and payload.get("mcp_transport") == "stdio"
-        and isinstance(gates, dict)
-        and bool(gates)
-        and all(value is True for value in gates.values())
-        and payload.get("all_critical_gates_passed") is True
-    )
-    return ready, payload
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        return False, {"errors": [f"assessment_results.json cannot be read: {type(exc).__name__}"]}
+    ready, errors = validate_assessment_payload(payload, require_learning_gates=True)
+    return ready, {**payload, "contract_errors": errors}
 
 
 def _trace_redacted() -> bool:
@@ -260,7 +264,7 @@ def precheck() -> tuple[dict[str, Any], list[Path]]:
     missing = [relative for relative in REQUIRED_OUTPUTS if not (ROOT / relative).is_file()]
     forbidden = _forbidden_paths(files)
     secrets = _secret_findings(files)
-    assessment_ready, _ = _assessment_ready()
+    assessment_ready, assessment_details = _assessment_ready()
     reports_complete = True
     for name in ("PROJECT_REPORT.md", "SECURITY_ASSESSMENT.md"):
         path = REPORTS_DIR / name
@@ -277,6 +281,8 @@ def precheck() -> tuple[dict[str, Any], list[Path]]:
         "individual_file_size_limit": size_ok,
         "notebook_excluded_from_manifest_hash": True,
         "manual_notebook_upload_required": True,
+        "notebook_bound_by_submission_receipt": True,
+        "submission_receipt_required": True,
         "student_submission_ci_installed": (
             STUDENT_WORKFLOW_PATH in VIRTUAL_FILES
             and not {
@@ -295,6 +301,7 @@ def precheck() -> tuple[dict[str, Any], list[Path]]:
             "missing_outputs": missing,
             "forbidden_paths": forbidden,
             "secret_findings": secrets,
+            "assessment_contract_errors": assessment_details.get("contract_errors", []),
             "files_selected": len(files) + len(VIRTUAL_FILES),
             "all_passed": passed,
         },
@@ -316,6 +323,20 @@ def _manifest(
     files: list[Path],
     learner_todo_status: dict[str, Any],
 ) -> dict[str, Any]:
+    assessment_path = REPORTS_DIR / "assessment_results.json"
+    assessment_bytes = assessment_path.read_bytes()
+    assessment_payload = json.loads(assessment_bytes.decode("utf-8"))
+    assessment_ready, assessment_errors = validate_assessment_payload(
+        assessment_payload,
+        require_learning_gates=True,
+    )
+    if not assessment_ready:
+        raise ValueError("assessment contract failed: " + "; ".join(assessment_errors))
+    assessment_run_id = str(assessment_payload["run_id"])
+    assessment_sha256 = hashlib.sha256(assessment_bytes).hexdigest()
+    export_id = "export-" + hashlib.sha256(
+        f"{assessment_run_id}:{assessment_sha256}".encode("utf-8")
+    ).hexdigest()[:16]
     records = [_file_record(path) for path in files]
     records.extend(
         {
@@ -328,6 +349,9 @@ def _manifest(
     return {
         "schema_version": "1.0",
         "generated_at_utc": utc_now(),
+        "export_id": export_id,
+        "assessment_run_id": assessment_run_id,
+        "assessment_sha256": assessment_sha256,
         "expected_final_commit_message": EXPECTED_COMMIT_MESSAGE,
         "completed_notebook_upload_required": True,
         "learner_todo_status": learner_todo_status,
@@ -339,6 +363,7 @@ def _manifest(
         "all_passed": bool(preflight["all_passed"]),
         "excluded": [
             "notebooks/Rafeeq_Mini_Capstone.ipynb (save to GitHub separately)",
+            "reports/submission_receipt.json (created after the notebook is uploaded and validated)",
             ".env and credentials",
             "hidden evaluations and instructor material",
             "database/cache/runtime files",
@@ -442,10 +467,15 @@ def main(argv: list[str] | None = None) -> int:
         "zip_sha256": hashlib.sha256(zip_path.read_bytes()).hexdigest(),
         "zip_size_bytes": zip_path.stat().st_size,
         "files_hashed": len(manifest["files"]),
+        "export_id": manifest["export_id"],
+        "assessment_run_id": manifest["assessment_run_id"],
         "all_passed": True,
     }
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
-    print("FINAL_EXPORT_CREATED")
+    print(
+        "FINAL_EXPORT_CREATED: "
+        f"export_id={manifest['export_id']} assessment_run_id={manifest['assessment_run_id']}"
+    )
     return 0
 
 

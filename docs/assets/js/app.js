@@ -3,6 +3,8 @@
 
   const LANGUAGE_KEY = "rafeeq-language";
   const STEP_KEY = "rafeeq-setup-step";
+  const READINESS_KEY = "rafeeq-readiness-check";
+  const UPLOAD_KEY = "rafeeq-upload-checklist";
   const root = document.documentElement;
   const languageButtons = [...document.querySelectorAll("[data-lang-switch]")];
 
@@ -20,8 +22,8 @@
       icon: "⑂",
       titleEn: "Create repository",
       titleAr: "إنشاء المستودع",
-      bodyEn: "Create an empty public repository for your final clean export. Keep solutions, secrets, and real data out.",
-      bodyAr: "أنشئ مستودعًا عامًا فارغًا لتصديرك النظيف النهائي. لا تضع الحلول أو الأسرار أو البيانات الحقيقية.",
+      bodyEn: "Create an empty public repository now, then leave it empty until the clean final export at C29. If policy blocks public repositories, tell the trainer before Day 1.",
+      bodyAr: "أنشئ الآن مستودعًا عامًا فارغًا، ثم اتركه فارغًا حتى التصدير النهائي النظيف عند C29. إذا منعت السياسة المستودعات العامة فأبلغ المدربة قبل اليوم الأول.",
       actionUrl: "https://github.com/new",
       actionText: "Create repository · أنشئ المستودع ↗",
     },
@@ -31,7 +33,7 @@
       titleAr: "تجهيز كولاب",
       bodyEn: "Open the verified notebook, save a working copy in Drive, and keep the standard CPU runtime.",
       bodyAr: "افتح الدفتر بعد التحقق منه، واحفظ نسخة عمل في Drive، واستخدم بيئة CPU القياسية.",
-      actionUrl: "https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb",
+      actionUrl: "https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb",
       actionText: "Open Colab · افتح كولاب ↗",
     },
     {
@@ -40,7 +42,7 @@
       titleAr: "الوصول إلى C0 READY",
       bodyEn: "Run C0_ENV_DOCTOR and continue only when every check passes and all_passed=true.",
       bodyAr: "شغّل C0_ENV_DOCTOR، ولا تتابع حتى تنجح جميع الفحوص وتظهر all_passed=true.",
-      actionUrl: "https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb",
+      actionUrl: "https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb",
       actionText: "View notebook source · اعرض ملف الدفتر →",
     },
   ];
@@ -133,6 +135,137 @@
     nextButton?.addEventListener("click", () => renderStep(activeStep === setupSteps.length - 1 ? 0 : activeStep + 1));
     renderStep(activeStep);
   }
+
+  function readBooleanList(key, length) {
+    try {
+      const value = JSON.parse(safeRead(key) || "[]");
+      if (!Array.isArray(value)) return Array(length).fill(false);
+      return Array.from({ length }, (_item, index) => value[index] === true);
+    } catch (_error) {
+      return Array(length).fill(false);
+    }
+  }
+
+  function bindReadinessCheck() {
+    const form = document.querySelector("[data-readiness-check]");
+    if (!form) return;
+    const inputs = [...form.querySelectorAll('input[type="checkbox"]')];
+    const saved = readBooleanList(READINESS_KEY, inputs.length);
+    inputs.forEach((input, index) => { input.checked = saved[index]; });
+
+    const score = form.querySelector("[data-readiness-score]");
+    const titleEn = form.querySelector("[data-readiness-title-en]");
+    const titleAr = form.querySelector("[data-readiness-title-ar]");
+    const bodyEn = form.querySelector("[data-readiness-body-en]");
+    const bodyAr = form.querySelector("[data-readiness-body-ar]");
+
+    function renderReadiness() {
+      const count = inputs.filter((input) => input.checked).length;
+      if (score) score.textContent = `${count}/${inputs.length}`;
+
+      if (count === inputs.length) {
+        if (titleEn) titleEn.textContent = "Ready for C1.";
+        if (titleAr) titleAr.textContent = "جاهز للبدء في C1.";
+        if (bodyEn) bodyEn.textContent = "Continue to C0_ENV_DOCTOR. Its result remains the official environment check.";
+        if (bodyAr) bodyAr.textContent = "انتقل إلى C0_ENV_DOCTOR؛ فنتيجته هي فحص البيئة الرسمي.";
+      } else if (count === inputs.length - 1) {
+        if (titleEn) titleEn.textContent = "Almost ready.";
+        if (titleAr) titleAr.textContent = "جاهز تقريبًا.";
+        if (bodyEn) bodyEn.textContent = "Review the one unchecked skill, then run the guided setup before C1.";
+        if (bodyAr) bodyAr.textContent = "راجع المهارة الوحيدة غير المحددة، ثم نفّذ التجهيز الموجّه قبل C1.";
+      } else {
+        if (titleEn) titleEn.textContent = "Start with the guided path.";
+        if (titleAr) titleAr.textContent = "ابدأ بالمسار الموجّه.";
+        if (bodyEn) bodyEn.textContent = "Complete the setup above and tell the trainer before C1 if you need a quick support check.";
+        if (bodyAr) bodyAr.textContent = "أكمل خطوات التجهيز أعلاه، وأبلغ المدربة قبل C1 إذا احتجت فحص دعم سريعًا.";
+      }
+      safeWrite(READINESS_KEY, JSON.stringify(inputs.map((input) => input.checked)));
+    }
+
+    inputs.forEach((input) => input.addEventListener("change", renderReadiness));
+    renderReadiness();
+  }
+
+  function bindUploadChecklist() {
+    const wizard = document.querySelector("[data-upload-checklist]");
+    if (!wizard) return;
+    const inputs = [...wizard.querySelectorAll('.wizard-steps input[type="checkbox"]')];
+    const saved = readBooleanList(UPLOAD_KEY, inputs.length);
+    inputs.forEach((input, index) => { input.checked = saved[index]; });
+
+    const countLabel = wizard.querySelector("[data-upload-count]");
+    const progress = wizard.querySelector("[data-upload-progress]");
+    const state = wizard.querySelector("[data-upload-state]");
+    const messageEn = wizard.querySelector("[data-upload-message-en]");
+    const messageAr = wizard.querySelector("[data-upload-message-ar]");
+
+    function renderUpload() {
+      const count = inputs.filter((input) => input.checked).length;
+      const complete = count === inputs.length;
+      if (countLabel) countLabel.textContent = `${count}/${inputs.length}`;
+      if (progress) progress.style.width = `${(count / inputs.length) * 100}%`;
+      if (state) {
+        state.textContent = complete ? "READY TO SUBMIT · جاهز للتسليم" : "IN PROGRESS · قيد التنفيذ";
+        state.classList.toggle("complete", complete);
+      }
+      if (messageEn) messageEn.textContent = complete
+        ? "All upload checks are complete. Use the channel announced by the trainer."
+        : "Complete all eight checks before opening the submission channel.";
+      if (messageAr) messageAr.textContent = complete
+        ? "اكتملت فحوص الرفع. استخدم قناة التسليم التي أعلنتها المدربة."
+        : "أكمل الفحوص الثمانية قبل فتح قناة التسليم.";
+      safeWrite(UPLOAD_KEY, JSON.stringify(inputs.map((input) => input.checked)));
+    }
+
+    inputs.forEach((input) => input.addEventListener("change", renderUpload));
+    renderUpload();
+  }
+
+  async function loadSiteMeta() {
+    try {
+      const response = await fetch("assets/data/site-meta.json", { cache: "no-store" });
+      if (!response.ok) return;
+      const meta = await response.json();
+
+      document.querySelectorAll("[data-meta-deadline-en]").forEach((node) => {
+        node.textContent = meta.submission_deadline_en || "Announced by the trainer";
+      });
+      document.querySelectorAll("[data-meta-deadline-ar]").forEach((node) => {
+        node.textContent = meta.submission_deadline_ar || "تعلنه المدربة أثناء الدورة";
+      });
+      document.querySelectorAll("[data-meta-form-en]").forEach((node) => {
+        node.textContent = meta.submission_channel_en || "Announced by the trainer";
+      });
+      document.querySelectorAll("[data-meta-form-ar]").forEach((node) => {
+        node.textContent = meta.submission_channel_ar || "تعلنها المدربة أثناء الدورة";
+      });
+      document.querySelectorAll("[data-meta-passing-score]").forEach((node) => {
+        node.textContent = String(meta.passing_score ?? 70);
+      });
+      document.querySelectorAll("[data-support-link]").forEach((link) => {
+        if (meta.support_issue_url) link.href = meta.support_issue_url;
+      });
+
+      const submissionLink = document.querySelector("[data-submission-link]");
+      const submissionLabel = submissionLink?.querySelector("[data-submission-link-label]");
+      if (submissionLink && meta.submission_form_url) {
+        submissionLink.href = meta.submission_form_url;
+        submissionLink.target = "_blank";
+        submissionLink.rel = "noopener noreferrer";
+        submissionLink.classList.remove("unavailable");
+        submissionLink.setAttribute("aria-disabled", "false");
+        if (submissionLabel) submissionLabel.textContent = "Open submission form · افتح نموذج التسليم";
+      } else if (submissionLabel) {
+        submissionLabel.textContent = `${meta.submission_link_en || "Submission link announced by trainer"} · ${meta.submission_link_ar || "رابط التسليم تعلنه المدربة"}`;
+      }
+    } catch (_error) {
+      // Static fallback text keeps every instruction usable when metadata cannot be loaded.
+    }
+  }
+
+  bindReadinessCheck();
+  bindUploadChecklist();
+  loadSiteMeta();
 
   const copyButton = document.querySelector("[data-copy-help]");
   const toast = document.querySelector("[data-toast]");

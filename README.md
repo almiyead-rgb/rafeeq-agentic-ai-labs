@@ -1,34 +1,42 @@
 # Rafeeq Mini Labs · لابات رفيق المصغّر
 
-[![Learner pilot](https://img.shields.io/badge/release-0.9.0--rc1-0f766e)](CHANGELOG.md)
+[![Release candidate](https://img.shields.io/badge/release-0.9.0--rc2-0f766e)](CHANGELOG.md)
 [![Learner portal](https://img.shields.io/badge/learner_portal-live-31bad7)](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/)
 [![Reference results](https://img.shields.io/badge/reference_results-compare-7c3aed)](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/compare.html)
-[![Colab Free](https://img.shields.io/badge/Colab-Free_CPU-f9ab00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb)
+[![Colab Free](https://img.shields.io/badge/Colab-Free_CPU-f9ab00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)
 [![No API key](https://img.shields.io/badge/API_key-not_required-2563eb)](.env.example)
 
-**Rafeeq Mini** is one cumulative, bilingual mini-capstone for the three-day course **Advanced Agentic AI Systems Engineering**. Learners build a safe delivery-support agent in small stages, test every stage, and export an auditable GitHub submission.
+**Rafeeq Mini** is one cumulative, bilingual **guided-engineering mini-capstone** for the three-day course **Advanced Agentic AI Systems Engineering**. Learners build a safe delivery-support agent in small stages, test every stage, and export an auditable GitHub submission. It is a supervised engineering simulation—not a production deployment or an open-ended software assignment.
 
-**رفيق المصغّر** مشروع تطبيقي تراكمي وثنائي اللغة لدورة **هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة** الممتدة ثلاثة أيام. يبني المتدرب مساعد دعم لعمليات التوصيل على مراحل صغيرة، ويختبر كل مرحلة، ثم يصدّر تسليمًا قابلًا للتدقيق على GitHub.
+**رفيق المصغّر** مشروع **هندسة موجهة** تراكمي وثنائي اللغة لدورة **هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة** الممتدة ثلاثة أيام. يبني المتدرب مساعد دعم لعمليات التوصيل على مراحل صغيرة، ويختبر كل مرحلة، ثم يصدّر تسليمًا قابلًا للتدقيق على GitHub. وهو محاكاة هندسية تحت الإشراف، لا نشر إنتاجي ولا تكليف برمجي مفتوح النطاق.
 
-> Learner pilot `0.9.0-rc1`: locally, CI, and Pages verified. Start from the [bilingual learner portal](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/). The mandatory path uses Google Colab Free CPU, `LLM_MODE=stub`, synthetic data, and no API key, GPU, terminal, PAT, or paid service.
+> Release candidate `0.9.0-rc2`: automated repository, CI, and Pages checks are verified; the clean-account hosted-Colab acceptance remains manual. Start from the [bilingual learner portal](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/). The mandatory path uses Google Colab Free CPU, `LLM_MODE=stub`, synthetic data, and no API key, GPU, terminal, PAT, or paid service.
 >
-> نسخة تجريبية للمتدربين `0.9.0-rc1`: جرى التحقق منها محليًا وفي CI وعلى Pages. ابدأ من [بوابة المتدرب الثنائية اللغة](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/). يعمل المسار الإلزامي على Colab المجاني وCPU، بالوضع `LLM_MODE=stub` وبيانات مصطنعة، بلا مفتاح API أو GPU أو طرفية أو PAT أو خدمة مدفوعة.
+> مرشح الإصدار `0.9.0-rc2`: اكتملت فحوص المستودع وCI وPages الآلية، وتبقى تجربة القبول البشرية في Colab بحساب نظيف. ابدأ من [بوابة المتدرب الثنائية اللغة](https://almiyead-rgb.github.io/rafeeq-agentic-ai-labs/). يعمل المسار الإلزامي على Colab المجاني وCPU، بالوضع `LLM_MODE=stub` وبيانات مصطنعة، بلا مفتاح API أو GPU أو طرفية أو PAT أو خدمة مدفوعة.
 
 ## Start · ابدأ
 
 | English | العربية |
 |---|---|
 | 1. Sign in to a personal [GitHub account](https://github.com/signup) and verify your email. | 1. سجّل الدخول إلى [حساب GitHub](https://github.com/signup) شخصي ووثّق بريدك. |
-| 2. Create a new empty repository for your work. Do not add secrets or real customer data. | 2. أنشئ مستودعًا فارغًا جديدًا لعملك. لا تضف أسرارًا أو بيانات عملاء حقيقية. |
+| 2. During preflight, create a new **empty public repository** for your work. Do not initialize it with files, and leave it empty until the clean C29 export. | 2. أثناء التجهيز المسبق أنشئ مستودعًا عامًا جديدًا **وفارغًا** لعملك. لا تهيئه بأي ملفات، واتركه فارغًا حتى تصدير C29 النظيف. |
 | 3. Open the cumulative notebook using the button below, then choose **File → Save a copy in Drive**. | 3. افتح الدفتر التراكمي من الزر أدناه، ثم اختر **File → Save a copy in Drive**. |
 | 4. Select the standard CPU runtime and run `C0_ENV_DOCTOR`. Success is `C0 = READY`. | 4. اختر بيئة CPU القياسية وشغّل `C0_ENV_DOCTOR`. علامة النجاح هي `C0 = READY`. |
-| 5. At each day gate, download the generated evidence. At C29, enable final export and upload the clean files to your repository through the GitHub browser. | 5. عند بوابة كل يوم نزّل الأدلة الناتجة. وفي C29 فعّل التصدير النهائي وارفع الملفات النظيفة إلى مستودعك من متصفح GitHub. |
+| 5. At each day gate, save the generated evidence in Drive. Only after C29 prints `FINAL_EXPORT_CREATED`, upload the clean files and wait for **Learner submission quality** to turn green. | 5. عند بوابة كل يوم احفظ الأدلة الناتجة في Drive. وبعد أن تطبع C29 العبارة `FINAL_EXPORT_CREATED` فقط، ارفع الملفات النظيفة وانتظر ظهور فحص **Learner submission quality** باللون الأخضر. |
 
-### [Open Rafeeq Mini in Google Colab · افتح رفيق المصغّر في كولاب](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/main/notebooks/Rafeeq_Mini_Capstone.ipynb)
+### [Open Rafeeq Mini in Google Colab · افتح رفيق المصغّر في كولاب](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)
 
 Detailed beginner instructions are in [the learner guide](docs/learner-guide.md). If the runtime disconnects, follow [the recovery guide](recovery/README.md); you do not need to restart the whole project.
 
 توجد تعليمات المبتدئ المفصلة في [دليل المتدرب](docs/learner-guide.md). وإذا انقطعت بيئة التشغيل، فاتبع [دليل الاستعادة](recovery/README.md)؛ لا تحتاج إلى إعادة المشروع كله.
+
+Use the instructor-assigned `learner_id` or your GitHub username in public files. Put your real name, email, phone number, national ID, or other identifying information only in the private hand-in form provided by the instructor.
+
+استخدم `learner_id` الذي تقدمه المدربة أو اسم مستخدم GitHub داخل الملفات العامة. ضع الاسم الحقيقي أو البريد أو رقم الهاتف أو الهوية الوطنية أو أي بيانات تعريفية أخرى في نموذج التسليم الخاص الذي تقدمه المدربة فقط.
+
+If an employer or institutional policy prevents a public repository, notify the instructor before Day 1 and use only the instructor-approved private hand-in route; do not post a private repository link in a public issue.
+
+إذا منعت سياسة جهة العمل أو المؤسسة إنشاء مستودع عام، فأبلغ المدربة قبل اليوم الأول واستخدم مسار التسليم الخاص الذي تعتمده فقط، ولا تنشر رابط مستودع خاص في Issue عام.
 
 ## Validated reference outputs · مخرجات مرجعية متحققة
 
@@ -71,6 +79,13 @@ flowchart TB
 | 2 · Memory & orchestration · الذاكرة والتنسيق | C10–C20 | Session memory, scoped recall, policy retrieval, two specialists, typed delegation, planning, refund gate, and interrupt/resume · ذاكرة جلسية، استرجاع مقيّد، سياسات، وكيلان متخصصان، تفويض، تخطيط، بوابة استرداد، وتوقف/استئناف | `C20_DAY2_GATE` |
 | 3 · Security & evidence · الأمن والأدلة | C21–C29 | Threat model, attack suite, guard repair, bounded reflection, traces, one measured optimization, scorecard, readiness, and safe export · نموذج تهديد، اختبارات هجوم، إصلاح الحواجز، انعكاس محدود، آثار، تحسين مقاس واحد، بطاقة نتائج، جاهزية، وتصدير آمن | `C29_EXPORT_SAFETY_CHECK` |
 
+### Core and stretch · المسار الأساسي ومسار التوسع
+
+| Path | Rule · القاعدة |
+|---|---|
+| **Core · أساسي** | The 14 learner TODOs, C0–C29 in order, the three gates, required reports/evidence, clean GitHub upload, and green Actions check are mandatory for assessment. · مهام المتدرب الـ14 وتشغيل C0–C29 بالترتيب والبوابات الثلاث والتقارير/الأدلة المطلوبة ورفع GitHub النظيف ونجاح Actions إلزامية للتقييم. |
+| **Stretch · توسع** | Only extensions explicitly marked or announced by the instructor are optional. They never replace a failed core gate and do not disadvantage beginners who complete the core path. · الامتدادات التي تحددها أو تعلنها المدربة فقط اختيارية؛ لا تعوض بوابة أساسية فاشلة ولا تضر بالمبتدئ الذي يكمل المسار الأساسي. |
+
 The notebook contains exactly 30 named sections and 14 short learner TODOs. The rest is runnable scaffolding, tests, hints, and evidence generation. Private answer keys, hidden evaluations, grades, and instructor checkpoints are intentionally absent.
 
 يحتوي الدفتر على 30 قسمًا مسمى و14 مهمة قصيرة فقط للمتدرب. أما الباقي فهو بنية تشغيلية واختبارات وتلميحات وتوليد أدلة. لا يتضمن المستودع مفاتيح إجابة أو تقييمات خفية أو درجات أو نقاط استعادة للمدربة.
@@ -83,6 +98,23 @@ The notebook contains exactly 30 named sections and 14 short learner TODOs. The 
 - `reports/trace.jsonl` and `reports/assessment_results.json` · أثر منقح ونتائج تقييم.
 - `reports/monitoring_dashboard.png` · لوحة مراقبة ثابتة.
 - `reports/submission_manifest.json` and a clean submission ZIP · بيان ملفات وحزمة تسليم نظيفة.
+- `reports/EVIDENCE_CARD.md`, completed from the template with one concise card for each day; it is a required instructor-assessment record added after extracting the C29 package. · ملف `reports/EVIDENCE_CARD.md` مكتمل من القالب ببطاقة مختصرة لكل يوم؛ وهو سجل إلزامي لتقييم المدربة يضاف بعد فك حزمة C29.
+
+## Submit and receive confirmation · سلّم واستلم التأكيد
+
+| Item | Authoritative instruction · التعليمات المعتمدة |
+|---|---|
+| Deadline · الموعد النهائي | Provided by the instructor during the course; no date in this public repository overrides it. · تقدمه المدربة أثناء الدورة، ولا يتجاوزُه أي تاريخ في هذا المستودع العام. |
+| Hand-in form · نموذج التسليم | The private form/link is provided by the instructor. Submit the public repository URL and the final commit URL there. · تقدم المدربة رابط النموذج الخاص؛ أرسل فيه رابط المستودع العام ورابط آخر Commit. |
+| Automated verification · التحقق الآلي | Open **Actions → Learner submission quality** and wait for the final commit to show a green check. A red run is not ready for hand-in. · افتح **Actions ← Learner submission quality** وانتظر العلامة الخضراء لآخر Commit؛ التشغيل الأحمر غير جاهز للتسليم. |
+| Receipt · إثبات الاستلام | The confirmation issued by the instructor/form is the receipt. A green Actions check or a submitted screenshot alone is not a receipt. · التأكيد الصادر من المدربة أو النموذج هو إثبات الاستلام؛ ولا تكفي علامة Actions الخضراء أو لقطة الشاشة وحدها. |
+| Resubmission · إعادة التسليم | Preserve commit history, repair from the saved Drive notebook, regenerate affected evidence through C29, upload a new commit, wait for green Actions, then submit the new commit URL using the instructor's stated policy. · احتفظ بسجل Commits، وأصلح من دفتر Drive المحفوظ، وأعد توليد الأدلة المتأثرة حتى C29، وارفع Commit جديدًا، وانتظر نجاح Actions، ثم أرسل رابط Commit الجديد وفق سياسة المدربة. |
+
+Read the complete, public [100-point assessment rubric](docs/ASSESSMENT_RUBRIC.md) before starting the final export. The passing threshold is 70/100, and every non-compensable gate must also pass. · اقرأ [معيار التقييم العام الكامل من 100 درجة](docs/ASSESSMENT_RUBRIC.md) قبل بدء التصدير النهائي. درجة الاجتياز 70/100، مع ضرورة نجاح جميع البوابات غير القابلة للتعويض.
+
+For a public, sanitized technical question, open the bilingual [Lab help issue form](https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/issues/new?template=lab-help.yml). Never use it for a credential, vulnerability, private link, personal data, grade dispute, or private submission detail; follow [SECURITY.md](SECURITY.md) and the instructor's private channel instead.
+
+للسؤال التقني العام والمنقح افتح [نموذج مساعدة اللاب الثنائي](https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/issues/new?template=lab-help.yml). لا تستخدمه لبيانات دخول أو ثغرة أو رابط خاص أو بيانات شخصية أو اعتراض على درجة أو تفاصيل تسليم خاصة؛ اتبع [SECURITY.md](SECURITY.md) وقناة المدربة الخاصة بدلًا منه.
 
 ## Repository map · خريطة المستودع
 
@@ -138,4 +170,4 @@ python scripts/validate_release.py
 
 يُعرض رابط [أكاديمية سدايا على GitHub](https://github.com/SDAIAAcademy) بوصفه مرجعًا خارجيًا فقط. لا يستخدم المستودع شعارًا رسميًا ولا يدّعي اعتمادًا أو موافقة أو ملكية مؤسسية.
 
-Educational simulation only · محاكاة تعليمية فقط. All rights reserved pending confirmed publishing authority · جميع الحقوق محفوظة إلى حين تأكيد صلاحية النشر.
+Educational simulation only · محاكاة تعليمية فقط. Learner reuse is governed by the limited [Course use permission](COURSE_USE_PERMISSION.md); it is not a broad open-source license. · يخضع استخدام المتدرب لـ[إذن استخدام مواد الدورة](COURSE_USE_PERMISSION.md) المحدود، وليس لترخيص مفتوح المصدر واسع.

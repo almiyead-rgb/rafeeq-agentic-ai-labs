@@ -56,7 +56,9 @@ class ReadinessTests(unittest.TestCase):
                 "all_critical_gates_passed",
             },
             "manifest.schema.json": {
-                "schema_version", "generated_at_utc", "expected_final_commit_message",
+                "schema_version", "generated_at_utc", "export_id", "assessment_run_id",
+                "assessment_sha256", "expected_final_commit_message",
+                "completed_notebook_upload_required", "learner_todo_status",
                 "files", "safety_checks", "all_passed",
             },
         }

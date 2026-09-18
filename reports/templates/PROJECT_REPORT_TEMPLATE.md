@@ -4,11 +4,15 @@
 >
 > قالب مرجعي للإثراء. تولد `C28_READINESS` ملف `reports/PROJECT_REPORT.md` الإلزامي تلقائيًا. استخدم هذا القالب فقط عند طلب تحليل إضافي، وعدّل بعد آخر تشغيل لـC28.
 
+Use only the instructor-assigned `learner_id` or GitHub username in this public report. Put real identity only in the private hand-in form provided by the instructor.
+
+استخدم `learner_id` الذي تقدمه المدربة أو اسم مستخدم GitHub فقط في هذا التقرير العام. ضع الهوية الحقيقية في نموذج التسليم الخاص الذي تقدمه المدربة فقط.
+
 ## 1. Submission identity · بيانات التسليم
 
 | Field | Entry · الإدخال |
 |---|---|
-| Learner name · اسم المتدرب | `[TODO]` |
+| Public learner ID · معرف المتدرب العام | `[learner_id or GitHub username]` |
 | GitHub username · اسم مستخدم GitHub | `[TODO]` |
 | Public repository URL · رابط المستودع العام | `[TODO]` |
 | Assessment run ID from `assessment_results.json` · معرف تشغيل التقييم من `assessment_results.json` | `[TODO if available]` |
@@ -118,4 +122,4 @@ The clean C29 export must contain the four artifacts below. After export, you ma
 - [ ] Both reports and all four generated submission artifacts are complete and consistent. · التقريرَان وجميع ملفات التسليم الأربعة المولدة مكتملة ومتسقة.
 - [ ] I used synthetic data and included no credentials, private links, copied solutions, instructor material, or hidden tests. · استخدمت بيانات مصطنعة ولم أضمّن بيانات دخول أو روابط خاصة أو حلولًا منسوخة أو مواد للمدربة أو اختبارات خفية.
 
-Learner confirmation · إقرار المتدرب: `[TODO: name and date]`
+Learner confirmation · إقرار المتدرب: `[TODO: learner_id and date · معرّف المتدرب والتاريخ]`

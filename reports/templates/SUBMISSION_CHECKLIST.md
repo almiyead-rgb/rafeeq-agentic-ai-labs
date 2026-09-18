@@ -6,20 +6,20 @@ Check every required item in **your own public repository**. A checked box is a 
 
 ## A. Repository setup · إعداد المستودع
 
-- [ ] At C29, I created or used a **new empty public repository** through the GitHub website; I did not use Fork. · عند C29 أنشأت أو استخدمت **مستودعًا عامًا جديدًا وفارغًا** عبر موقع GitHub، ولم أستخدم Fork.
+- [ ] During preflight, I created a **new empty public repository** through the GitHub website; I did not use Fork, and I left it completely empty until the clean C29 upload. · أثناء التجهيز المسبق أنشأت **مستودعًا عامًا جديدًا وفارغًا** عبر موقع GitHub، ولم أستخدم Fork، وتركته فارغًا تمامًا حتى رفع C29 النظيف.
 - [ ] The repository belongs to my GitHub account and has a clear project name. · المستودع تابع لحسابي في GitHub واسمه واضح.
 - [ ] After C29 printed `FINAL_EXPORT_CREATED`, I extracted `rafeeq-mini-submission.zip` and uploaded its clean **contents**. I did not upload the ZIP itself or an extra outer folder. · بعد أن طبع C29 العبارة `FINAL_EXPORT_CREATED`، فككت `rafeeq-mini-submission.zip` ورفعت **محتوياته** النظيفة، ولم أرفع ملف ZIP نفسه أو مجلدًا خارجيًا زائدًا.
 - [ ] In Colab I selected **File → Download → Download .ipynb**, named the file `Rafeeq_Mini_Capstone.ipynb`, and placed it in the extracted `notebooks/` folder before upload. · اخترت في كولاب **File → Download → Download .ipynb**، وسمّيت الملف `Rafeeq_Mini_Capstone.ipynb`، ووضعته داخل مجلد `notebooks/` المستخرج قبل الرفع.
 - [ ] I did not upload `reports/checkpoints/`; it contains temporary local gate evidence. · لم أرفع `reports/checkpoints/` لأنه يحتوي أدلة بوابات محلية مؤقتة.
 - [ ] `README.md`, `notebooks/`, `data/`, `src/`, `reports/`, and `.github/` are visible at the repository root. · تظهر `README.md` و`notebooks/` و`data/` و`src/` و`reports/` و`.github/` في جذر المستودع.
 - [ ] The repository URL opens without signing in. · يفتح رابط المستودع دون تسجيل دخول.
-- [ ] If the instructor later enabled a verified template, I used **Use this template**, never Fork. The guaranteed path does not require a template. · إذا فعّلت المدربة لاحقًا قالبًا موثقًا فقد استخدمت **Use this template** وليس Fork؛ ولا يتطلب المسار المضمون قالبًا.
+- [ ] I used the instructor-assigned `learner_id` or GitHub username in public files; my real name, email, phone number, and national ID appear only in the private hand-in form. · استخدمت `learner_id` الذي تقدمه المدربة أو اسم مستخدم GitHub في الملفات العامة، ولم أضع اسمي الحقيقي أو بريدي أو رقم هاتفي أو هويتي الوطنية إلا في نموذج التسليم الخاص.
 
 ## B. Colab and reproducibility · كولاب وقابلية إعادة التشغيل
 
 - [ ] I opened the notebook from the official `almiyead-rgb` course repository using the course Colab link, not from my own repository. · فتحت الدفتر من مستودع الدورة الرسمي `almiyead-rgb` برابط كولاب، لا من مستودعي.
 - [ ] I selected **File → Save a copy in Drive** before editing. · اخترت **File → Save a copy in Drive** قبل التعديل.
-- [ ] I worked from the saved Drive copy through C29 and did not depend on a learner repository before the final export. · عملت من نسخة Drive المحفوظة حتى C29، ولم أعتمد على مستودع للمتدرب قبل التصدير النهائي.
+- [ ] I worked from the saved Drive copy through C29; the preflight GitHub repository remained empty until the final export. · عملت من نسخة Drive المحفوظة حتى C29، وبقي مستودع GitHub المنشأ في التجهيز فارغًا حتى التصدير النهائي.
 - [ ] I used Google Colab Free with the standard CPU runtime. · استخدمت Google Colab المجاني وبيئة CPU القياسية.
 - [ ] `LLM_MODE=stub` remained the default; the required path uses no paid model or API key. · بقي `LLM_MODE=stub` الوضع الافتراضي، ولا يستخدم المسار الإلزامي نموذجًا مدفوعًا أو مفتاح API.
 - [ ] I ran the notebook from `C0` to `C29` in order in a clean runtime. · شغلت الدفتر من `C0` إلى `C29` بالترتيب في بيئة نظيفة.
@@ -45,6 +45,7 @@ Check every required item in **your own public repository**. A checked box is a 
 - [ ] `reports/assessment_results.json` is visible in the public repository. · يظهر `reports/assessment_results.json` في المستودع العام.
 - [ ] `reports/monitoring_dashboard.png` is visible in the public repository. · تظهر `reports/monitoring_dashboard.png` في المستودع العام.
 - [ ] `reports/submission_manifest.json` is visible in the public repository and reports `all_passed=true`. · يظهر `reports/submission_manifest.json` في المستودع العام ويعرض `all_passed=true`.
+- [ ] `reports/EVIDENCE_CARD.md` contains three completed, sanitized cards—one per day—created from the required template after extraction. · يحتوي `reports/EVIDENCE_CARD.md` ثلاث بطاقات مكتملة ومنقحة—بطاقة لكل يوم—منشأة من القالب الإلزامي بعد فك الحزمة.
 - [ ] `rafeeq-mini-submission.zip`, temporary checkpoints, and raw outputs were not uploaded. · لم أرفع `rafeeq-mini-submission.zip` أو نقاط التقدم المؤقتة أو المخرجات الخام.
 - [ ] The reports contain actual values from my final run; unmeasured metrics are marked `Not measured`. · تحتوي التقارير على قيم تشغيل فعلية، والمقاييس غير المنفذة محددة بـ`Not measured`.
 
@@ -58,7 +59,13 @@ Check every required item in **your own public repository**. A checked box is a 
 - [ ] All refund and action results are clearly marked as simulations. · جميع نتائج الاسترداد والإجراءات موضحة بصفتها محاكاة.
 - [ ] I did not commit `rafeeq-mini-submission.zip`, raw trace dumps, or temporary runtime files. · لم أرفع `rafeeq-mini-submission.zip` أو سجلات خامًا أو ملفات مؤقتة لبيئة التشغيل.
 
-## F. Final hand-in record · سجل التسليم النهائي
+## F. GitHub Actions verification · التحقق عبر GitHub Actions
+
+- [ ] I opened **Actions → Learner submission quality** for the exact final commit and waited until it showed a green check. · فتحت **Actions ← Learner submission quality** لنفس Commit النهائي وانتظرت حتى ظهرت العلامة الخضراء.
+- [ ] If a run was red, I opened the first failed step, repaired the smallest relevant learner TODO in the saved Drive notebook, reran dependent gates through C29, exported again, and uploaded a new commit. · إذا كان التشغيل أحمر فقد فتحت أول خطوة فاشلة، وأصلحت أصغر TODO مرتبط في دفتر Drive، وأعدت البوابات التابعة حتى C29 والتصدير، ثم رفعت Commit جديدًا.
+- [ ] I did not edit workflows, validators, public tests, or generated evidence to hide a failure. · لم أعدّل Workflows أو أدوات التحقق أو الاختبارات العامة أو الأدلة المولدة لإخفاء فشل.
+
+## G. Final hand-in record · سجل التسليم النهائي
 
 Complete this block in the designated hand-in form **after** the GitHub upload. Do not edit and recommit a repository file merely to insert the SHA of the commit that already contains it.
 
@@ -66,7 +73,7 @@ Complete this block in the designated hand-in form **after** the GitHub upload. 
 
 | Item | Value · القيمة |
 |---|---|
-| Learner name · اسم المتدرب | `[TODO]` |
+| Public learner ID · معرف المتدرب العام | `[learner_id]` |
 | Public repository URL · رابط المستودع العام | `[TODO]` |
 | Final notebook URL · رابط الدفتر النهائي | `[TODO]` |
 | Final commit URL · رابط آخر Commit | `[TODO]` |
@@ -75,9 +82,15 @@ Complete this block in the designated hand-in form **after** the GitHub upload. 
 | `C20_DAY2_GATE` marker | `all_passed=true / all_passed=false` |
 | Final `C29_EXPORT_SAFETY_CHECK` marker | `FINAL_EXPORT_CREATED / FINAL_EXPORT_BLOCKED / FINAL_EXPORT_SKIPPED` |
 | Clean run date (UTC) · تاريخ التشغيل النظيف | `[TODO]` |
+| **Learner submission quality** | `GREEN / RED / PENDING` |
+
+- [ ] I used the private hand-in form/link provided by the instructor; I did not invent or infer a public submission destination. · استخدمت رابط/نموذج التسليم الخاص الذي تقدمه المدربة، ولم أفترض وجهة تسليم عامة.
+- [ ] I followed the deadline and late/resubmission policy provided by the instructor during the course. · اتبعت الموعد النهائي وسياسة التأخير/إعادة التسليم التي تقدمها المدربة أثناء الدورة.
+- [ ] I kept the receipt/confirmation issued by the form or instructor. I understand that a green Actions run is not proof of receipt. · احتفظت بإثبات/تأكيد الاستلام الصادر من النموذج أو المدربة، وأفهم أن نجاح Actions ليس إثبات استلام.
+- [ ] If I resubmitted, I preserved commit history, submitted a new green commit, and updated the private form with the new commit URL according to the instructor's policy. · إذا أعدت التسليم فقد حافظت على سجل Commits، وأرسلت Commit جديدًا ناجحًا، وحدّثت النموذج الخاص برابط Commit الجديد وفق سياسة المدربة.
 
 ## Pass gate · شرط الاجتياز
 
-The submission is ready for assessment only when the repository is public and accessible, extracted project files are visible, C9 and C20 show `all_passed=true`, the enabled final C29 run prints `FINAL_EXPORT_CREATED`, both learner reports and all four generated artifacts are complete, and every safety declaration above is true.
+The submission is ready for assessment only when the repository is public and accessible, extracted project files are visible, C9 and C20 show `all_passed=true`, the enabled final C29 run prints `FINAL_EXPORT_CREATED`, both learner reports, all four generated artifacts, and the three required evidence cards are complete, the exact final commit has a green **Learner submission quality** run, and every safety declaration above is true.
 
-يصبح التسليم جاهزًا للتقييم فقط عندما يكون المستودع عامًا ويمكن الوصول إليه، وتظهر ملفات المشروع المستخرجة، وتعرض C9 وC20 القيمة `all_passed=true`، ويطبع تشغيل C29 النهائي المفعّل `FINAL_EXPORT_CREATED`، ويكتمل تقريرا المتدرب والملفات الأربعة المولدة، وتكون جميع إقرارات السلامة أعلاه صحيحة.
+يصبح التسليم جاهزًا للتقييم فقط عندما يكون المستودع عامًا ويمكن الوصول إليه، وتظهر ملفات المشروع المستخرجة، وتعرض C9 وC20 القيمة `all_passed=true`، ويطبع تشغيل C29 النهائي المفعّل `FINAL_EXPORT_CREATED`، ويكتمل تقريرا المتدرب والملفات الأربعة المولدة وبطاقات الأدلة الثلاث، ويظهر فحص **Learner submission quality** أخضر لنفس Commit النهائي، وتكون جميع إقرارات السلامة أعلاه صحيحة.

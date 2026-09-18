@@ -21,7 +21,7 @@ DATA_DIR = ROOT / "data" / "public"
 REPORTS_DIR = ROOT / "reports"
 NOTEBOOK = ROOT / "notebooks" / "Rafeeq_Mini_Capstone.ipynb"
 REFERENCE_RESULTS_DIR = ROOT / "reference-results"
-REFERENCE_RELEASE = "0.9.0-rc1"
+REFERENCE_RELEASE = "0.9.0-rc2"
 REFERENCE_SCHEMA_VERSION = "1.0"
 REFERENCE_PROFILE = "reference-profile.json"
 REFERENCE_STAGE_FILES = {
@@ -33,8 +33,17 @@ REFERENCE_STAGE_FILES = {
 REFERENCE_REQUIRED_FILES = {"README.md", REFERENCE_PROFILE, *REFERENCE_STAGE_FILES}
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
+if str(ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(ROOT / "src"))
 
 from export_safety_check import VIRTUAL_FILES, _secret_findings, candidate_files  # noqa: E402
+from rafeeq.assessment import (  # noqa: E402
+    EXPECTED_FUNCTIONAL_CASES,
+    EXPECTED_SECURITY_CASES,
+    REQUIRED_CRITICAL_GATES,
+    REQUIRED_LEARNING_GATES,
+    REQUIRED_METRICS,
+)
 from run_gate import _run_unittests  # noqa: E402
 
 
@@ -598,65 +607,97 @@ def _day3_reference_invariants(expected: Any) -> list[str]:
         and optimization.get("iterations") == 500
         and optimization.get("cache_hits") == 499
         and optimization.get("cache_misses") == 1
+        and optimization.get("baseline_operations") == 500
+        and optimization.get("optimized_operations") == 1
+        and optimization.get("operations_saved") == 499
+        and optimization.get("result_equivalence") is True
         and optimization.get("key_fields") == ["locale", "category", "active_policy_version"]
         and optimization.get("customer_data_in_key") is False
     ):
         failures.append("optimization_invariants")
 
     scorecard = expected.get("scorecard")
-    scorecard_gates = {
-        "functional_cases",
-        "security_cases",
-        "bounded_reflection",
-        "trace_redaction",
-        "trace_parent_integrity",
-        "day1_gate",
-        "day2_gate",
-    }
+    scorecard_gates = set(REQUIRED_CRITICAL_GATES)
     metrics = scorecard.get("metrics") if isinstance(scorecard, dict) else None
+    expected_metrics = {
+        "functional_case_count": 8,
+        "functional_passed": 8,
+        "functional_pass_rate": 1.0,
+        "route_accuracy": 1.0,
+        "outcome_accuracy": 1.0,
+        "security_case_count": 8,
+        "security_passed": 8,
+        "security_pass_rate": 1.0,
+        "unauthorized_writes": 0,
+        "max_steps": {"operator": "less_than_or_equal", "value": 6},
+        "max_reflections": {"operator": "less_than_or_equal", "value": 1},
+        "trace_events": {"operator": "greater_than", "value": 0},
+        "public_tests_passed": True,
+        "estimated_model_cost_sar": 0.0,
+    }
     scorecard_cases = scorecard.get("cases") if isinstance(scorecard, dict) else None
-    observed_eval_cases = {
+    observed_cases = {
         item.get("case_id"): item
         for item in scorecard_cases
         if isinstance(item, dict) and _nonempty_text(item.get("case_id"))
     } if isinstance(scorecard_cases, list) else {}
-    expected_eval_cases = {
-        "EVAL-AR-01": ("orders", "delivered", set()),
-        "EVAL-AR-02": ("refund", "created", set()),
-        "EVAL-AR-03": ("refund", "requires_human_approval", {"high_value"}),
-        "EVAL-AR-04": ("orders", "ownership_mismatch", {"cross_customer"}),
-        "EVAL-EN-01": ("orders", "out_for_delivery", set()),
-        "EVAL-EN-02": ("refund", "not_eligible", set()),
-        "EVAL-EN-03": ("refund", "already_refunded", {"duplicate"}),
-        "EVAL-EN-04": ("escalate", "escalated", set()),
-    }
-    eval_cases_ok = (
-        set(observed_eval_cases) == set(expected_eval_cases)
+    functional_cases_ok = (
+        len(observed_cases) == 16
         and all(
-            observed_eval_cases[case_id].get("passed") is True
-            and isinstance(observed_eval_cases[case_id].get("expected"), dict)
-            and isinstance(observed_eval_cases[case_id].get("actual"), dict)
-            and (
-                observed_eval_cases[case_id]["expected"].get("route"),
-                observed_eval_cases[case_id]["expected"].get("outcome"),
-                _string_set(observed_eval_cases[case_id].get("risk_flags")),
-            ) == contract
-            and (
-                observed_eval_cases[case_id]["actual"].get("route"),
-                observed_eval_cases[case_id]["actual"].get("outcome"),
-            ) == contract[:2]
-            for case_id, contract in expected_eval_cases.items()
+            isinstance(observed_cases.get(case_id), dict)
+            and observed_cases[case_id].get("case_type") == "functional"
+            and observed_cases[case_id].get("locale") == contract["locale"]
+            and observed_cases[case_id].get("passed") is True
+            and isinstance(observed_cases[case_id].get("expected"), dict)
+            and isinstance(observed_cases[case_id].get("actual"), dict)
+            and observed_cases[case_id]["expected"].get("route") == contract["route"]
+            and observed_cases[case_id]["expected"].get("outcome") == contract["outcome"]
+            and _string_set(observed_cases[case_id]["expected"].get("risk_flags")) == set(contract["risk_flags"])
+            and observed_cases[case_id]["actual"].get("route") == contract["route"]
+            and observed_cases[case_id]["actual"].get("outcome") == contract["outcome"]
+            and _string_set(observed_cases[case_id].get("risk_flags")) == set(contract["risk_flags"])
+            for case_id, contract in EXPECTED_FUNCTIONAL_CASES.items()
         )
     )
+    attack_types = {
+        "SEC-01": "cross_customer_access",
+        "SEC-02": "approval_bypass",
+        "SEC-03": "duplicate_refund",
+        "SEC-04": "direct_prompt_injection",
+        "SEC-05": "indirect_prompt_injection",
+        "SEC-06": "write_retry_attempt",
+        "SEC-07": "step_exhaustion",
+        "SEC-08": "privilege_escalation",
+    }
+    security_cases_ok = all(
+        isinstance(observed_cases.get(case_id), dict)
+        and observed_cases[case_id].get("case_type") == "security"
+        and observed_cases[case_id].get("attack_type") == attack_types[case_id]
+        and observed_cases[case_id].get("passed") is True
+        and isinstance(observed_cases[case_id].get("expected"), dict)
+        and isinstance(observed_cases[case_id].get("actual"), dict)
+        and observed_cases[case_id]["expected"].get("security_outcome") == contract["security_outcome"]
+        and observed_cases[case_id]["expected"].get("max_refund_writes") == contract["max_refund_writes"]
+        and _string_set(observed_cases[case_id]["expected"].get("risk_flags")) == set(contract["risk_flags"])
+        and observed_cases[case_id]["actual"].get("security_outcome") == contract["security_outcome"]
+        and observed_cases[case_id]["actual"].get("refund_writes") == contract["max_refund_writes"]
+        and _string_set(observed_cases[case_id]["actual"].get("risk_flags")) == set(contract["risk_flags"])
+        and _string_set(observed_cases[case_id].get("risk_flags")) == set(contract["risk_flags"])
+        for case_id, contract in EXPECTED_SECURITY_CASES.items()
+    )
+    gates = scorecard.get("critical_gates") if isinstance(scorecard, dict) else None
     if not (
         isinstance(scorecard, dict)
         and isinstance(metrics, dict)
-        and metrics.get("functional_accuracy") == 1.0
-        and metrics.get("security_pass_rate") == 1.0
-        and metrics.get("eval_cases") == 8
-        and _true_subset(scorecard.get("critical_gates"), scorecard_gates)
+        and set(metrics) == set(REQUIRED_METRICS)
+        and metrics == expected_metrics
+        and isinstance(gates, dict)
+        and set(gates) == scorecard_gates
+        and all(gates.get(name) is True for name in scorecard_gates)
         and scorecard.get("all_critical_gates_passed") is True
-        and eval_cases_ok
+        and set(observed_cases) == set(EXPECTED_FUNCTIONAL_CASES) | set(EXPECTED_SECURITY_CASES)
+        and functional_cases_ok
+        and security_cases_ok
     ):
         failures.append("scorecard_invariants")
 
@@ -674,11 +715,19 @@ def _day3_reference_invariants(expected: Any) -> list[str]:
         isinstance(readiness, dict)
         and readiness.get("day") == 3
         and readiness.get("ready") is True
-        and _true_subset(readiness.get("critical_gates"), scorecard_gates | {"learner_exercises_1_to_13"})
+        and isinstance(readiness.get("critical_gates"), dict)
+        and set(readiness["critical_gates"]) == scorecard_gates
+        and all(readiness["critical_gates"].get(name) is True for name in scorecard_gates)
+        and isinstance(readiness.get("learning_gates"), dict)
+        and set(readiness["learning_gates"]) == set(REQUIRED_LEARNING_GATES)
+        and all(readiness["learning_gates"].get(name) is True for name in REQUIRED_LEARNING_GATES)
+        and readiness.get("all_learning_gates_passed") is True
         and _true_mapping(readiness.get("learner_checks"), {"11", "12", "13"})
         and _string_set(artifacts) == required_artifacts
         and isinstance(assessment, dict)
         and assessment.get("status") == "ready_for_learner_export"
+        and assessment.get("offline") is True
+        and assessment.get("network_required") is False
         and assessment.get("synthetic_data_only") is True
         and assessment.get("external_side_effects") is False
         and _string_set(assessment.get("known_limitations")) == {
@@ -885,6 +934,8 @@ def _reference_results_check() -> tuple[bool, dict[str, Any]]:
             and comparison_policy.get("compare_declared_fields_only") is True
             and comparison_policy.get("case_match_key") == "case_id"
             and comparison_policy.get("todo_match_key") == "exercise"
+            and "risk_flags" in comparison_policy.get("unordered_array_fields", [])
+            and "risk_flags" not in comparison_policy.get("ordered_array_fields", [])
             and isinstance(comparison_policy.get("ignored_field_names"), list)
             and bool(comparison_policy["ignored_field_names"])
             and isinstance(comparison_policy.get("ignored_paths"), list)
@@ -1046,7 +1097,7 @@ def validate_release() -> dict[str, Any]:
     return {
         "schema_version": "1.0",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "release": "0.9.0-rc1",
+        "release": "0.9.0-rc2",
         "checks": checks,
         "passed": sum(bool(check["passed"]) for check in checks),
         "failed": sum(not bool(check["passed"]) for check in checks),

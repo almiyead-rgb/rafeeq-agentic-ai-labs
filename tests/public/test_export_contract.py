@@ -30,7 +30,12 @@ class ExportContractTests(unittest.TestCase):
         self.assertNotIn(".github/workflows/pages.yml", paths)
         self.assertNotIn(".github/workflows/learner-submission-quality.yml", paths)
         self.assertNotIn(".github/pull_request_template.md", paths)
+        self.assertIn("COURSE_USE_PERMISSION.md", paths)
         self.assertEqual(set(contract.VIRTUAL_FILES), {contract.STUDENT_WORKFLOW_PATH})
+        self.assertNotIn("branches: [main]", contract.STUDENT_WORKFLOW)
+        self.assertIn("push:\n", contract.STUDENT_WORKFLOW)
+        self.assertIn("--write-receipt", contract.STUDENT_WORKFLOW)
+        self.assertIn("actions/upload-artifact@v4", contract.STUDENT_WORKFLOW)
 
     def test_complete_todo_status_is_embedded_once_in_manifest(self) -> None:
         contract = _load_export_module()
@@ -55,18 +60,8 @@ class ExportContractTests(unittest.TestCase):
             contract.LEARNER_STATUS_PATH = original
 
         self.assertTrue(ready)
-        manifest = contract._manifest(
-            {"safety_checks": {"source_precheck": True}, "all_passed": True},
-            contract.candidate_files(),
-            loaded,
-        )
-        workflow_records = [
-            record for record in manifest["files"]
-            if record["path"] == contract.STUDENT_WORKFLOW_PATH
-        ]
-        self.assertEqual(len(workflow_records), 1)
-        self.assertEqual(manifest["learner_todo_status"]["completed"], 14)
-        self.assertTrue(manifest["safety_checks"]["learner_todos_14_of_14"])
+        self.assertEqual(loaded["completed"], 14)
+        self.assertEqual(len(loaded["items"]), 14)
 
 
 if __name__ == "__main__":

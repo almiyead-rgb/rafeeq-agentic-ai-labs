@@ -1,8 +1,8 @@
 # Learner recovery policy · سياسة استعادة عمل المتدرب
 
-**Colab Runtime is temporary. Before C29, Google Drive holds the working notebook and gate evidence; a learner repository is not required. After C29, GitHub holds the final clean submission.**
+**Colab Runtime is temporary. Create an empty public learner repository during preflight, but leave it completely empty until C29. Before C29, Google Drive holds the working notebook and gate evidence. After C29, GitHub holds the final clean submission.**
 
-**بيئة Colab مؤقتة. قبل C29 يحتفظ Google Drive بدفتر العمل وأدلة البوابات، ولا يلزم مستودع للمتدرب. بعد C29 يحتفظ GitHub بالتسليم النهائي النظيف.**
+**بيئة Colab مؤقتة. أنشئ مستودع المتدرب العام والفارغ أثناء التجهيز المسبق، لكن اتركه فارغًا تمامًا حتى C29. قبل C29 يحتفظ Google Drive بدفتر العمل وأدلة البوابات، وبعد C29 يحتفظ GitHub بالتسليم النهائي النظيف.**
 
 Losing the runtime is normal: installed packages, Python variables, uploaded temporary files, and in-memory state disappear. Your saved Drive notebook remains; after the final C29 upload, the clean GitHub submission also remains.
 
@@ -15,7 +15,7 @@ Losing the runtime is normal: installed packages, Python variables, uploaded tem
 3. Run `C0_ENV_DOCTOR`. Stop if it does not return `C0 = READY`. · شغّل `C0_ENV_DOCTOR`. توقف إذا لم يعرض `C0 = READY`.
 4. Run completed cells from the top in order. Python state must be rebuilt; do not jump directly to the last cell. · أعد تشغيل الخلايا المكتملة من الأعلى وبالترتيب لإعادة بناء حالة Python؛ لا تقفز مباشرة إلى آخر خلية.
 5. Stop at the last completed gate and confirm its exact success marker from the table below. · توقف عند آخر بوابة مكتملة، وتأكد من علامة نجاحها الدقيقة في الجدول أدناه.
-6. Compare your Drive copy with the saved checkpoint label and gate evidence. In the guaranteed path, GitHub remains empty until the clean C29 upload. · قارن نسخة Drive بتسمية نقطة التقدم ودليل البوابة المحفوظين. في المسار المضمون يبقى GitHub فارغًا حتى رفع C29 النظيف.
+6. Compare your Drive copy with the saved checkpoint label and gate evidence. The preflight GitHub repository remains empty until the clean C29 upload. · قارن نسخة Drive بتسمية نقطة التقدم ودليل البوابة المحفوظين. يبقى مستودع GitHub المنشأ في التجهيز فارغًا حتى رفع C29 النظيف.
 7. Continue from the first incomplete learner `TODO`. · تابع من أول `TODO` غير مكتمل.
 
 | Gate | Exact success marker · علامة النجاح الدقيقة |
@@ -39,6 +39,7 @@ Losing the runtime is normal: installed packages, Python variables, uploaded tem
 | Drive copy is behind | Use the last saved gate evidence or a dated Drive copy as the comparison point; preserve newer correct learner work. | نسخة Drive أقدم | استخدم دليل آخر بوابة محفوظة أو نسخة Drive مؤرخة للمقارنة، مع الحفاظ على عمل المتدرب الصحيح الأحدث. |
 | Public test fails after an edit | Revert only the most recent learner edit, rerun the same public test, and record the error. | فشل فحص عام بعد تعديل | تراجع عن أحدث تعديل للمتدرب فقط، ثم أعد الفحص نفسه وسجل الخطأ. |
 | Browser tab closed | Reopen the saved Drive notebook; never rebuild from an untrusted copy. | إغلاق تبويب المتصفح | أعد فتح نسخة Drive المحفوظة، ولا تُعد البناء من نسخة غير موثوقة. |
+| **Learner submission quality** is red after upload | Open the first failed Actions step, keep only the first useful sanitized error, repair the smallest relevant learner TODO in the Drive notebook, rerun its dependent gates through C29, export again, and upload a new commit. Do not edit workflows/tests to hide the failure. | فحص **Learner submission quality** أحمر بعد الرفع | افتح أول خطوة Actions فاشلة واحتفظ بأول خطأ مفيد ومنقح، ثم أصلح أصغر TODO مرتبط في دفتر Drive، وأعد البوابات التابعة حتى C29 والتصدير، وارفع Commit جديدًا. لا تعدّل Workflows أو الاختبارات لإخفاء الفشل. |
 
 ## Saved checkpoint labels · تسميات نقاط التقدم المحفوظة
 
@@ -65,6 +66,10 @@ The generated files `reports/trace.jsonl`, `reports/assessment_results.json`, `r
 Share only: cell ID, first useful error line, expected behavior, actual behavior, runtime type, and the last passed gate. Replace customer-like identifiers with supplied synthetic fixture IDs.
 
 شارك فقط: رقم الخلية، وأول سطر خطأ مفيد، والسلوك المتوقع والفعلي، ونوع البيئة، وآخر بوابة ناجحة. استخدم معرفات الحالات المصطنعة المرفقة بدل أي معرف يشبه بيانات العملاء.
+
+Use the public bilingual [Lab help issue form](https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/issues/new?template=lab-help.yml) only for sanitized technical questions. Vulnerabilities, credentials, private links, personal data, grade disputes, and private submission details must use the instructor's private channel and [`SECURITY.md`](../SECURITY.md).
+
+استخدم [نموذج مساعدة اللاب الثنائي](https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/issues/new?template=lab-help.yml) للأسئلة التقنية العامة والمنقحة فقط. تُرسل الثغرات وبيانات الدخول والروابط الخاصة والبيانات الشخصية والاعتراضات على الدرجات وتفاصيل التسليم الخاصة عبر قناة المدربة الخاصة ووفق [`SECURITY.md`](../SECURITY.md).
 
 This public folder contains policy only. Actual recovery patches, completed notebooks, instructor checkpoints, answers, scoring rules, and hidden evaluations belong outside the public learner repository.
 
