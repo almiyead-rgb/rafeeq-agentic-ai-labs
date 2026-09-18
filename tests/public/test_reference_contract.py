@@ -1,4 +1,4 @@
-"""Keep the learner comparison page aligned with the canonical rc2 assessment."""
+"""Keep the learner comparison page aligned with the canonical rc3 assessment."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from rafeeq.assessment import (
 
 
 class ReferenceContractTests(unittest.TestCase):
-    def test_day3_reference_and_browser_projection_match_rc2(self) -> None:
+    def test_day3_reference_and_browser_projection_match_rc3(self) -> None:
         reference = json.loads(
             (REPOSITORY_ROOT / "reference-results" / "day3_expected.json").read_text(encoding="utf-8")
         )["expected"]

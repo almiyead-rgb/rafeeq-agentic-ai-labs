@@ -27,14 +27,16 @@ Never share a password, one-time code, recovery code, token, or API key with the
 
 ### Preflight repository policy · سياسة المستودع في التجهيز المسبق
 
-Create the repository during preflight so account and email-verification problems are discovered before Day 3. It must remain empty until C29:
+Create the repository during preflight so account and email-verification problems are discovered before Day 3. Before C29, publish only the safe progress log—never code, the live notebook, raw evidence, or runtime files:
 
-أنشئ المستودع أثناء التجهيز المسبق حتى تظهر مشكلات الحساب أو توثيق البريد قبل اليوم الثالث. ويجب أن يبقى فارغًا حتى C29:
+أنشئ المستودع أثناء التجهيز المسبق حتى تظهر مشكلات الحساب أو توثيق البريد قبل اليوم الثالث. قبل C29 لا تنشر سوى سجل التقدم الآمن، ولا تنشر الكود أو الدفتر الجاري أو الأدلة الخام أو ملفات بيئة التشغيل:
 
 1. While signed in, select **+ → New repository**, choose your personal account, and use a clear name such as `rafeeq-mini-yourusername`. · بعد تسجيل الدخول اختر **+ → New repository**، ثم حسابك الشخصي، واستخدم اسمًا واضحًا مثل `rafeeq-mini-yourusername`.
 2. Select **Public**. Leave README, `.gitignore`, license, and template options unselected. · اختر **Public**، واترك README و`.gitignore` والرخصة والقالب دون تحديد.
 3. Select **Create repository**. Do not use **Fork**. · اختر **Create repository**، ولا تستخدم **Fork**.
-4. Copy its URL to a private note, then leave the repository empty: no files, commits, branches, or daily checkpoints before the clean C29 upload. · انسخ رابطه في ملاحظة خاصة، ثم اتركه فارغًا: بلا ملفات أو Commits أو فروع أو نقاط يومية قبل رفع C29 النظيف.
+4. In the **About** panel, add a concise description such as `Bilingual safe delivery-support agent built in the Advanced Agentic AI Systems Engineering course`. Do not include a real name or contact information. · أضف في **About** وصفًا مختصرًا مثل `مساعد وكيلي ثنائي اللغة وآمن لدعم عمليات التوصيل بُني ضمن دورة هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة`، دون اسم حقيقي أو معلومات اتصال.
+5. Select **creating a new file**, name it `LEARNING_PROGRESS.md`, and paste the [safe progress template](LEARNING_PROGRESS_TEMPLATE.md). Commit with `docs: initialize Rafeeq Mini progress log`. · اختر **creating a new file**، وسمّه `LEARNING_PROGRESS.md`، والصق [قالب التقدم الآمن](LEARNING_PROGRESS_TEMPLATE.md)، ثم احفظه برسالة `docs: initialize Rafeeq Mini progress log`.
+6. Copy the repository URL to a private note. Until C29, edit only this progress file after a passed gate. · انسخ رابط المستودع في ملاحظة خاصة. وحتى C29 لا تعدّل سوى ملف التقدم بعد نجاح البوابة.
 
 If an employer or institutional policy prevents a public repository, tell the instructor before Day 1. Use only the private route explicitly approved by the instructor, and never paste a private repository link into a public issue. · إذا منعت سياسة جهة العمل أو المؤسسة إنشاء مستودع عام، فأبلغ المدربة قبل اليوم الأول. استخدم فقط المسار الخاص الذي تعتمده المدربة صراحة، ولا تلصق رابط مستودع خاص في Issue عام.
 
@@ -54,7 +56,7 @@ Your starting point is the notebook in the official course repository owned by `
 
 نقطة البداية هي الدفتر في مستودع الدورة الرسمي التابع للحساب `almiyead-rgb`، وليس مستودع المتدرب. افتحه بزر/رابط كولاب الآتي:
 
-**[Open the official Rafeeq Mini notebook in Google Colab · افتح دفتر رفيق الرسمي في كولاب](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)**
+**[Open the official Rafeeq Mini notebook in Google Colab · افتح دفتر رفيق الرسمي في كولاب](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb)**
 
 1. Confirm the address contains `github/almiyead-rgb/rafeeq-agentic-ai-labs`. · تأكد أن العنوان يحتوي `github/almiyead-rgb/rafeeq-agentic-ai-labs`.
 2. Immediately select **File → Save a copy in Drive**. · اختر فورًا **File → Save a copy in Drive**.
@@ -63,21 +65,21 @@ Your starting point is the notebook in the official course repository owned by `
 
 Official reference: [Google Colab FAQ](https://research.google.com/colaboratory/faq.html)
 
-## 4. Build in Drive; keep GitHub empty until C29 · ابنِ في Drive واترك GitHub فارغًا حتى C29
+## 4. Build in Drive; publish only safe progress · ابنِ في Drive وانشر التقدم الآمن فقط
 
-Across the three days, reopen your saved Drive copy, run from the top, complete only learner `TODO` areas, and save after every passed gate. Your pre-created GitHub repository remains empty. The two daily checkpoint messages are labels in the notebook/report, not Git commits.
+Across the three days, reopen your saved Drive copy, run from the top, complete only learner `TODO` areas, and save after every passed gate. After C9 and C20, change only the matching `PENDING` status in `LEARNING_PROGRESS.md` to `PASS` and make the documented Git commit. Do not upload project code or runtime evidence before C29.
 
-خلال الأيام الثلاثة، أعد فتح نسخة Drive المحفوظة، وشغّل من الأعلى، وأكمل مناطق `TODO` الخاصة بالمتدرب فقط، واحفظ بعد كل بوابة ناجحة. يبقى مستودع GitHub المنشأ مسبقًا فارغًا. رسالتا نقطتي التقدم اليوميتين تسميات داخل الدفتر/التقرير، وليستا Git commits.
+خلال الأيام الثلاثة، أعد فتح نسخة Drive المحفوظة، وشغّل من الأعلى، وأكمل مناطق `TODO` الخاصة بالمتدرب فقط، واحفظ بعد كل بوابة ناجحة. بعد C9 وC20 غيّر حالة `PENDING` المقابلة فقط داخل `LEARNING_PROGRESS.md` إلى `PASS`، ثم أنشئ Commit التوثيق المحدد. لا ترفع كود المشروع أو أدلة التشغيل قبل C29.
 
-## 5. At C29, upload to the empty repository · عند C29 ارفع إلى المستودع الفارغ
+## 5. At C29, upload beside the safe progress log · عند C29 ارفع بجانب سجل التقدم الآمن
 
-Only after `C29_EXPORT_SAFETY_CHECK` passes, upload to the **empty public repository created during preflight**. The beginner path uses the GitHub website and requires no terminal, PAT, or template setting.
+Only after `C29_EXPORT_SAFETY_CHECK` passes, upload the project package to the public repository that currently contains only `LEARNING_PROGRESS.md`. The beginner path uses the GitHub website and requires no terminal, PAT, or template setting.
 
-بعد نجاح `C29_EXPORT_SAFETY_CHECK` فقط، ارفع إلى **المستودع العام الفارغ الذي أنشأته أثناء التجهيز**. يستخدم مسار المبتدئ موقع GitHub، ولا يحتاج إلى Terminal أو PAT أو تفعيل قالب.
+بعد نجاح `C29_EXPORT_SAFETY_CHECK` فقط، ارفع حزمة المشروع إلى المستودع العام الذي لا يحتوي حاليًا إلا `LEARNING_PROGRESS.md`. يستخدم مسار المبتدئ موقع GitHub، ولا يحتاج إلى Terminal أو PAT أو تفعيل قالب.
 
-Before uploading, confirm that the repository belongs to your account, is public, is not a fork, and still has no commits or files.
+Before uploading, confirm that the repository belongs to your account, is public, is not a fork, and contains only the safe progress history you created through the instructed path.
 
-قبل الرفع تأكد أن المستودع تابع لحسابك، وعام، وليس Fork، وما زال بلا Commits أو ملفات.
+قبل الرفع تأكد أن المستودع تابع لحسابك، وعام، وليس Fork، ولا يحتوي إلا سجل التقدم الآمن المنشأ وفق المسار المحدد.
 
 Now prepare and upload the clean export—not the ZIP:
 
@@ -95,9 +97,9 @@ Complete `TODO-14`, confirm all four review flags are `True`, deliberately enabl
 6. Copy `reports/templates/EVIDENCE_CARD_TEMPLATE.md` to `reports/EVIDENCE_CARD.md`. Complete three concise cards—one per day—using only your `learner_id`, synthetic case IDs, actual cell/gate results, and the assessment `run_id` when available. This instructor-assessment record is added after export and is therefore not hashed by the C29 manifest. · انسخ `reports/templates/EVIDENCE_CARD_TEMPLATE.md` إلى `reports/EVIDENCE_CARD.md`. أكمل ثلاث بطاقات مختصرة—بطاقة لكل يوم—باستخدام `learner_id` فقط ومعرفات الحالات المصطنعة ونتائج الخلايا/البوابات الفعلية و`run_id` للتقييم عند توفره. يضاف سجل تقييم المدربة هذا بعد التصدير، ولذلك لا يتضمنه تجزئة بيان C29.
 7. Confirm the combined folder now contains `notebooks/Rafeeq_Mini_Capstone.ipynb`, `reports/EVIDENCE_CARD.md`, `reports/PROJECT_REPORT.md`, `reports/SECURITY_ASSESSMENT.md`, `reports/trace.jsonl`, `reports/assessment_results.json`, `reports/monitoring_dashboard.png`, and `reports/submission_manifest.json`. · تأكد أن المجلد المدمج يحتوي الدفتر وبطاقة الأدلة والتقريرين والملفات الأربعة بالمسارات المحددة.
 8. Remove nothing required, but do not add `rafeeq-mini-submission.zip`, `reports/checkpoints/`, raw outputs outside the sanitized trace, temporary runtime files, credentials, private links, or real data. · لا تحذف ملفًا إلزاميًا، ولا تضف `rafeeq-mini-submission.zip` أو `reports/checkpoints/` أو مخرجات خامًا خارج الأثر المنقح أو ملفات تشغيل مؤقتة أو بيانات دخول أو روابط خاصة أو بيانات حقيقية.
-9. In your empty repository select **Add file → Upload files**. · في مستودعك الفارغ اختر **Add file → Upload files**.
+9. In your repository select **Add file → Upload files**. Keep the existing `LEARNING_PROGRESS.md`. · في مستودعك اختر **Add file → Upload files**، واحتفظ بملف `LEARNING_PROGRESS.md` الموجود.
 10. Drag the **contents inside** the combined folder. Do not upload only the ZIP, and do not create an extra outer folder. · اسحب **المحتويات داخل** المجلد المدمج؛ لا ترفع ملف ZIP فقط ولا تنشئ مجلدًا خارجيًا زائدًا.
-11. Use the commit message `feat: submit Rafeeq Mini capstone`. · استخدم رسالة الحفظ `feat: submit Rafeeq Mini capstone`.
+11. Mark the Day 3 line in `LEARNING_PROGRESS.md` as `PASS`, include it with the upload, and use the commit message `feat: submit Rafeeq Mini capstone`. · غيّر حالة اليوم الثالث في `LEARNING_PROGRESS.md` إلى `PASS`، وضمّنه مع الرفع، واستخدم رسالة `feat: submit Rafeeq Mini capstone`.
 12. Verify that `README.md`, `.github/`, `notebooks/`, `data/`, `src/`, `mcp_server/`, `tests/`, and `reports/` appear at the repository root. · تحقق من ظهور `README.md` و`.github/` والمجلدات المذكورة في جذر المستودع.
 13. Open **Actions → Learner submission quality**, open the run for this commit, and wait for the green check. Record the final commit URL only after it is green. · افتح **Actions ← Learner submission quality**، ثم تشغيل هذا Commit، وانتظر العلامة الخضراء. لا تسجل رابط Commit النهائي إلا بعد نجاحه.
 
@@ -142,9 +144,9 @@ Read the objective → complete TODO → run the cell → run the public check
 
 ### Core versus stretch · الأساسي مقابل التوسع
 
-The **core path** is mandatory: all 14 learner TODOs, C0–C29 in order, all three gates, required reports/evidence, the clean GitHub upload, and a green Actions run. **Stretch work** is optional only when explicitly marked or announced by the instructor; it cannot replace a failed core requirement and does not affect a beginner who completes the core path.
+The **core path** is mandatory: all 14 learner TODOs, C0–C29 in order, all three gates, required reports/evidence, SDAIA administrative evidence, the clean GitHub upload, and a green Actions run. **Stretch work** is optional only when explicitly marked or announced by the instructor; it cannot replace a failed core requirement and does not affect a beginner who completes the core path.
 
-**المسار الأساسي** إلزامي: مهام المتدرب الـ14، وتشغيل C0–C29 بالترتيب، والبوابات الثلاث، والتقارير/الأدلة المطلوبة، ورفع GitHub النظيف، ونجاح Actions. أما **مسار التوسع** فاختياري عندما تحدده أو تعلنه المدربة صراحة؛ ولا يعوض متطلبًا أساسيًا فاشلًا ولا يؤثر في المبتدئ الذي يكمل المسار الأساسي.
+**المسار الأساسي** إلزامي: مهام المتدرب الـ14، وتشغيل C0–C29 بالترتيب، والبوابات الثلاث، والتقارير/الأدلة ومتطلبات سدايا الإدارية، ورفع GitHub النظيف، ونجاح Actions. أما **مسار التوسع** فاختياري عندما تحدده أو تعلنه المدربة صراحة؛ ولا يعوض متطلبًا أساسيًا فاشلًا ولا يؤثر في المبتدئ الذي يكمل المسار الأساسي.
 
 Full cell mapping: [`notebooks/README.md`](../notebooks/README.md)
 
@@ -163,21 +165,22 @@ Timestamps, generated IDs, paths, hashes, file sizes, and latency are intentiona
 
 تُتجاهل عمدًا الطوابع الزمنية والمعرّفات المولدة والمسارات والبصمات وأحجام الملفات وزمن الاستجابة لأنها قد تختلف بين تشغيلات صحيحة. تتم المقارنة محليًا داخل متصفحك؛ ولا يُرفع الملف الذي تختاره أو يُحفظ. ملفات المدربة داخل `reference-results/` أدوات للمقارنة، وهي مستبعدة عمدًا من `rafeeq-mini-submission.zip`—فلا تضفها إلى تسليمك.
 
-## 8. Save daily checkpoints · احفظ نقاط التقدم اليومية
+## 8. Save Drive evidence and safe Git checkpoints · احفظ أدلة Drive ونقاط Git الآمنة
 
-After each gate passes, save the Drive notebook and record the matching checkpoint label in the notebook/report. In the guaranteed empty-repository path, only the final line is used as the GitHub upload commit message:
+After each gate passes, save the Drive notebook first. Then edit only the public status in `LEARNING_PROGRESS.md`; never copy raw output or code into the progress log. Use these Git messages:
 
-بعد نجاح كل بوابة احفظ دفتر Drive وسجل تسمية نقطة التقدم المطابقة في الدفتر أو التقرير. في مسار المستودع الفارغ المضمون تُستخدم الرسالة الأخيرة فقط بوصفها رسالة GitHub عند الرفع:
+بعد نجاح كل بوابة احفظ دفتر Drive أولًا. ثم عدّل الحالة العامة فقط داخل `LEARNING_PROGRESS.md`، ولا تنسخ مخرجات خامًا أو كودًا إلى سجل التقدم. استخدم رسائل Git الآتية:
 
 ```text
-checkpoint(day-1): pass C9 core tools and MCP
-checkpoint(day-2): pass C20 memory and orchestration
+docs: initialize Rafeeq Mini progress log
+docs(day1): record C9 gate
+docs(day2): record C20 gate
 feat: submit Rafeeq Mini capstone
 ```
 
-The first two lines document the Day 1 and Day 2 gates; they are not Git commits while the preflight repository is empty. The final line is the commit message for uploading the extracted C29 files.
+The first three commits contain documentation only. The final commit adds the guarded C29 export. Meaning and safety matter more than commit count; never create artificial empty commits.
 
-توثق الرسالتان الأوليان بوابتي اليومين الأول والثاني، وليستا Git commits ما دام مستودع التجهيز فارغًا. الرسالة الأخيرة هي رسالة Commit لرفع ملفات C29 المستخرجة.
+تحتوي أول ثلاثة Commits على توثيق فقط، ويضيف Commit الأخير تصدير C29 المحمي. دلالة السجل وسلامته أهم من العدد؛ فلا تنشئ Commits فارغة مصطنعة.
 
 Inspect every exported file before uploading. A commit must never include a credential, private link, real data, raw runtime dump, completed solution, instructor material, hidden test, temporary checkpoint, or `rafeeq-mini-submission.zip`.
 
@@ -231,9 +234,11 @@ Your project is ready for assessment only when all conditions below are true:
 
 يكون مشروعك جاهزًا للتقييم فقط عند تحقق جميع الشروط التالية:
 
-Read the complete [100-point assessment rubric](ASSESSMENT_RUBRIC.md): passing requires at least 70/100 **and** every non-compensable gate. · اقرأ [معيار التقييم الكامل من 100 درجة](ASSESSMENT_RUBRIC.md): يتطلب الاجتياز 70/100 على الأقل **مع** نجاح جميع البوابات غير القابلة للتعويض.
+Read the complete [100-point assessment rubric](ASSESSMENT_RUBRIC.md) and [SDAIA administrative requirements](SDAIA_ADMIN_REQUIREMENTS.md): passing requires at least 70/100 **and** every non-compensable gate. · اقرأ [معيار التقييم الكامل من 100 درجة](ASSESSMENT_RUBRIC.md) و[متطلبات سدايا الإدارية](SDAIA_ADMIN_REQUIREMENTS.md): يتطلب الاجتياز 70/100 على الأقل **مع** نجاح جميع البوابات غير القابلة للتعويض.
 
 - Your repository is public, owned by you, created as a new repository through the browser, and is not a fork. · مستودعك عام وتملكه أنت ومنشأ كمستودع جديد عبر المتصفح وليس Fork.
+- The GitHub About description, professional README, technical documentation, course reference, SDAIA Academy link, and meaningful progress history satisfy the 10-point administrative rubric. · يستوفي وصف About وREADME الاحترافي والتوثيق الفني وذكر الدورة ورابط أكاديمية سدايا وسجل التقدم ذي المعنى معيار المتطلبات الإدارية من 10 درجات.
+- `LEARNING_PROGRESS.md` contains the safe setup, Day 1, Day 2, and Day 3 checkpoints; no raw evidence was published before C29. · يحتوي `LEARNING_PROGRESS.md` نقاط التجهيز واليوم الأول والثاني والثالث الآمنة، ولم تنشر أدلة خام قبل C29.
 - The extracted project tree is visible; the repository is not a ZIP-only upload. · تظهر بنية ملفات المشروع المستخرجة، ولا يقتصر المستودع على ملف ZIP.
 - The final notebook opens and runs from `C0` to `C29` on Colab Free CPU with `LLM_MODE=stub`. · يفتح الدفتر النهائي ويعمل من `C0` إلى `C29` على Colab Free CPU بوضع `LLM_MODE=stub`.
 - `C9_DAY1_GATE` and `C20_DAY2_GATE` each report `all_passed=true`, and the enabled final C29 run prints `FINAL_EXPORT_CREATED`. · تعرض كل من `C9_DAY1_GATE` و`C20_DAY2_GATE` القيمة `all_passed=true`، ويطبع تشغيل C29 النهائي بعد تفعيله `FINAL_EXPORT_CREATED`.
@@ -242,6 +247,8 @@ Read the complete [100-point assessment rubric](ASSESSMENT_RUBRIC.md): passing r
 - The final checkpoint commit is present and its link is recorded. · يوجد Commit النهائي ومسجل رابطه.
 - **Actions → Learner submission quality** is green for the exact final commit being submitted. · يظهر فحص **Actions ← Learner submission quality** باللون الأخضر لنفس Commit النهائي المرسل.
 - The repository contains no real data, credentials, private links, copied solutions, instructor material, recovery answers, grades, or hidden tests. · يخلو المستودع من البيانات الحقيقية وبيانات الدخول والروابط الخاصة والحلول المنسوخة ومواد المدربة وإجابات الاستعادة والدرجات والاختبارات الخفية.
+
+At the start of the final day, complete the course-evaluation link if the SDAIA coordinator or supervisor supplies it. Completion is handled privately and has no project points; do not publish responses or screenshots in GitHub. · في بداية اليوم الأخير أكمل رابط تقييم الدورة إذا أرسله منسق أو مشرف سدايا. يعالج الإتمام بصورة خاصة ولا يحمل درجات للمشروع؛ فلا تنشر الإجابات أو اللقطات في GitHub.
 
 ## 12. Ask for help efficiently · اطلب المساعدة بكفاءة
 

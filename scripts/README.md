@@ -7,13 +7,13 @@
 
 ## Learner starting boundary · حدود بداية المتدرب
 
-Create an empty public learner repository during preflight, then leave it empty. Start from the **[official course notebook in Colab](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)** and select **File → Save a copy in Drive**. The notebook carries the public lab files and calls these scripts; do not try to open or run them from the empty learner repository before C29.
+Create a public learner repository during preflight and add only the safe `LEARNING_PROGRESS.md` file. Start from the **[official course notebook in Colab](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb)** and select **File → Save a copy in Drive**. The notebook carries the public lab files and calls these scripts; do not upload or run project code from the learner repository before C29.
 
-أنشئ مستودع المتدرب العام والفارغ أثناء التجهيز المسبق، ثم اتركه فارغًا. ابدأ من **[دفتر الدورة الرسمي في كولاب](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)**، ثم اختر **File → Save a copy in Drive**. يحمل الدفتر ملفات اللاب العامة ويستدعي هذه السكربتات؛ لا تحاول فتحها أو تشغيلها من مستودع المتدرب الفارغ قبل C29.
+أنشئ مستودع المتدرب العام أثناء التجهيز وأضف ملف `LEARNING_PROGRESS.md` الآمن فقط. ابدأ من **[دفتر الدورة الرسمي في كولاب](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb)**، ثم اختر **File → Save a copy in Drive**. يحمل الدفتر ملفات اللاب العامة ويستدعي هذه السكربتات؛ لا ترفع كود المشروع أو تشغله من مستودع المتدرب قبل C29.
 
-At C29, use the still-empty public repository created during preflight. Upload the **extracted clean contents** of `rafeeq-mini-submission.zip`, then add the completed notebook downloaded manually through **File → Download → Download .ipynb** as `notebooks/Rafeeq_Mini_Capstone.ipynb`. Do not upload the ZIP itself.
+At C29, use the public repository containing only the safe progress log. Upload the **extracted clean contents** of `rafeeq-mini-submission.zip`, retain `LEARNING_PROGRESS.md`, then add the completed notebook downloaded manually through **File → Download → Download .ipynb** as `notebooks/Rafeeq_Mini_Capstone.ipynb`. Do not upload the ZIP itself.
 
-عند C29 استخدم المستودع العام الذي أنشأته في التجهيز وما زال فارغًا، وارفع **المحتويات النظيفة المستخرجة** من `rafeeq-mini-submission.zip`، ثم أضف الدفتر المكتمل المنزّل يدويًا عبر **File → Download → Download .ipynb** بالمسار `notebooks/Rafeeq_Mini_Capstone.ipynb`. لا ترفع ملف ZIP نفسه.
+عند C29 استخدم المستودع العام الذي لا يحتوي إلا سجل التقدم الآمن، وارفع **المحتويات النظيفة المستخرجة** من `rafeeq-mini-submission.zip` مع الاحتفاظ بـ`LEARNING_PROGRESS.md`، ثم أضف الدفتر المكتمل المنزّل يدويًا عبر **File → Download → Download .ipynb** بالمسار `notebooks/Rafeeq_Mini_Capstone.ipynb`. لا ترفع ملف ZIP نفسه.
 
 ## Public verification tools · أدوات التحقق العامة
 

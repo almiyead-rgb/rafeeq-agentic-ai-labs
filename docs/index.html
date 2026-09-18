@@ -16,9 +16,9 @@
 
     <div class="release-banner" role="status">
       <span class="status-dot" aria-hidden="true"></span>
-      <strong class="lang-en" lang="en">Release candidate 0.9.0-rc2 · automated checks passed · hosted Colab pilot pending</strong>
+      <strong class="lang-en" lang="en">Release candidate 0.9.0-rc3 · automated checks passed · hosted Colab pilot pending</strong>
       <span class="release-divider" aria-hidden="true"></span>
-      <strong class="lang-ar" lang="ar" dir="rtl">مرشح الإصدار 0.9.0-rc2 · نجحت الفحوص الآلية · تجربة Colab المستضافة معلقة</strong>
+      <strong class="lang-ar" lang="ar" dir="rtl">مرشح الإصدار 0.9.0-rc3 · نجحت الفحوص الآلية · تجربة Colab المستضافة معلقة</strong>
     </div>
 
     <header class="topbar">
@@ -99,14 +99,14 @@
               <span class="path-tag">RECOMMENDED FOR FIRST-TIMERS</span>
               <h2>Beginner guided path</h2>
               <p>New to GitHub or Colab? Follow four browser-only steps from account creation to your first successful run. No Git install, terminal, or token required.</p>
-              <small>Target: 15–25 min · Finish: an empty reserved repository + <code>C0 = READY</code></small>
+              <small>Target: 15–25 min · Finish: a reserved repository with a safe progress log + <code>C0 = READY</code></small>
               <a class="primary-button compact" href="#setup">Open guided setup <span aria-hidden="true">→</span></a>
             </div>
             <div class="path-copy lang-ar" lang="ar" dir="rtl">
               <span class="path-tag">موصى به للمبتدئين</span>
               <h2>مسار المبتدئ الموجّه</h2>
               <p>تستخدم GitHub أو كولاب لأول مرة؟ اتبع أربع خطوات من المتصفح، من إنشاء الحساب حتى أول تشغيل ناجح. لا تحتاج تثبيت Git أو الطرفية أو رمز وصول.</p>
-              <small>المستهدف: 15–25 دقيقة · النهاية: مستودع فارغ محجوز لك + <code>C0 = READY</code></small>
+              <small>المستهدف: 15–25 دقيقة · النهاية: مستودع محجوز بسجل تقدم آمن + <code>C0 = READY</code></small>
               <a class="primary-button compact" href="#setup"><span aria-hidden="true">←</span> افتح التجهيز الموجّه</a>
             </div>
           </article>
@@ -118,14 +118,14 @@
               <h2>Ready path</h2>
               <p>Open the cumulative notebook directly, save a Drive copy, and run the environment doctor.</p>
               <small>Target: 2–5 min · Finish: <code>C0 = READY</code></small>
-              <a class="secondary-button compact" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer">Open Colab <span aria-hidden="true">↗</span></a>
+              <a class="secondary-button compact" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer">Open Colab <span aria-hidden="true">↗</span></a>
             </div>
             <div class="path-copy lang-ar" lang="ar" dir="rtl">
               <span class="path-tag">لديك خبرة سابقة؟</span>
               <h2>المسار السريع</h2>
               <p>افتح الدفتر التراكمي مباشرة، واحفظ نسخة في Drive، ثم شغّل فحص البيئة.</p>
               <small>المستهدف: 2–5 دقائق · النهاية: <code>C0 = READY</code></small>
-              <a class="secondary-button compact" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> افتح كولاب</a>
+              <a class="secondary-button compact" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> افتح كولاب</a>
             </div>
           </article>
         </div>
@@ -150,21 +150,21 @@
         <div class="setup-board" data-setup-board>
           <div class="setup-progress" role="progressbar" aria-label="Setup progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"><span></span></div>
           <div class="stepper" role="tablist" aria-label="Guided setup · خطوات التجهيز الموجّه">
-            <button class="step current" type="button" role="tab" aria-selected="true" aria-controls="setup-detail" data-step="0">
+            <button class="step current" id="setup-tab-1" type="button" role="tab" aria-selected="true" aria-controls="setup-detail" tabindex="0" data-step="0">
               <span class="step-number" aria-hidden="true">01</span><span class="step-label"><b class="lang-en">Create account</b><b class="lang-ar" dir="rtl">إنشاء الحساب</b><small>5–10 min</small></span>
             </button>
-            <button class="step" type="button" role="tab" aria-selected="false" aria-controls="setup-detail" data-step="1">
+            <button class="step" id="setup-tab-2" type="button" role="tab" aria-selected="false" aria-controls="setup-detail" tabindex="-1" data-step="1">
               <span class="step-number" aria-hidden="true">02</span><span class="step-label"><b class="lang-en">Create repository</b><b class="lang-ar" dir="rtl">إنشاء المستودع</b><small>3–5 min</small></span>
             </button>
-            <button class="step" type="button" role="tab" aria-selected="false" aria-controls="setup-detail" data-step="2">
+            <button class="step" id="setup-tab-3" type="button" role="tab" aria-selected="false" aria-controls="setup-detail" tabindex="-1" data-step="2">
               <span class="step-number" aria-hidden="true">03</span><span class="step-label"><b class="lang-en">Prepare Colab</b><b class="lang-ar" dir="rtl">تجهيز كولاب</b><small>3–5 min</small></span>
             </button>
-            <button class="step" type="button" role="tab" aria-selected="false" aria-controls="setup-detail" data-step="3">
+            <button class="step" id="setup-tab-4" type="button" role="tab" aria-selected="false" aria-controls="setup-detail" tabindex="-1" data-step="3">
               <span class="step-number" aria-hidden="true">04</span><span class="step-label"><b class="lang-en">Reach C0 READY</b><b class="lang-ar" dir="rtl">الوصول إلى C0 READY</b><small>2–5 min</small></span>
             </button>
           </div>
 
-          <div class="setup-detail" id="setup-detail" role="tabpanel">
+          <div class="setup-detail" id="setup-detail" role="tabpanel" aria-labelledby="setup-tab-1">
             <div class="detail-icon" aria-hidden="true" data-step-icon>◉</div>
             <div class="detail-copy lang-en" lang="en" dir="ltr">
               <span data-step-count-en>STEP 1 OF 4</span>
@@ -194,11 +194,11 @@
           <span class="policy-icon" aria-hidden="true">⑂</span>
           <div class="lang-en" lang="en" dir="ltr">
             <strong id="repo-policy-en">Repository policy</strong>
-            <p>Create and verify your empty public repository during setup, then leave it empty while you work in Colab. Upload only the clean final export at C29. If policy blocks public repositories, tell the trainer before Day 1.</p>
+            <p>Create the public repository during setup and add only <code>LEARNING_PROGRESS.md</code> from the <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/docs/LEARNING_PROGRESS_TEMPLATE.md" target="_blank" rel="noopener noreferrer">safe template</a>. Update that file after C9 and C20; keep code and runtime evidence in Drive until the clean C29 export. If policy blocks public repositories, tell the trainer before Day 1.</p>
           </div>
           <div class="lang-ar" lang="ar" dir="rtl">
             <strong id="repo-policy-ar">سياسة المستودع</strong>
-            <p>أنشئ مستودعك العام الفارغ وتحقق منه أثناء التجهيز، ثم اتركه فارغًا طوال العمل على كولاب. ارفع التصدير النهائي النظيف فقط عند C29. إذا منعت السياسة المستودعات العامة فأبلغ المدربة قبل اليوم الأول.</p>
+            <p>أنشئ المستودع العام أثناء التجهيز وأضف <code>LEARNING_PROGRESS.md</code> فقط من <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/docs/LEARNING_PROGRESS_TEMPLATE.md" target="_blank" rel="noopener noreferrer">القالب الآمن</a>. حدّثه بعد C9 وC20، وأبقِ الكود وأدلة التشغيل في Drive حتى تصدير C29 النظيف. إذا منعت السياسة المستودعات العامة فأبلغ المدربة قبل اليوم الأول.</p>
           </div>
         </aside>
 
@@ -530,8 +530,8 @@
           <strong>C0 = READY</strong>
           <small>all_passed=true</small>
         </div>
-        <div class="first-win-copy lang-en" lang="en" dir="ltr"><span>YOUR FIRST WIN</span><h2 id="first-win-en">Start with certainty.</h2><p>Open the notebook, save a Drive copy, run <code>C0_ENV_DOCTOR</code>, and continue only after every check passes.</p><a class="light-button" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer">Open Colab <span aria-hidden="true">↗</span></a></div>
-        <div class="first-win-copy lang-ar" lang="ar" dir="rtl"><span>أول نجاح لك</span><h2 id="first-win-ar">ابدأ بيقين.</h2><p>افتح الدفتر، واحفظ نسخة في Drive، ثم شغّل <code>C0_ENV_DOCTOR</code>، ولا تتابع إلا بعد نجاح جميع الفحوص.</p><a class="light-button" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> افتح كولاب</a></div>
+        <div class="first-win-copy lang-en" lang="en" dir="ltr"><span>YOUR FIRST WIN</span><h2 id="first-win-en">Start with certainty.</h2><p>Open the notebook, save a Drive copy, run <code>C0_ENV_DOCTOR</code>, and continue only after every check passes.</p><a class="light-button" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer">Open Colab <span aria-hidden="true">↗</span></a></div>
+        <div class="first-win-copy lang-ar" lang="ar" dir="rtl"><span>أول نجاح لك</span><h2 id="first-win-ar">ابدأ بيقين.</h2><p>افتح الدفتر، واحفظ نسخة في Drive، ثم شغّل <code>C0_ENV_DOCTOR</code>، ولا تتابع إلا بعد نجاح جميع الفحوص.</p><a class="light-button" href="https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> افتح كولاب</a></div>
       </section>
 
       <section class="path-section" id="reference-results" aria-labelledby="reference-results-title">
@@ -546,7 +546,7 @@
               <small>Included: day gates, security retest, assessment, readiness, and final export · Excluded: solution code, TODO answers, hidden tests, and grades</small>
               <div class="hero-actions">
                 <a class="primary-button compact" href="compare.html">Compare my output <span aria-hidden="true">→</span></a>
-                <a class="secondary-button compact" href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/tree/v0.9.0-rc2/reference-results" target="_blank" rel="noopener noreferrer">Browse contracts <span aria-hidden="true">↗</span></a>
+                <a class="secondary-button compact" href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/tree/v0.9.0-rc3/reference-results" target="_blank" rel="noopener noreferrer">Browse contracts <span aria-hidden="true">↗</span></a>
               </div>
             </div>
             <div class="path-copy lang-ar" lang="ar" dir="rtl">
@@ -556,7 +556,7 @@
               <small>تشمل: بوابات الأيام، وإعادة اختبار الأمن، والتقييم، والجاهزية، والتصدير النهائي · لا تشمل: كود الحل، وإجابات المهام، والاختبارات الخفية، والدرجات</small>
               <div class="hero-actions">
                 <a class="primary-button compact" href="compare.html"><span aria-hidden="true">←</span> قارن نتيجتي</a>
-                <a class="secondary-button compact" href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/tree/v0.9.0-rc2/reference-results" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> تصفح العقود</a>
+                <a class="secondary-button compact" href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/tree/v0.9.0-rc3/reference-results" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> تصفح العقود</a>
               </div>
             </div>
           </article>
@@ -599,6 +599,22 @@
           </article>
         </div>
 
+        <details class="rubric-disclosure">
+          <summary><span aria-hidden="true">◎</span><b class="lang-en" id="sdaia-rubric-title-en" lang="en">SDAIA administrative requirements — 10 assessed points</b><b class="lang-ar" id="sdaia-rubric-title-ar" lang="ar" dir="rtl">متطلبات سدايا الإدارية — 10 درجات مقيمة</b><span class="video-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="rubric-table" role="table" aria-labelledby="sdaia-rubric-title-en sdaia-rubric-title-ar">
+            <div class="rubric-row rubric-head" role="row"><span role="columnheader"><span class="lang-en" lang="en">Required evidence</span><span class="lang-ar" lang="ar" dir="rtl">الدليل المطلوب</span></span><span role="columnheader"><span class="lang-en" lang="en">Points</span><span class="lang-ar" lang="ar" dir="rtl">الدرجة</span></span></div>
+            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Clear, comprehensive GitHub repository description</b><small class="lang-ar" lang="ar" dir="rtl">وصف واضح وشامل لمستودع GitHub</small></span><strong role="cell">2</strong></div>
+            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Professional README: idea, run, and use</b><small class="lang-ar" lang="ar" dir="rtl">README احترافي: الفكرة والتشغيل والاستخدام</small></span><strong role="cell">2</strong></div>
+            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Appropriate linked technical documentation</b><small class="lang-ar" lang="ar" dir="rtl">توثيق فني مناسب ومترابط</small></span><strong role="cell">2</strong></div>
+            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Safe, meaningful Git progress and version history</b><small class="lang-ar" lang="ar" dir="rtl">تقدم Git آمن وذو معنى وسجل إصدارات محفوظ</small></span><strong role="cell">2</strong></div>
+            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Training-program reference in README</b><small class="lang-ar" lang="ar" dir="rtl">الإشارة إلى البرنامج التدريبي في README</small></span><strong role="cell">1</strong></div>
+            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Working SDAIA Academy GitHub link</b><small class="lang-ar" lang="ar" dir="rtl">رابط أكاديمية سدايا الصحيح</small></span><strong role="cell">1</strong></div>
+            <div class="rubric-row rubric-total" role="row"><span role="cell"><b class="lang-en" lang="en">Administrative subtotal</b><b class="lang-ar" lang="ar" dir="rtl">المجموع الإداري</b></span><strong role="cell">10</strong></div>
+          </div>
+          <p class="bilingual-note bilingual-pair"><span class="lang-en" lang="en">These 10 points sit inside the existing 15-point GitHub-delivery area; the remaining 5 points cover clean execution, linked evidence, and privacy. Read the <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/docs/SDAIA_ADMIN_REQUIREMENTS.md" target="_blank" rel="noopener noreferrer">full evidence standard and safe daily Git path</a>.</span><span class="lang-ar" lang="ar" dir="rtl">تقع هذه الدرجات العشر داخل محور تسليم GitHub الحالي من 15 درجة، وتغطي الدرجات الخمس المتبقية التشغيل النظيف وترابط الأدلة والخصوصية. راجع <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/docs/SDAIA_ADMIN_REQUIREMENTS.md" target="_blank" rel="noopener noreferrer">معيار الأدلة ومسار Git اليومي الآمن</a>.</span></p>
+          <div class="safety-note"><b aria-hidden="true">i</b><div class="bilingual-pair"><span class="lang-en" lang="en">The course-evaluation link is shared by the SDAIA coordinator or supervisor at the start of the final day and completed privately. It has no project points. Stars, Follow, Fork, Pull Requests, Issues, open-source work, and community sharing are encouraged where appropriate but are not graded.</span><span class="lang-ar" lang="ar" dir="rtl">يشارك منسق أو مشرف سدايا رابط تقييم الدورة في بداية اليوم الأخير ويستكمل بصورة خاصة، ولا يحمل درجات للمشروع. أما Stars وFollow وFork وPull Requests وIssues والمساهمات المفتوحة والمشاركة المجتمعية فهي تشجيعية عند ملاءمتها وغير مقيمة.</span></div></div>
+        </details>
+
         <div class="passing-grid">
           <article class="pass-card">
             <div class="pass-score" aria-label="Passing score 70 out of 100 · درجة الاجتياز 70 من 100"><strong data-meta-passing-score>70</strong><span>/100</span></div>
@@ -610,8 +626,8 @@
 
           <article class="gate-card">
             <div class="bilingual-pair">
-              <div class="lang-en" lang="en" dir="ltr"><h3>Non-compensable gates</h3><ul><li>C9 and C20 pass</li><li>C29 shows <code>FINAL_EXPORT_CREATED</code></li><li>GitHub Actions is green</li><li>No secrets or real data</li><li>No cross-customer leak or unauthorized write</li></ul></div>
-              <div class="lang-ar" lang="ar" dir="rtl"><h3>بوابات لا تعوضها الدرجات</h3><ul><li>نجاح C9 وC20</li><li>ظهور <code>FINAL_EXPORT_CREATED</code> في C29</li><li>نجاح GitHub Actions باللون الأخضر</li><li>عدم وجود أسرار أو بيانات حقيقية</li><li>عدم تسرب بيانات عميل أو تنفيذ كتابة غير مصرح بها</li></ul></div>
+              <div class="lang-en" lang="en" dir="ltr"><h3>Non-compensable gates</h3><ul><li>C9 and C20 pass</li><li>C29 shows <code>FINAL_EXPORT_CREATED</code></li><li>GitHub Actions is green and required administrative evidence is present</li><li>No secrets or real data</li><li>No cross-customer leak or unauthorized write</li></ul></div>
+              <div class="lang-ar" lang="ar" dir="rtl"><h3>بوابات لا تعوضها الدرجات</h3><ul><li>نجاح C9 وC20</li><li>ظهور <code>FINAL_EXPORT_CREATED</code> في C29</li><li>نجاح GitHub Actions ووجود الأدلة الإدارية المطلوبة</li><li>عدم وجود أسرار أو بيانات حقيقية</li><li>عدم تسرب بيانات عميل أو تنفيذ كتابة غير مصرح بها</li></ul></div>
             </div>
           </article>
         </div>
@@ -623,12 +639,12 @@
             <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Day 1: architecture, state, tools &amp; MCP</b><small class="lang-ar" lang="ar" dir="rtl">اليوم الأول: المعمارية والحالة والأدوات وMCP</small></span><strong role="cell">20</strong></div>
             <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Day 2: memory, retrieval, orchestration &amp; approval</b><small class="lang-ar" lang="ar" dir="rtl">اليوم الثاني: الذاكرة والاسترجاع والتنسيق والموافقة</small></span><strong role="cell">20</strong></div>
             <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Day 3: security, reflection, tracing &amp; optimization</b><small class="lang-ar" lang="ar" dir="rtl">اليوم الثالث: الأمن والمراجعة والتتبع والتحسين</small></span><strong role="cell">25</strong></div>
-            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Evidence, reproducibility &amp; GitHub</b><small class="lang-ar" lang="ar" dir="rtl">الأدلة وقابلية إعادة التشغيل وGitHub</small></span><strong role="cell">15</strong></div>
+            <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">SDAIA administration, evidence, privacy &amp; GitHub</b><small class="lang-ar" lang="ar" dir="rtl">متطلبات سدايا والأدلة والخصوصية وGitHub</small></span><strong role="cell">15</strong></div>
             <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Engineering decisions</b><small class="lang-ar" lang="ar" dir="rtl">تفسير القرارات الهندسية</small></span><strong role="cell">10</strong></div>
             <div class="rubric-row" role="row"><span role="cell"><b class="lang-en">Presentation &amp; individual defense</b><small class="lang-ar" lang="ar" dir="rtl">العرض والمناقشة الفردية</small></span><strong role="cell">10</strong></div>
             <div class="rubric-row rubric-total" role="row"><span role="cell"><b>Total · المجموع</b></span><strong role="cell">100</strong></div>
           </div>
-          <p class="bilingual-note"><span class="lang-en" lang="en">Review the <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/docs/ASSESSMENT_RUBRIC.md" target="_blank" rel="noopener noreferrer">complete public rubric, performance bands, and gate rules</a>.</span><span class="lang-ar" lang="ar" dir="rtl">راجع <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/docs/ASSESSMENT_RUBRIC.md" target="_blank" rel="noopener noreferrer">المعيار العام الكامل ومستويات الأداء وقواعد البوابات</a>.</span></p>
+          <p class="bilingual-note"><span class="lang-en" lang="en">Review the <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/docs/ASSESSMENT_RUBRIC.md" target="_blank" rel="noopener noreferrer">complete public rubric, performance bands, and gate rules</a>.</span><span class="lang-ar" lang="ar" dir="rtl">راجع <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/docs/ASSESSMENT_RUBRIC.md" target="_blank" rel="noopener noreferrer">المعيار العام الكامل ومستويات الأداء وقواعد البوابات</a>.</span></p>
         </details>
 
         <div class="upload-wizard" data-upload-checklist>
@@ -644,7 +660,7 @@
             <li><label><input type="checkbox" value="1"><span class="wizard-number">03</span><span class="bilingual-pair"><span class="lang-en" lang="en">Download your executed notebook as <code>.ipynb</code>.</span><span class="lang-ar" lang="ar" dir="rtl">نزّل دفتر كولاب المنفذ بصيغة <code>.ipynb</code>.</span></span></label></li>
             <li><label><input type="checkbox" value="1"><span class="wizard-number">04</span><span class="bilingual-pair"><span class="lang-en" lang="en">Place it at <code>notebooks/Rafeeq_Mini_Capstone.ipynb</code>.</span><span class="lang-ar" lang="ar" dir="rtl">ضعه في المسار <code>notebooks/Rafeeq_Mini_Capstone.ipynb</code>.</span></span></label></li>
             <li><label><input type="checkbox" value="1"><span class="wizard-number">05</span><span class="bilingual-pair"><span class="lang-en" lang="en">Confirm the hidden <code>.github/workflows/learner-submission-quality.yml</code> file is present.</span><span class="lang-ar" lang="ar" dir="rtl">تأكد من وجود الملف المخفي <code>.github/workflows/learner-submission-quality.yml</code>.</span></span></label></li>
-            <li><label><input type="checkbox" value="1"><span class="wizard-number">06</span><span class="bilingual-pair"><span class="lang-en" lang="en">Upload the extracted contents—not the outer folder or ZIP—to the empty repository.</span><span class="lang-ar" lang="ar" dir="rtl">ارفع محتويات المجلد المفكوك، لا المجلد الخارجي أو ZIP، إلى المستودع الفارغ.</span></span></label></li>
+            <li><label><input type="checkbox" value="1"><span class="wizard-number">06</span><span class="bilingual-pair"><span class="lang-en" lang="en">Mark Day 3 <code>PASS</code> in <code>LEARNING_PROGRESS.md</code>, then upload the extracted contents—not the outer folder or ZIP—beside it.</span><span class="lang-ar" lang="ar" dir="rtl">غيّر حالة اليوم الثالث إلى <code>PASS</code> داخل <code>LEARNING_PROGRESS.md</code>، ثم ارفع المحتويات المفكوكة بجانبه، لا المجلد الخارجي أو ZIP.</span></span></label></li>
             <li><label><input type="checkbox" value="1"><span class="wizard-number">07</span><span class="bilingual-pair"><span class="lang-en" lang="en">Open Actions and wait for “Learner submission quality” to turn green.</span><span class="lang-ar" lang="ar" dir="rtl">افتح Actions وانتظر حتى يظهر “Learner submission quality” باللون الأخضر.</span></span></label></li>
             <li><label><input type="checkbox" value="1"><span class="wizard-number">08</span><span class="bilingual-pair"><span class="lang-en" lang="en">Submit the repository URL and final commit SHA through the announced channel.</span><span class="lang-ar" lang="ar" dir="rtl">أرسل رابط المستودع وSHA الخاص بآخر Commit عبر القناة المعلنة.</span></span></label></li>
           </ol>
@@ -675,8 +691,8 @@
           <a href="https://docs.github.com/en/get-started/start-your-journey/hello-world" target="_blank" rel="noopener noreferrer"><b>GitHub Hello World</b><small>Repository basics · أساسيات المستودع</small></a>
           <a href="https://colab.research.google.com/notebooks/intro.ipynb" target="_blank" rel="noopener noreferrer"><b>Welcome to Colab</b><small>Browser notebook basics · أساسيات الدفتر</small></a>
           <a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer"><b>MCP Documentation</b><small>Tools and context · الأدوات والسياق</small></a>
-          <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/docs/learner-guide.md" target="_blank" rel="noopener noreferrer"><b>Learner guide · دليل المتدرب</b><small>Setup, recovery, export · التجهيز والاستعادة والتصدير</small></a>
-          <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/recovery/README.md" target="_blank" rel="noopener noreferrer"><b>Recovery guide · دليل الاستعادة</b><small>Runtime reset and checkpoints · إعادة البيئة ونقاط الحفظ</small></a>
+          <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/docs/learner-guide.md" target="_blank" rel="noopener noreferrer"><b>Learner guide · دليل المتدرب</b><small>Setup, recovery, export · التجهيز والاستعادة والتصدير</small></a>
+          <a href="https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/recovery/README.md" target="_blank" rel="noopener noreferrer"><b>Recovery guide · دليل الاستعادة</b><small>Runtime reset and checkpoints · إعادة البيئة ونقاط الحفظ</small></a>
           <a href="compare.html"><b>Reference comparison · المقارنة المرجعية</b><small>Compare evidence, not code · قارن الأدلة لا الكود</small></a>
         </div>
         <div class="help-action">
@@ -693,7 +709,7 @@
     <footer>
       <div class="footer-brand"><span class="brand-mark" aria-hidden="true">✦</span><div><b>Rafeeq Mini Labs · لابات رفيق المصغّر</b><small>Advanced Agentic AI Systems Engineering · هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة</small></div></div>
       <div class="trainer"><span>Course Instructor · مدربة الدورة</span><b>Meaad Al-Marri · ميعاد المري</b></div>
-      <div class="footer-links"><a href="https://github.com/SDAIAAcademy" target="_blank" rel="noopener noreferrer">SDAIA Academy on GitHub <span aria-hidden="true">↗</span></a><small>External reference; no endorsement claim · مرجع خارجي دون ادعاء اعتماد</small><small>Release candidate · 0.9.0-rc2</small></div>
+      <div class="footer-links"><a href="https://github.com/SDAIAAcademy" target="_blank" rel="noopener noreferrer">SDAIA Academy on GitHub <span aria-hidden="true">↗</span></a><small>External reference; no endorsement claim · مرجع خارجي دون ادعاء اعتماد</small><small>Release candidate · 0.9.0-rc3</small></div>
     </footer>
 
     <div class="toast" role="status" aria-live="polite" hidden data-toast>Copied safely · تم النسخ بأمان</div>

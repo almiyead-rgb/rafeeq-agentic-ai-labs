@@ -7,9 +7,9 @@
 
 ## Before the first run · قبل التشغيل الأول
 
-1. Open the notebook from the official `almiyead-rgb` course repository with this **[Google Colab link](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)**. Do not look for it in a learner repository. · افتح الدفتر من مستودع الدورة الرسمي `almiyead-rgb` عبر **[رابط Google Colab](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb)**، ولا تبحث عنه في مستودع المتدرب.
+1. Open the notebook from the official `almiyead-rgb` course repository with this **[Google Colab link](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb)**. Do not look for it in a learner repository. · افتح الدفتر من مستودع الدورة الرسمي `almiyead-rgb` عبر **[رابط Google Colab](https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb)**، ولا تبحث عنه في مستودع المتدرب.
 2. In Colab select **File → Save a copy in Drive**. Work only in that Drive copy. · في كولاب اختر **File → Save a copy in Drive**، واعمل فقط على نسخة Drive.
-3. During preflight, create your own empty public GitHub repository, then leave it completely empty while you build in the Drive copy from `C0` through `C29`. · أثناء التجهيز المسبق أنشئ مستودع GitHub عامًا وفارغًا، ثم اتركه فارغًا تمامًا أثناء بناء المشروع في نسخة Drive من `C0` إلى `C29`.
+3. During preflight, create your own public GitHub repository and add only `LEARNING_PROGRESS.md` from the safe template. Update its public status after C9 and C20, but keep code and runtime evidence in Drive until C29. · أثناء التجهيز المسبق أنشئ مستودع GitHub عامًا، وأضف فقط `LEARNING_PROGRESS.md` من القالب الآمن. حدّث حالته العامة بعد C9 وC20، وأبقِ الكود وأدلة التشغيل في Drive حتى C29.
 4. Run `C0_ENV_DOCTOR`. Continue only when it prints `C0 = READY` and `all_passed=true`. · شغّل `C0_ENV_DOCTOR`. لا تتابع إلا بعد ظهور `C0 = READY` و`all_passed=true`.
 5. Run cells from top to bottom. Complete the `TODO`, run its public check, then move forward. · شغّل الخلايا من الأعلى إلى الأسفل. أكمل `TODO`، ثم شغّل الفحص العام، وبعد نجاحه انتقل للخطوة التالية.
 6. Never paste real data, passwords, tokens, private links, or API keys into a cell, output, report, or help request. · لا تلصق بيانات حقيقية أو كلمات مرور أو رموز وصول أو روابط خاصة أو مفاتيح API في خلية أو مخرج أو تقرير أو طلب مساعدة.
@@ -83,13 +83,13 @@ The C29 ZIP excludes the notebook currently open in Colab and `reports/checkpoin
 
 | Gate | Continue only when · لا تنتقل إلا بعد | Checkpoint label / final Git message · تسمية النقطة / رسالة Git النهائية |
 |---|---|---|
-| `C9_DAY1_GATE` | Day 1 public checks and the bounded MCP capability list produce `all_passed=true`. · تنتج فحوص اليوم الأول وقائمة صلاحيات MCP المحدودة القيمة `all_passed=true`. | `checkpoint(day-1): pass C9 core tools and MCP` |
-| `C20_DAY2_GATE` | Scoped recall, typed delegation, routing, refund-gate, and interrupt/resume tests produce `all_passed=true`. · تنتج اختبارات الاسترجاع المعزول والتفويض المحدد والتوجيه وبوابة الاسترداد والإيقاف/الاستئناف القيمة `all_passed=true`. | `checkpoint(day-2): pass C20 memory and orchestration` |
+| `C9_DAY1_GATE` | Day 1 public checks and the bounded MCP capability list produce `all_passed=true`. · تنتج فحوص اليوم الأول وقائمة صلاحيات MCP المحدودة القيمة `all_passed=true`. | `docs(day1): record C9 gate` |
+| `C20_DAY2_GATE` | Scoped recall, typed delegation, routing, refund-gate, and interrupt/resume tests produce `all_passed=true`. · تنتج اختبارات الاسترجاع المعزول والتفويض المحدد والتوجيه وبوابة الاسترداد والإيقاف/الاستئناف القيمة `all_passed=true`. | `docs(day2): record C20 gate` |
 | `C29_EXPORT_SAFETY_CHECK` | With final export enabled, both reports and all required artifacts exist, the safety scan passes, and the cell prints `FINAL_EXPORT_CREATED`. · عند تفعيل التصدير النهائي، يكون التقريران والملفات المطلوبة موجودة، وينجح فحص الأمان، وتطبع الخلية `FINAL_EXPORT_CREATED`. | `feat: submit Rafeeq Mini capstone` |
 
-Save the notebook in Drive after each completed section. In the guaranteed empty-repository path, the first two labels are saved in the notebook/report; the final line becomes the commit message when the extracted clean C29 contents are uploaded. Git does **not** preserve Colab memory, installed packages, or unsaved outputs.
+Save the notebook in Drive after each completed section. The Day 1 and Day 2 Git commits update only `LEARNING_PROGRESS.md`; the final line becomes the commit message when the extracted clean C29 contents are uploaded. Git does **not** preserve Colab memory, installed packages, or unsaved outputs.
 
-احفظ الدفتر في Drive بعد كل جزء مكتمل. في مسار المستودع الفارغ المضمون تُحفظ التسميتان الأوليان داخل الدفتر أو التقرير، ويصبح السطر الأخير رسالة Commit عند رفع محتويات C29 النظيفة المستخرجة. لا يحفظ Git ذاكرة كولاب أو الحزم المثبتة أو المخرجات غير المحفوظة.
+احفظ الدفتر في Drive بعد كل جزء مكتمل. يحدّث Commit اليوم الأول واليوم الثاني ملف `LEARNING_PROGRESS.md` فقط، ويصبح السطر الأخير رسالة Commit عند رفع محتويات C29 النظيفة المستخرجة. لا يحفظ Git ذاكرة كولاب أو الحزم المثبتة أو المخرجات غير المحفوظة.
 
 ## Notebook rules · قواعد الدفتر
 

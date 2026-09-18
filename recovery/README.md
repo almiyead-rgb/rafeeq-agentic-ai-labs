@@ -1,8 +1,8 @@
 # Learner recovery policy · سياسة استعادة عمل المتدرب
 
-**Colab Runtime is temporary. Create an empty public learner repository during preflight, but leave it completely empty until C29. Before C29, Google Drive holds the working notebook and gate evidence. After C29, GitHub holds the final clean submission.**
+**Colab Runtime is temporary. Create the public learner repository during preflight, but publish only the safe `LEARNING_PROGRESS.md` before C29. Google Drive holds the working notebook and gate evidence. After C29, GitHub holds the final clean submission.**
 
-**بيئة Colab مؤقتة. أنشئ مستودع المتدرب العام والفارغ أثناء التجهيز المسبق، لكن اتركه فارغًا تمامًا حتى C29. قبل C29 يحتفظ Google Drive بدفتر العمل وأدلة البوابات، وبعد C29 يحتفظ GitHub بالتسليم النهائي النظيف.**
+**بيئة Colab مؤقتة. أنشئ مستودع المتدرب العام أثناء التجهيز المسبق، لكن لا تنشر قبل C29 إلا `LEARNING_PROGRESS.md` الآمن. يحتفظ Google Drive بدفتر العمل وأدلة البوابات، وبعد C29 يحتفظ GitHub بالتسليم النهائي النظيف.**
 
 Losing the runtime is normal: installed packages, Python variables, uploaded temporary files, and in-memory state disappear. Your saved Drive notebook remains; after the final C29 upload, the clean GitHub submission also remains.
 
@@ -15,7 +15,7 @@ Losing the runtime is normal: installed packages, Python variables, uploaded tem
 3. Run `C0_ENV_DOCTOR`. Stop if it does not return `C0 = READY`. · شغّل `C0_ENV_DOCTOR`. توقف إذا لم يعرض `C0 = READY`.
 4. Run completed cells from the top in order. Python state must be rebuilt; do not jump directly to the last cell. · أعد تشغيل الخلايا المكتملة من الأعلى وبالترتيب لإعادة بناء حالة Python؛ لا تقفز مباشرة إلى آخر خلية.
 5. Stop at the last completed gate and confirm its exact success marker from the table below. · توقف عند آخر بوابة مكتملة، وتأكد من علامة نجاحها الدقيقة في الجدول أدناه.
-6. Compare your Drive copy with the saved checkpoint label and gate evidence. The preflight GitHub repository remains empty until the clean C29 upload. · قارن نسخة Drive بتسمية نقطة التقدم ودليل البوابة المحفوظين. يبقى مستودع GitHub المنشأ في التجهيز فارغًا حتى رفع C29 النظيف.
+6. Compare your Drive copy with the saved gate evidence. Before C29, GitHub contains only the safe public `LEARNING_PROGRESS.md`; Drive remains the source of working evidence. · قارن نسخة Drive بدليل البوابة المحفوظ. قبل C29 لا يحتوي GitHub إلا `LEARNING_PROGRESS.md` العام والآمن، وتبقى نسخة Drive مصدر أدلة العمل.
 7. Continue from the first incomplete learner `TODO`. · تابع من أول `TODO` غير مكتمل.
 
 | Gate | Exact success marker · علامة النجاح الدقيقة |
@@ -43,19 +43,19 @@ Losing the runtime is normal: installed packages, Python variables, uploaded tem
 
 ## Saved checkpoint labels · تسميات نقاط التقدم المحفوظة
 
-Use these exact, searchable labels after each successful gate. Save the first two in the Drive notebook/report; use the final line as the GitHub upload commit message:
+Use these exact, searchable labels after each successful gate. Save the working evidence in Drive, then use the first two messages only to update the matching status in `LEARNING_PROGRESS.md`; use the final line for the clean C29 project upload:
 
-استخدم التسميات الدقيقة والقابلة للبحث التالية بعد نجاح كل بوابة. احفظ الأوليين في دفتر Drive أو التقرير، واستخدم السطر الأخير رسالة Commit لرفع GitHub:
+استخدم التسميات الدقيقة والقابلة للبحث التالية بعد نجاح كل بوابة. احفظ أدلة العمل في Drive، ثم استخدم الرسالتين الأوليين لتحديث الحالة المقابلة فقط داخل `LEARNING_PROGRESS.md`، واستخدم السطر الأخير لرفع مشروع C29 النظيف:
 
 ```text
-checkpoint(day-1): pass C9 core tools and MCP
-checkpoint(day-2): pass C20 memory and orchestration
+docs(day1): record C9 gate
+docs(day2): record C20 gate
 feat: submit Rafeeq Mini capstone
 ```
 
-A saved checkpoint should preserve the updated Drive notebook, gate result, and report draft. It must not contain raw runtime dumps, real data, keys, passwords, private links, solution files, instructor materials, or hidden tests. The GitHub upload happens only after the clean C29 export.
+A saved checkpoint should preserve the updated Drive notebook, gate result, and report draft. Before C29, the only GitHub change is the safe public status inside `LEARNING_PROGRESS.md`; project files are uploaded only after the clean C29 export. Neither location may contain raw runtime dumps, real data, keys, passwords, private links, solution files, instructor materials, or hidden tests.
 
-يجب أن تحفظ نقطة التقدم دفتر Drive المحدث ونتيجة البوابة ومسودة التقرير. ويُمنع أن تتضمن تفريغًا خامًا للبيئة أو بيانات حقيقية أو مفاتيح أو كلمات مرور أو روابط خاصة أو ملفات حلول أو مواد المدربة أو اختبارات خفية. يحدث رفع GitHub بعد تصدير C29 النظيف فقط.
+يجب أن تحفظ نقطة التقدم دفتر Drive المحدث ونتيجة البوابة ومسودة التقرير. وقبل C29 لا يتغير في GitHub إلا الحالة العامة الآمنة داخل `LEARNING_PROGRESS.md`، ولا ترفع ملفات المشروع إلا بعد تصدير C29 النظيف. ويُمنع في الموقعين تضمين تفريغ خام للبيئة أو بيانات حقيقية أو مفاتيح أو كلمات مرور أو روابط خاصة أو ملفات حلول أو مواد المدربة أو اختبارات خفية.
 
 The generated files `reports/trace.jsonl`, `reports/assessment_results.json`, `reports/monitoring_dashboard.png`, and `reports/submission_manifest.json` are required clean C29 outputs and are not durable Colab state. If they disappear after a reset, restore through the last passed gate and rerun `C25_TRACE_EVAL` through `C29_EXPORT_SAFETY_CHECK`, then upload the extracted clean contents—not the ZIP—to GitHub.
 

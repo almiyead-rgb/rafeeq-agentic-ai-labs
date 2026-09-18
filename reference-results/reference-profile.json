@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "profile_id": "rafeeq-mini-observable-contracts",
-  "lab_version": "0.9.0-rc2",
+  "lab_version": "0.9.0-rc3",
   "contract_kind": "observable-results-only",
   "labels": {
     "en": "Validated reference outputs",

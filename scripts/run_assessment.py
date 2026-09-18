@@ -505,7 +505,7 @@ def build_assessment() -> dict[str, Any]:
         "mcp_transport": "stdio",
         "versions": {
             "python": platform_python_version(),
-            "rafeeq_lab": "0.9.0-rc2",
+            "rafeeq_lab": "0.9.0-rc3",
             "mcp_protocol": PROTOCOL_VERSION,
         },
         "cases": cases,

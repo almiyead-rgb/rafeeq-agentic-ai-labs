@@ -1516,7 +1516,7 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
                 "generated_at_utc": datetime.now(timezone.utc).isoformat(),
                 "llm_mode": "stub",
                 "mcp_transport": "stdio",
-                "versions": {"course": "0.9.0-rc2", "python": platform.python_version()},
+                "versions": {"course": "0.9.0-rc3", "python": platform.python_version()},
                 "cases": _all_assessment_cases,
                 "metrics": _assessment_metrics,
                 "critical_gates": _critical_gates,
@@ -1627,6 +1627,9 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
             }
             _gate_table = "\n            ".join(f"| {name} | {passed} |" for name, passed in _gate_rows.items())
             _project_report = f"""# Rafeeq Mini Project Report | تقرير مشروع رفيق ميني
+
+            - Training program | البرنامج التدريبي: Advanced Agentic AI Systems Engineering · هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة
+            - SDAIA Academy GitHub external reference | مرجع أكاديمية سدايا على GitHub: https://github.com/SDAIAAcademy
 
             ## Run and outcome | التشغيل والنتيجة
             - Assessment run ID | معرّف تشغيل التقييم: `{_assessment['run_id']}`
@@ -1821,10 +1824,11 @@ def build_cells(payload: str, payload_sha256: str, file_count: int) -> list[dict
             """
             <div class="rfq-hero" style="background:linear-gradient(135deg,#102a43,#006d77)">
               <div class="rfq-grid">
-                <div dir="ltr"><h2 style="color:white">Submission evidence</h2><p>Your repository should show the cumulative notebook, public code and data, tests, redacted trace, assessment JSON, security report, project report and monitoring image. Keep instructor-only material private.</p><p><strong>Required manual step:</strong> after extracting the ZIP, use <em>File → Download → Download .ipynb</em> in Colab. Upload that completed file to GitHub as <code>notebooks/Rafeeq_Mini_Capstone.ipynb</code>, then upload the remaining ZIP contents. The ZIP intentionally cannot capture the live Colab notebook.</p></div>
-                <div dir="rtl"><h2 style="color:white">أدلة التسليم</h2><p>يجب أن يعرض المستودع الدفتر التراكمي والكود والبيانات العامة والاختبارات والتتبع المنقح وملف التقييم والتقرير الأمني وتقرير المشروع وصورة المراقبة. أبقِ مواد المدرب خاصة.</p><p><strong>خطوة يدوية إلزامية:</strong> بعد فك ZIP اختر في Colab: <em>File → Download → Download .ipynb</em>، ثم ارفع النسخة المكتملة إلى GitHub بالاسم <code>notebooks/Rafeeq_Mini_Capstone.ipynb</code> وارفع بقية محتويات ZIP. لا يستطيع ZIP التقاط دفتر Colab الجاري عمدًا.</p></div>
+                <div dir="ltr"><h2 style="color:white">Submission evidence</h2><p>Your repository should show the cumulative notebook, public code and data, tests, redacted trace, assessment JSON, security report, project report, monitoring image, and the safe <code>LEARNING_PROGRESS.md</code> already created in GitHub. Keep instructor-only material private.</p><p><strong>Required manual step:</strong> after extracting the ZIP, use <em>File → Download → Download .ipynb</em> in Colab. Upload that completed file to GitHub as <code>notebooks/Rafeeq_Mini_Capstone.ipynb</code>, then upload the remaining ZIP contents beside the progress log. The ZIP intentionally cannot capture the live Colab notebook.</p></div>
+                <div dir="rtl"><h2 style="color:white">أدلة التسليم</h2><p>يجب أن يعرض المستودع الدفتر التراكمي والكود والبيانات العامة والاختبارات والتتبع المنقح وملف التقييم والتقرير الأمني وتقرير المشروع وصورة المراقبة وملف <code>LEARNING_PROGRESS.md</code> الآمن المنشأ مسبقًا في GitHub. أبقِ مواد المدرب خاصة.</p><p><strong>خطوة يدوية إلزامية:</strong> بعد فك ZIP اختر في Colab: <em>File → Download → Download .ipynb</em>، ثم ارفع النسخة المكتملة إلى GitHub بالاسم <code>notebooks/Rafeeq_Mini_Capstone.ipynb</code> وارفع بقية محتويات ZIP بجانب سجل التقدم. لا يستطيع ZIP التقاط دفتر Colab الجاري عمدًا.</p></div>
               </div>
               <p><strong>Expected commit · رسالة الالتزام المتوقعة:</strong> <code>feat: submit Rafeeq Mini capstone</code></p>
+              <p><strong>Administrative rubric · المعيار الإداري:</strong> 10 points inside the 100-point assessment for description, README, technical documentation, Git history, program reference, and the SDAIA Academy link.</p>
             </div>
             """
         ),

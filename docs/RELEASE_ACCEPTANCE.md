@@ -45,8 +45,8 @@ candidate to `v1.0.0`:
       التأكد من قابلية إعادة بوابتي اليومين الثاني والثالث بعد الاستعادة.
 - [ ] Export the final bundle and download the final notebook separately.  
       تصدير الحزمة النهائية وتنزيل الدفتر النهائي بصورة منفصلة.
-- [ ] Upload both to the empty learner repository without losing `.github/`.  
-      رفعهما إلى مستودع المتدرب الفارغ دون فقد مجلد `.github/`.
+- [ ] Upload both beside the learner's existing safe `LEARNING_PROGRESS.md` without losing `.github/`.
+      رفعهما بجانب `LEARNING_PROGRESS.md` الآمن الموجود دون فقد مجلد `.github/`.
 - [ ] Confirm **Actions → Learner submission quality** completes green.  
       التأكد من نجاح **Actions → Learner submission quality** بالعلامة الخضراء.
 - [ ] Record elapsed time, browser, account type, failure, and recovery evidence.  

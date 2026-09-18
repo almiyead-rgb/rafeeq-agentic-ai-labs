@@ -22,8 +22,8 @@
       icon: "⑂",
       titleEn: "Create repository",
       titleAr: "إنشاء المستودع",
-      bodyEn: "Create an empty public repository now, then leave it empty until the clean final export at C29. If policy blocks public repositories, tell the trainer before Day 1.",
-      bodyAr: "أنشئ الآن مستودعًا عامًا فارغًا، ثم اتركه فارغًا حتى التصدير النهائي النظيف عند C29. إذا منعت السياسة المستودعات العامة فأبلغ المدربة قبل اليوم الأول.",
+      bodyEn: "Create a public repository, add a clear About description, and create only LEARNING_PROGRESS.md from the safe template. Keep code and runtime evidence in Drive until C29.",
+      bodyAr: "أنشئ مستودعًا عامًا، وأضف وصف About واضحًا، وأنشئ فقط LEARNING_PROGRESS.md من القالب الآمن. أبقِ الكود وأدلة التشغيل في Drive حتى C29.",
       actionUrl: "https://github.com/new",
       actionText: "Create repository · أنشئ المستودع ↗",
     },
@@ -33,7 +33,7 @@
       titleAr: "تجهيز كولاب",
       bodyEn: "Open the verified notebook, save a working copy in Drive, and keep the standard CPU runtime.",
       bodyAr: "افتح الدفتر بعد التحقق منه، واحفظ نسخة عمل في Drive، واستخدم بيئة CPU القياسية.",
-      actionUrl: "https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb",
+      actionUrl: "https://colab.research.google.com/github/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb",
       actionText: "Open Colab · افتح كولاب ↗",
     },
     {
@@ -42,7 +42,7 @@
       titleAr: "الوصول إلى C0 READY",
       bodyEn: "Run C0_ENV_DOCTOR and continue only when every check passes and all_passed=true.",
       bodyAr: "شغّل C0_ENV_DOCTOR، ولا تتابع حتى تنجح جميع الفحوص وتظهر all_passed=true.",
-      actionUrl: "https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc2/notebooks/Rafeeq_Mini_Capstone.ipynb",
+      actionUrl: "https://github.com/almiyead-rgb/rafeeq-agentic-ai-labs/blob/v0.9.0-rc3/notebooks/Rafeeq_Mini_Capstone.ipynb",
       actionText: "View notebook source · اعرض ملف الدفتر →",
     },
   ];
@@ -99,6 +99,7 @@
     const bodyAr = board.querySelector("[data-step-body-ar]");
     const nextButton = board.querySelector("[data-next-step]");
     const actionLink = board.querySelector("[data-step-action]");
+    const panel = board.querySelector('[role="tabpanel"]');
     const savedStep = Number.parseInt(safeRead(STEP_KEY) || "0", 10);
     let activeStep = Number.isFinite(savedStep) ? Math.min(Math.max(savedStep, 0), setupSteps.length - 1) : 0;
 
@@ -109,7 +110,9 @@
         button.classList.toggle("current", buttonIndex === activeStep);
         button.classList.toggle("done", buttonIndex < activeStep);
         button.setAttribute("aria-selected", String(buttonIndex === activeStep));
+        button.tabIndex = buttonIndex === activeStep ? 0 : -1;
       });
+      if (panel) panel.setAttribute("aria-labelledby", stepButtons[activeStep].id);
       if (progressBar) progressBar.style.width = `${((activeStep + 1) / setupSteps.length) * 100}%`;
       if (progress) progress.setAttribute("aria-valuenow", String(activeStep + 1));
       if (icon) icon.textContent = step.icon;
@@ -131,7 +134,21 @@
       safeWrite(STEP_KEY, String(activeStep));
     }
 
-    stepButtons.forEach((button) => button.addEventListener("click", () => renderStep(Number(button.dataset.step))));
+    stepButtons.forEach((button) => {
+      button.addEventListener("click", () => renderStep(Number(button.dataset.step)));
+      button.addEventListener("keydown", (event) => {
+        const keys = ["ArrowRight", "ArrowLeft", "Home", "End"];
+        if (!keys.includes(event.key)) return;
+        event.preventDefault();
+        let target = activeStep;
+        if (event.key === "Home") target = 0;
+        if (event.key === "End") target = setupSteps.length - 1;
+        if (event.key === "ArrowRight") target = (activeStep + 1) % setupSteps.length;
+        if (event.key === "ArrowLeft") target = (activeStep - 1 + setupSteps.length) % setupSteps.length;
+        renderStep(target);
+        stepButtons[target].focus();
+      });
+    });
     nextButton?.addEventListener("click", () => renderStep(activeStep === setupSteps.length - 1 ? 0 : activeStep + 1));
     renderStep(activeStep);
   }

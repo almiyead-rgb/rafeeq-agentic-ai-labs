@@ -15,6 +15,9 @@ Use only the instructor-assigned `learner_id` or GitHub username in this public 
 | Public learner ID · معرف المتدرب العام | `[learner_id or GitHub username]` |
 | GitHub username · اسم مستخدم GitHub | `[TODO]` |
 | Public repository URL · رابط المستودع العام | `[TODO]` |
+| Training program · البرنامج التدريبي | `Advanced Agentic AI Systems Engineering · هندسة أنظمة الذكاء الاصطناعي التوكيلي المتقدمة` |
+| SDAIA Academy GitHub · حساب أكاديمية سدايا | `https://github.com/SDAIAAcademy` |
+| Progress log · سجل التقدم | `LEARNING_PROGRESS.md` |
 | Assessment run ID from `assessment_results.json` · معرف تشغيل التقييم من `assessment_results.json` | `[TODO if available]` |
 | Expected upload commit message · رسالة Commit المتوقعة | `feat: submit Rafeeq Mini capstone` |
 | Notebook · الدفتر | `notebooks/Rafeeq_Mini_Capstone.ipynb` |
@@ -52,8 +55,8 @@ Request → [TODO] → [TODO] → [TODO] → Response / Human approval
 
 | Day/gate | What I implemented · ما نفذته | Public checks · الفحوص العامة | Checkpoint label / assessment evidence · تسيمة النقطة / دليل التقييم | Result |
 |---|---|---|---|---|
-| Day 1 · `C9` | `[TODO]` | `[TODO]` | `checkpoint(day-1): pass C9 core tools and MCP / [TODO]` | `PASS / FAIL` |
-| Day 2 · `C20` | `[TODO]` | `[TODO]` | `checkpoint(day-2): pass C20 memory and orchestration / [TODO]` | `PASS / FAIL` |
+| Day 1 · `C9` | `[TODO]` | `[TODO]` | `docs(day1): record C9 gate / [TODO]` | `PASS / FAIL` |
+| Day 2 · `C20` | `[TODO]` | `[TODO]` | `docs(day2): record C20 gate / [TODO]` | `PASS / FAIL` |
 | Day 3 readiness · `C28` | `[TODO]` | `[TODO]` | `assessment run_id: [TODO if available]` | `PASS / FAIL` |
 
 ## 5. Functional scenarios · السيناريوهات الوظيفية
@@ -116,6 +119,7 @@ The clean C29 export must contain the four artifacts below. After export, you ma
 ## 10. Learner declaration · إقرار المتدرب
 
 - [ ] The repository is my own new public repository created through the GitHub website, not a fork. · المستودع مستودعي العام الجديد المنشأ عبر موقع GitHub، وليس Fork.
+- [ ] The repository has a clear About description, the required course reference and SDAIA Academy link, and a meaningful `LEARNING_PROGRESS.md` history. · يتضمن المستودع وصف About واضحًا وذكر الدورة ورابط أكاديمية سدايا المطلوبين وسجل `LEARNING_PROGRESS.md` ذا معنى.
 - [ ] The repository contains extracted project files, not only a ZIP. · يحتوي المستودع على ملفات المشروع المستخرجة، وليس ملف ZIP فقط.
 - [ ] I downloaded the completed Colab notebook separately and placed it at `notebooks/Rafeeq_Mini_Capstone.ipynb`; `reports/checkpoints/` is not published. · نزّلت دفتر كولاب المكتمل منفصلًا ووضعته في `notebooks/Rafeeq_Mini_Capstone.ipynb`، ولم أنشر `reports/checkpoints/`.
 - [ ] All recorded values come from my own clean Colab CPU run. · جميع القيم المسجلة ناتجة من تشغيلي النظيف على Colab CPU.

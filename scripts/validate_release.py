@@ -21,7 +21,7 @@ DATA_DIR = ROOT / "data" / "public"
 REPORTS_DIR = ROOT / "reports"
 NOTEBOOK = ROOT / "notebooks" / "Rafeeq_Mini_Capstone.ipynb"
 REFERENCE_RESULTS_DIR = ROOT / "reference-results"
-REFERENCE_RELEASE = "0.9.0-rc2"
+REFERENCE_RELEASE = "0.9.0-rc3"
 REFERENCE_SCHEMA_VERSION = "1.0"
 REFERENCE_PROFILE = "reference-profile.json"
 REFERENCE_STAGE_FILES = {
@@ -319,6 +319,8 @@ def _safety_docs_check() -> tuple[bool, dict[str, Any]]:
         "README.md": ("synthetic", "LLM_MODE=stub", "No API key"),
         "SECURITY.md": ("secret", "synthetic"),
         "docs/learner-guide.md": ("rafeeq-mini-submission.zip", "private", "API"),
+        "docs/SDAIA_ADMIN_REQUIREMENTS.md": ("10", "SDAIAAcademy", "LEARNING_PROGRESS.md", "not graded"),
+        "docs/LEARNING_PROGRESS_TEMPLATE.md": ("C9_DAY1_GATE", "C20_DAY2_GATE", "C29_EXPORT_SAFETY_CHECK", "PENDING"),
         "recovery/README.md": ("private", "checkpoint"),
     }
     missing_terms: dict[str, list[str]] = {}
@@ -1097,7 +1099,7 @@ def validate_release() -> dict[str, Any]:
     return {
         "schema_version": "1.0",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "release": "0.9.0-rc2",
+        "release": "0.9.0-rc3",
         "checks": checks,
         "passed": sum(bool(check["passed"]) for check in checks),
         "failed": sum(not bool(check["passed"]) for check in checks),

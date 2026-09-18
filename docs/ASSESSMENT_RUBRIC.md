@@ -30,7 +30,7 @@ submission is revalidated under the instructor's resubmission policy.
 | `G1` | `C9_DAY1_GATE` passes | نجاح بوابة اليوم الأول | `all_passed=true` |
 | `G2` | `C20_DAY2_GATE` passes | نجاح بوابة اليوم الثاني | `all_passed=true` |
 | `G3` | Enabled C29 creates the export | إنشاء التصدير النهائي | `FINAL_EXPORT_CREATED` and valid manifest |
-| `G4` | Final commit passes the official workflow | سلامة التسليم الآلي | Green `Learner submission quality` |
+| `G4` | Final GitHub delivery is complete | اكتمال تسليم GitHub | Green `Learner submission quality` **and instructor confirmation that the repository description, README, documentation, program reference, SDAIA Academy link, and Git evidence are all present** |
 | `G5` | Synthetic and sanitized public content only | نظافة المحتوى | Automated credential/path scan **plus instructor review**: no public PII, real data, or instructor-only material |
 | `G6` | Customer scope remains isolated | عزل العملاء | Zero cross-customer disclosure |
 | `G7` | Sensitive writes stay governed | حوكمة الكتابة | No unauthorized or repeated refund write |
@@ -47,11 +47,33 @@ name or contextual detail is identifying. A green workflow alone does not clear
 العمل وحده لا يجتاز `G5`. استخدم في الملفات العامة `learner_id` المخصص أو اسم
 مستخدم GitHub فقط.
 
+`G4` is also hybrid. The green workflow proves the machine-verifiable delivery
+contract; the instructor separately confirms the repository description,
+README, technical documentation, meaningful Git history, training-program
+reference, and SDAIA Academy link on the assessed commit. Presence of every
+required evidence category is the gate; quality within those categories earns
+the weighted points below, so the same weakness is not deducted twice.
+
+البوابة `G4` مشتركة كذلك. يثبت Workflow الأخضر عقد التسليم القابل للفحص
+الآلي، وتتحقق المدربة بصورة مستقلة من وصف المستودع وREADME والتوثيق الفني
+ودلالة سجل Git وذكر البرنامج ورابط أكاديمية سدايا على Commit المقيم. وجود كل
+فئة دليل إلزامي هو شرط البوابة، أما جودة تلك الأدلة فتمنح وفق الأوزان أدناه،
+وبذلك لا يخصم القصور نفسه مرتين.
+
 Suspected test tampering, copied work, or authorship conflict is reviewed by a
 human under the training entity's policy; it is not decided by an AI detector.
 
 يحال الاشتباه في التحايل على الاختبارات أو نسخ العمل أو تعارض نسبة العمل إلى
 مراجعة بشرية وفق سياسة الجهة، ولا يُحسم بواسطة كاشف محتوى آلي.
+
+The course-evaluation link is shared by the SDAIA coordinator or supervisor at
+the start of the final day. Completion is handled through the designated
+private channel and receives no project points; response content and screenshots
+must not be published in GitHub.
+
+يشارك منسق أو مشرف سدايا رابط تقييم الدورة في بداية اليوم الأخير. يعالج
+الإتمام عبر القناة الخاصة المحددة ولا يمنح درجات للمشروع، ولا تنشر الإجابات
+أو لقطات الشاشة في GitHub.
 
 ## Score distribution · توزيع الدرجات
 
@@ -60,7 +82,7 @@ human under the training entity's policy; it is not decided by an AI detector.
 | Day 1: architecture, typed state, bounded flow, ReAct, tools, and MCP | 20 | اليوم الأول: المعمارية والحالة والتدفق وReAct والأدوات وMCP | 20 |
 | Day 2: memory, scoped retrieval, orchestration, planning, and approval | 20 | اليوم الثاني: الذاكرة والاسترجاع والتنسيق والتخطيط والموافقة | 20 |
 | Day 3: threat model, guard repair, reflection, tracing, and optimization | 25 | اليوم الثالث: التهديدات وإصلاح الحواجز والمراجعة والتتبع والتحسين | 25 |
-| Evidence, reproducibility, privacy, and GitHub delivery | 15 | الأدلة وقابلية إعادة التشغيل والخصوصية وتسليم GitHub | 15 |
+| SDAIA administrative compliance, evidence, privacy, and GitHub delivery | 15 | الامتثال الإداري لسدايا والأدلة والخصوصية وتسليم GitHub | 15 |
 | Engineering decisions and production limitations | 10 | القرارات الهندسية وحدود الانتقال إلى الإنتاج | 10 |
 | Demonstration and individual defense | 10 | العرض والمناقشة الفردية | 10 |
 | **Total** | **100** | **المجموع** | **100** |
@@ -98,14 +120,30 @@ human under the training entity's policy; it is not decided by an AI detector.
 | Measured optimization with a safety guardrail · تحسين مقاس مع ضابط أمان | 4 | `C26`, `TODO-13` |
 | Honest scorecard, readiness, and safe export · بطاقة نتائج وجاهزية وتصدير صادقة | 4 | `C27–C29`, `TODO-14` |
 
-### Evidence and GitHub · الأدلة وGitHub — 15
+### SDAIA administration, evidence, and GitHub · متطلبات سدايا والأدلة وGitHub — 15
 
 | Criterion | Points |
 |---|---:|
-| Clean, reproducible `C0–C29` run · تشغيل نظيف قابل للتكرار | 4 |
-| Notebook, run ID, reports, manifest, export ID, and commit are consistent · ترابط الأدلة | 4 |
-| Correct repository tree and green workflow · بنية صحيحة وفحص أخضر | 4 |
-| Privacy and content hygiene · الخصوصية ونظافة المحتوى | 3 |
+| Clear and comprehensive GitHub repository description · وصف واضح وشامل للمستودع | 2 |
+| Professional README explains the idea, run, and use · README احترافي يشرح الفكرة والتشغيل والاستخدام | 2 |
+| Appropriate, linked technical documentation · توثيق فني مناسب ومترابط | 2 |
+| Meaningful, safe Git progress and preserved version history · تقدم Git آمن وذو معنى مع حفظ سجل الإصدارات | 2 |
+| Training-program reference in `README.md` · الإشارة إلى البرنامج التدريبي في README | 1 |
+| Working [SDAIA Academy GitHub](https://github.com/SDAIAAcademy) link with neutral attribution · رابط أكاديمية سدايا الصحيح بصياغة محايدة | 1 |
+| Clean Colab run and green official workflow on the assessed commit · تشغيل كولاب نظيف وفحص رسمي أخضر على Commit المقيم | 2 |
+| Notebook, run ID, reports, manifest, export ID, and commit evidence are consistent · ترابط الأدلة | 2 |
+| Privacy and content hygiene · الخصوصية ونظافة المحتوى | 1 |
+
+The detailed evidence standard, safe progressive Git path, and the distinction
+between required and encouraged activities are defined in
+[`SDAIA_ADMIN_REQUIREMENTS.md`](SDAIA_ADMIN_REQUIREMENTS.md). Quality and
+meaning are reviewed by the instructor; automated checks confirm only
+objective, machine-verifiable facts.
+
+يوضح ملف [`SDAIA_ADMIN_REQUIREMENTS.md`](SDAIA_ADMIN_REQUIREMENTS.md) معيار
+الدليل التفصيلي ومسار Git المرحلي الآمن والفرق بين المتطلبات الإلزامية
+والأنشطة التشجيعية. تراجع المدربة الجودة ودلالة السجل بشريًا، وتتحقق الأدوات
+فقط من الحقائق الموضوعية القابلة للفحص الآلي.
 
 ### Engineering decisions · القرارات الهندسية — 10
 

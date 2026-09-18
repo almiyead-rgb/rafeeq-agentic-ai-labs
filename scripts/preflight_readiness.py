@@ -74,8 +74,8 @@ MANUAL_ACCEPTANCE = (
     },
     {
         "id": "github_export",
-        "en": "Upload the C29 export and its final notebook to an empty learner repository.",
-        "ar": "رفع حزمة C29 والدفتر النهائي إلى مستودع متدرب فارغ.",
+        "en": "Upload the C29 export and final notebook beside the learner's safe progress log.",
+        "ar": "رفع حزمة C29 والدفتر النهائي بجانب سجل تقدم المتدرب الآمن.",
     },
     {
         "id": "github_actions_green",

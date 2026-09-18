@@ -2,9 +2,9 @@
 
 ## Supported state · الحالة المدعومة
 
-`0.9.0-rc2` is a release-candidate training simulation. Automated checks are complete; hosted-Colab instructor acceptance is still required. It is never suitable for production or real customer data.
+`0.9.0-rc3` is a release-candidate training simulation. Automated checks are complete; hosted-Colab instructor acceptance is still required. It is never suitable for production or real customer data.
 
-الإصدار `0.9.0-rc2` محاكاة تدريبية مرشحة للإصدار. اكتملت الفحوص الآلية، وتبقى تجربة قبول المدربة في Colab المستضاف. ولا يصلح للإنتاج أو لبيانات العملاء الحقيقية.
+الإصدار `0.9.0-rc3` محاكاة تدريبية مرشحة للإصدار. اكتملت الفحوص الآلية، وتبقى تجربة قبول المدربة في Colab المستضاف. ولا يصلح للإنتاج أو لبيانات العملاء الحقيقية.
 
 ## Never commit · ممنوع رفعه
 

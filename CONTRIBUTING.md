@@ -13,7 +13,7 @@ This repository is an instructor-controlled course project. Changes must protect
 5. Keep the active Colab path pointed at the cumulative notebook, and preserve a credential-free clean-runtime check.
 6. Do not add an official logo, `official`/`approved` wording, or institutional topic without written authorization.
 7. Run `python scripts/validate_release.py` and `python scripts/validate_notebook.py` before requesting review.
-8. Keep temporary checkpoints, raw output, and ZIP bundles out of Git. A learner creates an empty public repository during preflight, leaves it empty until C29, and uploads only the clean final submission after `FINAL_EXPORT_CREATED`.
+8. Keep temporary checkpoints, raw output, and ZIP bundles out of Git. Before C29 a learner commits only the safe `LEARNING_PROGRESS.md`; project files are uploaded only after `FINAL_EXPORT_CREATED`.
 9. Public learner identity must use the instructor-assigned `learner_id` or GitHub username; real identity belongs only in the instructor-provided private hand-in form.
 10. Preserve the required **Learner submission quality** workflow and help form. A learner submission is not ready while its exact final commit has a red or pending Actions run.
 
@@ -26,7 +26,7 @@ This repository is an instructor-controlled course project. Changes must protect
 5. أبقِ مسار كولاب الفعّال مرتبطًا بالدفتر التراكمي، وحافظ على فحص نظيف بلا بيانات دخول.
 6. لا تضف شعارًا رسميًا أو وصف `official`/`approved` أو Topic مؤسسيًا دون تفويض مكتوب.
 7. شغّل `python scripts/validate_release.py` و`python scripts/validate_notebook.py` قبل طلب المراجعة.
-8. أبقِ نقاط الحفظ المؤقتة والمخرجات الخام وحزم ZIP خارج Git. ينشئ المتدرب مستودعًا عامًا فارغًا في التجهيز، ويتركه فارغًا حتى C29، ثم يرفع التسليم النهائي النظيف فقط بعد ظهور `FINAL_EXPORT_CREATED`.
+8. أبقِ نقاط الحفظ المؤقتة والمخرجات الخام وحزم ZIP خارج Git. قبل C29 لا يرفع المتدرب سوى `LEARNING_PROGRESS.md` الآمن، ولا ترفع ملفات المشروع إلا بعد ظهور `FINAL_EXPORT_CREATED`.
 9. تستخدم هوية المتدرب العامة `learner_id` الذي تقدمه المدربة أو اسم مستخدم GitHub؛ وتبقى الهوية الحقيقية في نموذج التسليم الخاص الذي تقدمه المدربة فقط.
 10. حافظ على Workflow **Learner submission quality** ونموذج المساعدة المطلوبين. لا يكون التسليم جاهزًا ما دام تشغيل Actions لنفس Commit النهائي أحمر أو قيد التنفيذ.
 

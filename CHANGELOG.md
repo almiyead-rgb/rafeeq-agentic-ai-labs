@@ -4,6 +4,29 @@ All notable changes to the learner repository are recorded here.
 
 تُسجل هنا التغييرات المهمة في مستودع المتدرب.
 
+## [0.9.0-rc3] — 2026-09-18
+
+### Added · أضيف
+
+- A bilingual SDAIA administrative-requirements page with an explicit 10-point rubric for repository description, professional README, technical documentation, Git history, training-program reference, and the SDAIA Academy GitHub link.
+- A safe `LEARNING_PROGRESS.md` template and a browser-only documentation checkpoint after setup, C9, and C20.
+- Instructor-side gradebook fields and manual-review guidance for the six administrative criteria.
+
+### Changed · تغيّر
+
+- The existing 15-point GitHub-delivery area is now transparent: 10 administrative points plus 5 technical-delivery points; the project total remains 100 and the technical Day 1–3 weights are unchanged.
+- The beginner Git path now permits only the sanitized progress log before C29; code, notebooks, traces, runtime outputs, and ZIP files remain in Drive/Colab until the guarded export.
+- Course-evaluation participation is recorded privately without project points. Stars, Follow, Fork, Pull Requests, Issues, open-source activity, and community sharing are explicitly encouraged but not graded.
+- Course, documentation, reference, and Colab links are pinned to `v0.9.0-rc3`.
+
+### Acceptance status · حالة القبول
+
+- Automated repository, notebook, public-test, documentation, and Pages checks apply to this release candidate.
+- Promotion to `v1.0.0` remains blocked until the clean-account hosted-Colab C0–C29, safe daily progress, browser upload, and green-Actions pilot is recorded.
+
+- تنطبق على هذا المرشح فحوص المستودع والدفتر والاختبارات العامة والتوثيق وPages الآلية.
+- تبقى الترقية إلى `v1.0.0` معلقة حتى توثيق تجربة Colab بحساب نظيف من C0 إلى C29، ومسار التقدم اليومي الآمن، والرفع من المتصفح، ونجاح Actions.
+
 ## [0.9.0-rc2] — 2026-09-18
 
 ### Added · أضيف
